@@ -27,6 +27,6 @@ Maintainer: Nicholas Lyon <njlyon@alumni.iastate.edu>
 License: BSD_3_clause + file LICENSE
 Encoding: UTF-8
 Language: en-US
-URL: https://github.com/lter/ltertools
+URL: https://lter.github.io/ltertools/
 BugReports: https://github.com/lter/ltertools/issues
 RoxygenNote: 7.2.3

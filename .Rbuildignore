@@ -9,3 +9,5 @@ docs/
 cran-comments.md
 ^\.Rhistory$
 ^CRAN-SUBMISSION$
+^_pkgdown\.yml$
+^docs$
