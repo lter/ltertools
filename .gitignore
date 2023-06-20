@@ -53,6 +53,7 @@ rsconnect/
 
 # Add R project file
 *.Rproj
+.Rproj.user
 
 # CRAN Submission info
 CRAN-SUBMISSION
