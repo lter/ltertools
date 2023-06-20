@@ -47,3 +47,12 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# Add .DS_Store
+.DS_Store
+
+# Add R project file
+*.Rproj
+
+# CRAN Submission info
+CRAN-SUBMISSION
