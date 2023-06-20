@@ -3,6 +3,7 @@
 ^\.github$
 ^README\.Rmd$
 LICENSE.md
+CONTRIBUTING.md
 docs/
 ^pkgdown$
 cran-comments.md
