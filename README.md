@@ -1,34 +1,46 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ltertools
+# `ltertools`
 
 <!-- badges: start -->
+
+![GitHub
+issues](https://img.shields.io/github/issues-raw/lter/ltertools)
+![GitHub pull
+requests](https://img.shields.io/github/issues-pr/lter/ltertools)
 <!-- badges: end -->
 
-The goal of ltertools is to …
+The goal of `ltertools` is to centralize the R functions created by
+members of the long term ecological research (LTER) community. Many of
+these functions likely have broad relevance that expands beyond the
+context of their creation and this package is an attempt to share those
+tools to save us all from “re-inventing the wheel.”
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+## Installation
+
+You can install the development version of `ltertools` from
+[GitHub](https://github.com/) with:
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+# install.packages("devtools")
+devtools::install_github("lter/ltertools")
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
+## Function Overview
 
-You can also embed plots, for example:
+- As we add functions we will (briefly) summarize them in this section
+  (along with attribution to their initial author(s))
 
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub.
+## Contributing
+
+See `CONTRIBUTING.md` for specifics but at a glance:
+
+- To contribute one of your functions in exchange for authorship credit:
+  [open a GitHub issue](https://github.com/lter/ltertools/issues)
+
+- To suggest minor fixes or point out bugs: [open a GitHub
+  issue](https://github.com/lter/ltertools/issues)
+
+- To implement major / structural changes: fork the repository, make
+  edits, and open a pull request when you are finished
