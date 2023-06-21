@@ -29,8 +29,14 @@ devtools::install_github("lter/ltertools")
 
 ## Function Overview
 
-- As we add functions we will (briefly) summarize them in this section
-  (along with attribution to their initial author(s))
+As functions are added to the package they will be briefly summarized
+below and attributed to their author(s)
+
+### Data Wrangling
+
+- **`convert`** – Convert values from one set of units to another.
+  Currently supports temperature units as well as kilometers versus
+  miles. Function written by [Nick Lyon](https://njlyon0.github.io/)
 
 ## Contributing
 
