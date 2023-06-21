@@ -1,6 +1,6 @@
 #' @title Convert Units of a Value
 #' 
-#' @description Converts a given set of values from one user-specified unit to another. Currently only supports inter-conversion of temperature (i.e., Kelvin, Fahrenheit, Celsius) or miles to kilometers. If you would like other units added, please post an issue on our GitHub repository with your requested units and the formula used to convert between them.
+#' @description Converts a given set of values from one user-specified unit to another. Currently only supports inter-conversion of temperature (i.e., Kelvin, Fahrenheit, Celsius) or miles to kilometers. If you would like other units added, please post an issue on our GitHub repository with your requested units and the formula used to convert between them. This function was built by the following authors: Nicholas Lyon
 #' 
 #' @param value (numeric) value to convert between
 #' @param from (character) starting units of the value. Casing (upper vs. lower) does not matter though spelling does

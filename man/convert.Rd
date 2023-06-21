@@ -17,7 +17,7 @@ convert(value = NULL, from = NULL, to = NULL)
 (numeric) value converted from specified units to desired units
 }
 \description{
-Converts a given set of values from one user-specified unit to another. Currently only supports inter-conversion of temperature (i.e., Kelvin, Fahrenheit, Celsius) or miles to kilometers. If you would like other units added, please post an issue on our GitHub repository with your requested units and the formula used to convert between them.
+Converts a given set of values from one user-specified unit to another. Currently only supports inter-conversion of temperature (i.e., Kelvin, Fahrenheit, Celsius) or miles to kilometers. If you would like other units added, please post an issue on our GitHub repository with your requested units and the formula used to convert between them. This function was built by the following authors: Nicholas Lyon
 }
 \examples{
 # Convert from Fahrenheit to Celsius
