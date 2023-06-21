@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# `ltertools`
+# `ltertools` - Tools Developed by the Long Term Ecological Research Community
 
 <!-- badges: start -->
 

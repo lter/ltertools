@@ -8,7 +8,7 @@ output: github_document
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 ```
 
-# `ltertools`
+# `ltertools` - Tools Developed by the Long Term Ecological Research Community
 
 <!-- badges: start -->
 ![GitHub issues](https://img.shields.io/github/issues-raw/lter/ltertools)
