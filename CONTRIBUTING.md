@@ -10,6 +10,9 @@ Adding a function you've written is the core of `ltertools`' reason for existing
 
 - Please also provide a **1-paragraph description** of what your function does and/or the contexts where your function should be invoked
 
+    - This description should provide sufficient detail that an R expert can gain a fundamental understanding of your function's purpose such that we can do any necessary maintenance during integration
+    - This will likely form the basis of the "Description" field of the function that package users can access with `?function` so feel free to use an existing function's help file as a reference (e.g., `?dplyr::filter`, etc.)
+
 Once you've provided this information we can work towards standardizing function formatting (casing, syntax, etc.) so that your function can be included in our suite of available tools!
 
 ### Function Credit
