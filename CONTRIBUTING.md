@@ -38,6 +38,6 @@ If you have a major change necessitating systemic/structural changes to `ltertoo
 
 1. [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) the GitHub repository
 
-2. Make edits in your fork
+2. Add your function script (and any necessary data files) to the `dev` folder in your fork
 
 3. When finished with your edits, submit a pull request

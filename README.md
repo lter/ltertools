@@ -50,5 +50,6 @@ See `CONTRIBUTING.md` for specifics but at a glance:
 - To suggest minor fixes or point out bugs: [open a GitHub
   issue](https://github.com/lter/ltertools/issues)
 
-- To implement major / structural changes: fork the repository, make
-  edits, and open a pull request when you are finished
+- To implement major / structural changes: fork the repository, add your
+  content to the `dev` folder, and open a pull request when you are
+  finished
