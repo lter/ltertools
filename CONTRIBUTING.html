@@ -51,7 +51,11 @@
 <h2 id="contributing-a-new-function">Contributing a New Function<a class="anchor" aria-label="anchor" href="#contributing-a-new-function"></a></h2>
 <p>Adding a function you’ve written is the core of <code>ltertools</code>’ reason for existing. If you have a function you’d like to contribute please do the following:</p>
 <ul><li><p><a href="https://github.com/lter/ltertools/issues" class="external-link">Open a GitHub issue</a> and paste the entirety of your function in that issue</p></li>
-<li><p>Please also provide a <strong>1-paragraph description</strong> of what your function does and/or the contexts where your function should be invoked</p></li>
+<li>
+<p>Please also provide a <strong>1-paragraph description</strong> of what your function does and/or the contexts where your function should be invoked</p>
+<ul><li>This description should provide sufficient detail that an R expert can gain a fundamental understanding of your function’s purpose such that we can do any necessary maintenance during integration</li>
+<li>This will likely form the basis of the “Description” field of the function that package users can access with <code>?function</code> so feel free to use an existing function’s help file as a reference (e.g., <code>?dplyr::filter</code>, etc.)</li>
+</ul></li>
 </ul><p>Once you’ve provided this information we can work towards standardizing function formatting (casing, syntax, etc.) so that your function can be included in our suite of available tools!</p>
 <div class="section level3">
 <h3 id="function-credit">Function Credit<a class="anchor" aria-label="anchor" href="#function-credit"></a></h3>
@@ -72,7 +76,7 @@
 <h2 id="major-changes">Major Changes<a class="anchor" aria-label="anchor" href="#major-changes"></a></h2>
 <p>If you have a major change necessitating systemic/structural changes to <code>ltertools</code> we recommend the following:</p>
 <ol style="list-style-type: decimal"><li><p><a href="https://docs.github.com/en/get-started/quickstart/fork-a-repo" class="external-link">Fork</a> the GitHub repository</p></li>
-<li><p>Make edits in your fork</p></li>
+<li><p>Add your function script (and any necessary data files) to the <code>dev</code> folder in your fork</p></li>
 <li><p>When finished with your edits, submit a pull request</p></li>
 </ol></div>
 </div>
