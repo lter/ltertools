@@ -61,3 +61,19 @@ See `CONTRIBUTING.md` for specifics but at a glance:
 - To implement major / structural changes: fork the repository, add your
   content to the `dev` folder, and open a pull request when you are
   finished
+
+## Synonymous Function Procedure
+
+If you would like to contribute a function that is similar to a function
+that already exists in `ltertools` please do not hesitate! In the event
+that this happens, the following steps will be followed:
+
+1.  The functions will be combined to preserve the earlier function’s
+    elements while expanding to include the maximum number of novel
+    features (i.e., arguments / options)
+
+    - The older function’s name will be retained to avoid unnecessary
+      deprecation flags
+
+2.  Both function authors will be credited in the combined function’s
+    description and in this README (see above)
