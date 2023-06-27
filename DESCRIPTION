@@ -20,8 +20,8 @@ Authors@R: c(
     person(family = "University of California, Santa Barbara",
          role = "cph")
          )
-Description: Set of the data science tools created by various members of the long term 
-    ecological research (LTER) community. These functions were initially written largely 
+Description: Set of the data science tools created by various members of the Long Term 
+    Ecological Research (LTER) community. These functions were initially written largely 
     as standalone operations and have later been aggregated into this package.
 Maintainer: Nicholas Lyon <lyon@nceas.ucsb.edu>
 License: BSD_3_clause + file LICENSE

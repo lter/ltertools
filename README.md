@@ -13,7 +13,7 @@ requests](https://img.shields.io/github/issues-pr/lter/ltertools)
 <!-- badges: end -->
 
 The goal of `ltertools` is to centralize the R functions created by
-members of the long term ecological research (LTER) community. Many of
+members of the Long Term Ecological Research (LTER) community. Many of
 these functions likely have broad relevance that expands beyond the
 context of their creation and this package is an attempt to share those
 tools to limit the amount of “re-inventing the wheel” that we each do in
