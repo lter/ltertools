@@ -16,8 +16,16 @@ The goal of `ltertools` is to centralize the R functions created by
 members of the Long Term Ecological Research (LTER) community. Many of
 these functions likely have broad relevance that expands beyond the
 context of their creation and this package is an attempt to share those
-tools to limit the amount of “re-inventing the wheel” that we each do in
-our own silos.
+tools and limit the amount of “re-inventing the wheel” that we each do
+in our own silos.
+
+The conceptual theme of functions in `ltertools` is necessarily broad
+given the scope of the community we aim to serve. That said, the
+identity of this package will likely become more clear as we accrue
+contributed functions. In the meantime, please do not hesitate to add or
+request a function for fear that it doesn’t “fit” this package. That may
+eventually become a concern but at this stage we are aiming to house
+*all* extant functions regardless of their relatedness to one another.
 
 ## Installation
 
