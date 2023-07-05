@@ -38,6 +38,10 @@ As functions are added to the package they will be briefly summarized below and 
 
 - **`convert`** -- Convert values from one set of units to another. Currently supports temperature units as well as kilometers versus miles. Function written by [Nick Lyon](https://njlyon0.github.io/)
 
+### Calculations
+
+- **`cv`** -- Calculate coefficient of variation (CV) from a vector of numbers. Function written by [Nick Lyon](https://njlyon0.github.io/)
+
 ## Contributing
 
 See `CONTRIBUTING.md` for specifics but at a glance:

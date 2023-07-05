@@ -48,6 +48,11 @@ below and attributed to their author(s)
   Currently supports temperature units as well as kilometers versus
   miles. Function written by [Nick Lyon](https://njlyon0.github.io/)
 
+### Calculations
+
+- **`cv`** – Calculate coefficient of variation (CV) from a vector of
+  numbers. Function written by [Nick Lyon](https://njlyon0.github.io/)
+
 ## Contributing
 
 See `CONTRIBUTING.md` for specifics but at a glance:
