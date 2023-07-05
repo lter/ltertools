@@ -30,3 +30,5 @@ Language: en-US
 URL: https://lter.github.io/ltertools/
 BugReports: https://github.com/lter/ltertools/issues
 RoxygenNote: 7.2.3
+Imports:
+  stats
