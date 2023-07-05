@@ -26,7 +26,7 @@ cv <- function(x, na_rm = TRUE){
   }
   
   # Calculate CV
-  result <- stats::sd(x = x, na.rm = na_rm) / stats::mean(x = x, na.rm = na_rm)
+  result <- stats::sd(x = x, na.rm = na_rm) / mean(x = x, na.rm = na_rm)
   
   # Return it
   return(result) }
