@@ -1,6 +1,6 @@
 #' @title Calculate Coefficient of Variation
 #' 
-#' @description Computes the coefficient of variation (CV), by dividing the standard deviation (SD) by the arithmetic mean of a set of numbers. If `na_rm` is `TRUE` then missing values are removed before calculation is completed
+#' @description Computes the coefficient of variation (CV), by dividing the standard deviation (SD) by the arithmetic mean of a set of numbers. If `na_rm` is `TRUE` then missing values are removed before calculation is completed. This function was built by the following authors: Nicholas Lyon
 #' 
 #' @param x (numeric) vector of numbers for which to calculate CV
 #' @param na_rm (logical) whether to remove missing values from both average and SD calculation
