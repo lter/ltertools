@@ -44,3 +44,13 @@ If you have a major change necessitating systemic/structural changes to `ltertoo
 2. Add your function script (and any necessary data files) to the `dev` folder in your fork
 
 3. When finished with your edits, submit a pull request
+
+## Style Guide
+
+We are happy to tweak function/argument names as needed to maintain a concistent "feel" of functions in `ltertools`. That said, if you'd like to make those changes yourself you are more than welcome to though **such aesthetic changes are _optional_**. `ltertools` will adhere to the following stylistic elements:
+
+- Use "snake case" (i.e., all lowercase separated by underscores) for functions and arguments (e.g., `my_function(argument_1 = ...)`, etc.)
+
+- If your function prints informative messages, include a `quiet` argument that accepts a logical (i.e., `TRUE` or `FALSE`). If `quiet = TRUE` please suppress all messages
+
+- Include errors / warnings for user inputs to arguments that are inappropriate class or structure

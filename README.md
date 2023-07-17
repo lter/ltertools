@@ -67,6 +67,12 @@ See `CONTRIBUTING.md` for specifics but at a glance:
   content to the `dev` folder, and open a pull request when you are
   finished
 
+`ltertools` will maintain a consistent “feel” of casing and style of
+functions but we (the maintainers) are happy to perform these edits on
+your behalf. If you’d like to take care of this yourself (completely
+optional!) you are welcome to do so. Please see `CONTRIBUTING.md` for a
+specific style guide.
+
 ## Synonymous Function Procedure
 
 If you would like to contribute a function that is similar to a function
