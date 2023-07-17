@@ -79,6 +79,13 @@
 <li><p>Add your function script (and any necessary data files) to the <code>dev</code> folder in your fork</p></li>
 <li><p>When finished with your edits, submit a pull request</p></li>
 </ol></div>
+<div class="section level2">
+<h2 id="style-guide">Style Guide<a class="anchor" aria-label="anchor" href="#style-guide"></a></h2>
+<p>We are happy to tweak function/argument names as needed to maintain a concistent “feel” of functions in <code>ltertools</code>. That said, if you’d like to make those changes yourself you are more than welcome to though <strong>such aesthetic changes are <em>optional</em></strong>. <code>ltertools</code> will adhere to the following stylistic elements:</p>
+<ul><li><p>Use “snake case” (i.e., all lowercase separated by underscores) for functions and arguments (e.g., <code>my_function(argument_1 = ...)</code>, etc.)</p></li>
+<li><p>If your function prints informative messages, include a <code>quiet</code> argument that accepts a logical (i.e., <code>TRUE</code> or <code>FALSE</code>). If <code>quiet = TRUE</code> please suppress all messages</p></li>
+<li><p>Include errors / warnings for user inputs to arguments that are inappropriate class or structure</p></li>
+</ul></div>
 </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
