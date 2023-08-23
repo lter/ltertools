@@ -4,3 +4,6 @@ This folder is meant to serve as a home for any functions you'd like to contribu
 
 If you are visiting this space to contribute a function, please add a script containing your function and (ideally) a working example of the function's use. If your function requires any data files (either internally or to make the example work), please add those data files to this folder as well.
 
+## Script Explanations
+
+- Any R script beginning with `update-...` is dedicated to maintaining the dataset embedded in `ltertools` with the same name as the script (e.g., `update-lter-sites` updates the `lter_sites` data object included in the package)
