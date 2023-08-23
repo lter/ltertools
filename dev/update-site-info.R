@@ -269,5 +269,9 @@ lter_sites <- site_df %>%
 dplyr::glimpse(lter_sites)
 # tibble::view(lter_sites)
 
+# Export into the `data` folder so it is built into/accessible from the package
+## Commented out to prevent accidental changes
+# save(lter_sites, file = file.path("data", "lter_sites.rda"))
+
 
 # End ----
