@@ -4,104 +4,72 @@
 
 
 
-lter_timeline <- function(sites = NULL, habitats = NULL){
-  
-  
-  sites <- c("AND", "BNZ", "MCR", "xxx", "LNO", 'abc', "cwt")
-  habitats <- c("forest", "taiga", "grassland")
-  
-  # Coerce sites to all uppercase and habitats to all lowercase
-  sites <- toupper(x = sites)
-  habitats <- tolower(x = habitats)
-  lter_sites$habitat <- tolower(lter_sites$habitat)
-  
-  # If user wants the LNO, exchange the provided abbreviation for the expanded abbreviations
-  if("LNO" %in% sites | "NCO" %in% sites){
-    sites <- c(setdiff(x = sites, y = c("LNO", "NCO")), "LNO-UW", "LNO-UNM", "LNO-UCSB")
-  }
-  
-  # Subset to only supplied sites (if any are provided)
-  if(is.null(sites) != TRUE){
-    
-    # Identify any user-provided sites not in the data
-    missing_sites <- setdiff(x = sites, y = lter_sites$code)
-    
-    # If any user-provided codes aren't in the data
-    if(length(missing_sites) > 0){
-      
-      # Warn the user about the mismatch(es) and drop it
-      message("Site abbreviation(s) '", paste0(missing_sites, collapse = "', '"), "' not recognized. Excluding now")
-      
-      # And drop them
-      sites <- setdiff(x = sites, y = missing_sites) }
-    
-    # After all that processing, subset to only those sites
-    sites_sub1 <- dplyr::filter(.data = lter_sites, code %in% sites)
-    
-    # If no sites are provided to which to subset, keep the full object
-  } else { sites_sub1 <- lter_sites }
-  
-  # Now we need to handle user-provided habitats (if any)
-  if(is.null(habitats) != TRUE){
-    
-    # Check for missing habitats (in full dataset rather than subset to avoid confusion)
-    missing_habs <- setdiff(x = habitats, y = lter_sites$habitat)
-    
-    # If any are found
-    if(length(missing_habs) > 0){
-      
-      # Warn the user
-      message("Habitat(s) '", paste0(missing_habs, collapse = "', '"), "' not recognized. Excluding now.")
-      
-      # Drop them
-      habitats <- setdiff(x = habitats, y = missing_habs) }
-    
-    # Now we can actually do the subsetting (if any needs to be done)
-    sites_sub2 <- dplyr::filter(.data = sites_sub1, habitat %in% habitats)
-    
-    # If no subsetting was required, keep everything from preceding step
-  } else { sites_sub2 <- sites_sub1 }
-  
-  # Produce a warning if that creates no rows
-  if(nrow(sites_sub2) == 0)
-    stop("No sites meet current site code / habitat criteria. Please revize and retry")
-  
-  
-}
-
-# Make objects of desired habitats
-biomes <- c("forest", "grassland")
-
-# Get data into long format
-site_long <- lter_sites %>%
-  tidyr::pivot_longer(cols = ends_with("_year"), names_to = "cols", values_to = "year") %>%
-  # Subset to only desired sites
-  dplyr::filter()
 
 
-# Get vector of habitat colors
-habitat_colors <- c("Admin" = "#fcbf49",
-                    "Coastal" = "#34a0a4", 
-                    "Freshwater" = "#ade8f4", 
-                    "Marine" = "#023e8a", 
-                    "Forest" = "#55a630",
-                    "Grassland" = "#9ef01a", 
-                    "Mixed" = "#9d4edd",
-                    "Tundra" = "#bb9457", 
-                    "Urban" = "#f77f00")
+# Actually generate timeline graph
 
-# Make timeline
-ggplot(site_long, aes(x = year, y = factor(code, levels = lter_sites$code))) +
-  geom_path(aes(group = code, color = habitat), lwd = 1.5, lineend = 'round') +
-  geom_point(aes(fill = habitat), pch = 21, size = 3) +
-  # Custom color
-  scale_fill_manual(values = habitat_colors) +
-  scale_color_manual(values = habitat_colors) +
-  # Customize theme elements
-  theme(panel.border = element_blank(),
-        panel.background = element_blank(),
-        axis.line = element_line(color = "black"),
-        axis.title = element_blank(),
-        axis.text = element_text(size = 12),
-        legend.title = element_blank())
+
+lter_timeline <- function(sites = NULL, habitats = NULL, colors = NULL){
+  
+  # Subset to just those sites / habitats
+  sites_sub <- ltertools:::site_subset(sites = sites, habitats = habitats)
+  
+  # Pivot to long format
+  sites_long <- tidyr::pivot_longer(data = sites_sub, cols = ends_with("_year"), 
+                                    names_to = "cols", values_to = "year")
+  
+  # Define default colors
+  habitat_colors <- c("Admin" = "#fcbf49", "Urban" = "#f77f00",
+                      "Marine" = "#0466c8", "Coastal" = "#34a0a4", "Freshwater" = "#8ecae6", 
+                      "Forest" = "#007200", "Grassland" = "#70e000", 
+                      "Mixed" = "#9d4edd", "Tundra" = "#bb9457")
+  
+  # Make initial timeline graph
+  times_v1 <- ggplot(sites_long, aes(x = year, y = factor(code, levels = sites_sub$code))) +
+    # Lines for timeline
+    geom_path(aes(group = code, color = habitat), lwd = 1.5, lineend = 'round') +
+    # Start / end points of timeline
+    geom_point(aes(fill = habitat), pch = 21, size = 3) +
+    # Customize theme elements
+    theme(panel.border = element_blank(),
+          panel.background = element_blank(),
+          axis.line = element_line(color = "black"),
+          axis.title = element_blank(),
+          axis.text = element_text(size = 12),
+          legend.title = element_blank())
+  
+  # If the user provided colors that are the correct length
+  if(is.null(colors) != TRUE & length(colors) >= length(unique(sites_long$habitat))){
+    
+    # Use those custom colors
+    times_v2 <- times_v1 +
+      scale_fill_manual(values = colors) +
+      scale_color_manual(values = colors) }
+  
+  # If palette is provided but isn't long enough for habitats in the data object
+  if(is.null(colors) != TRUE & length(colors) < length(unique(sites_long$habitat))){
+    
+    # Print a warning
+    message("Insufficient colors provided. There are ", length(unique(sites_long$habitat)), " but only ", length(colors), " colors provided. Using default colors")
+    
+    # Use the default colors
+    times_v2 <- times_v1 +
+      scale_fill_manual(values = habitat_colors) +
+      scale_color_manual(values = habitat_colors) }
+  
+  # If no palette is provided, just use the default colors (no error message)
+  if(is.null(colors) == TRUE){
+    
+    times_v2 <- times_v1 +
+      scale_fill_manual(values = habitat_colors) +
+      scale_color_manual(values = habitat_colors) }
+  
+  # Return that object
+  return(times_v2) }
+
+
+lter_timeline()
+
+lter_timeline(habitats = c("marine", "ocean", "coastal"))
+
 
