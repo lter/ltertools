@@ -219,21 +219,21 @@ site_list[["vcr"]] <- as_lter_site(name = "Virginia Coast Reserve", code = "VCR"
                                    url = "http://www.vcrlter.virginia.edu/", status = "active")
 
 # Preserve the LTER Network Office information
-## Network Office 1
+## Network Office 1 (U of Washington / Oregon State U)
 site_list[["lno1"]] <- data.frame("name" = "LTER Network Office", "code" = "LNO-UW", 
                                   "habitat" = stringr::str_to_title("admin"),
-                                  "start_year" = 1987, "end_year" = 1998,
-                                  "latitude" = 43.0766, "longitude" = -89.4125,
+                                  "start_year" = 1983, "end_year" = 1997,
+                                  "latitude" = 47.6546, "longitude" = -122.3075,
                                   "site_url" = "", "site_status" = "active")
 
-## Network Office 2
-site_list[["lno2"]] <- data.frame("name" = "Network Communication Office", "code" = "LNO-UMN", 
+## Network Office 2 (U of New Mexico)
+site_list[["lno2"]] <- data.frame("name" = "Network Communication Office", "code" = "LNO-UNM", 
                                   "habitat" = stringr::str_to_title("admin"),
-                                  "start_year" = 1998, "end_year" = 2015,
-                                  "latitude" = 44.9740, "longitude" = -93.2277,
+                                  "start_year" = 1997, "end_year" = 2015,
+                                  "latitude" = 35.0843, "longitude" = -106.6198,
                                   "site_url" = "", "site_status" = "active")
 
-## Network Office 3
+## Network Office 3 (UC Santa Barbara / NCEAS)
 site_list[["lno3"]] <- data.frame("name" = "LTER Network Office", "code" = "LNO-UCSB", 
                                   "habitat" = stringr::str_to_title("admin"),
                                   "start_year" = 2015, "end_year" = 2024,
