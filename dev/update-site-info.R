@@ -218,8 +218,30 @@ site_list[["vcr"]] <- as_lter_site(name = "Virginia Coast Reserve", code = "VCR"
                                    start = 1987, end = 2024, lat = 37.283, lon = -75.913, 
                                    url = "http://www.vcrlter.virginia.edu/", status = "active")
 
+# Preserve the LTER Network Office information
+## Network Office 1
+site_list[["lno1"]] <- data.frame("name" = "LTER Network Office", "code" = "LNO-UW", 
+                                  "habitat" = stringr::str_to_title("admin"),
+                                  "start_year" = 1987, "end_year" = 1998,
+                                  "latitude" = 43.0766, "longitude" = -89.4125,
+                                  "site_url" = "", "site_status" = "active")
+
+## Network Office 2
+site_list[["lno2"]] <- data.frame("name" = "Network Communication Office", "code" = "LNO-UMN", 
+                                  "habitat" = stringr::str_to_title("admin"),
+                                  "start_year" = 1998, "end_year" = 2015,
+                                  "latitude" = 44.9740, "longitude" = -93.2277,
+                                  "site_url" = "", "site_status" = "active")
+
+## Network Office 3
+site_list[["lno3"]] <- data.frame("name" = "LTER Network Office", "code" = "LNO-UCSB", 
+                                  "habitat" = stringr::str_to_title("admin"),
+                                  "start_year" = 2015, "end_year" = 2024,
+                                  "latitude" = 34.4140, "longitude" = -119.8489,
+                                  "site_url" = "https://lternet.edu/", "site_status" = "active")
+
 ## ----------------------------------- ##
-# Combine Across Sites ----
+       # Combine Across Sites ----
 ## ----------------------------------- ##
 
 # Now we can combine that information across sites!
@@ -232,14 +254,16 @@ dplyr::glimpse(site_df)
 ## tibble::view(site_df)
 
 ## ----------------------------------- ##
-# Process & Save ----
+          # Process & Save ----
 ## ----------------------------------- ##
 
 # Any final wrangling to be done before export into the package proper?
 lter_sites <- site_df %>%
   # Drop inactive sites & the status column
   dplyr::filter(site_status != "inactive") %>%
-  dplyr::select(-site_status)
+  dplyr::select(-site_status) %>%
+  # Arrange by habitat and starting year
+  dplyr::arrange(habitat, start_year)
 
 # Check structure once more
 dplyr::glimpse(lter_sites)
