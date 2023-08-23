@@ -27,6 +27,7 @@ Maintainer: Nicholas Lyon <lyon@nceas.ucsb.edu>
 License: BSD_3_clause + file LICENSE
 Encoding: UTF-8
 Language: en-US
+LazyData: true
 URL: https://lter.github.io/ltertools/
 BugReports: https://github.com/lter/ltertools/issues
 RoxygenNote: 7.2.3
