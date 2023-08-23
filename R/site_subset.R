@@ -8,13 +8,17 @@
 #' @return (dataframe) complete site information (8 columns) for all sites that meet the provided site code and/or habitat criteria
 #' 
 #' @examples
+#' \dontrun{
 #' # See only marine or coastal sites
 #' site_subset(habitats = c("marine", "coastal"))
 #' 
 #' # Return only specified sites
 #' site_subset(sites = c("AND", "NGA", "BLE", "LNO"))
+#' }
 #' 
 site_subset <- function(sites = NULL, habitats = NULL){
+  # Squelch 'visible bindings' NOTE
+  code <- habitat <- NULL
   
   # Make all habitats lowercase in the source data
   lter_sites$habitat <- tolower(lter_sites$habitat)
