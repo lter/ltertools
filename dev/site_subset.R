@@ -1,5 +1,19 @@
-
-
+#' @title Subsets the LTER Site Information Table by Site Codes and Habitats
+#' 
+#' @description Subsets the information on long term ecological research (LTER) sites based on user-specified site codes (i.e., three letter abbreviations), and/or desired habitats. See [lter_sites] for the full set of site information. This function was built by the following authors: Nicholas Lyon
+#' 
+#' @param sites (character) three letter site code(s) identifying site(s) of interest
+#' @param habitats (character) habitat(s) of interest. See `unique(lter_sites`
+#' 
+#' @return (dataframe) complete site information (8 columns) for all sites that meet the provided site code and/or habitat criteria
+#' 
+#' @examples
+#' # See only marine or coastal sites
+#' site_subset(habitats = c("marine", "coastal"))
+#' 
+#' # Return only specified sites
+#' site_subset(sites = c("AND", "NGA", "BLE", "LNO"))
+#' 
 site_subset <- function(sites = NULL, habitats = NULL){
   
   # Make all habitats lowercase in the source data
@@ -72,12 +86,3 @@ site_subset <- function(sites = NULL, habitats = NULL){
   
   # Return that final object
   return(sites_actual) }
-
-
-site_subset(sites = c("AND", "BNZ", "MCR", "xxx", "LNO", 'abc', "cwt"),
-            habitats = c("forest", "taiga", "grassland"))
-
-site_subset(sites = 'hello')
-
-
-site_subset(sites = "AND", habitats = "marine")
