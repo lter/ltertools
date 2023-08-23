@@ -31,5 +31,8 @@ LazyData: true
 URL: https://lter.github.io/ltertools/
 BugReports: https://github.com/lter/ltertools/issues
 RoxygenNote: 7.2.3
+Depends: R (>= 3.5)
 Imports:
-  stats
+  dplyr,
+  stats,
+  stringr
