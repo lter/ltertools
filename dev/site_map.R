@@ -2,11 +2,22 @@
 # Site Map ----
 ## ------------------------------ ##
 
+library(magrittr)
+
+# Subset to desired sites
+site_info <- site_subset()
+dplyr::glimpse(site_info)
+
+habitat_colors <- c("Admin" = "#fcbf49", "Urban" = "#f77f00",
+                    "Marine" = "#0466c8", "Coastal" = "#34a0a4", "Freshwater" = "#8ecae6", 
+                    "Forest" = "#007200", "Grassland" = "#70e000", 
+                    "Mixed" = "#9d4edd", "Tundra" = "#bb9457")
+
 # Identify min & max latitude / longitude
-(min_lat <- min(site_actual$lat, na.rm = T))
-(max_lat <- max(site_actual$lat, na.rm = T))
-(min_lon <- min(site_actual$lon, na.rm = T))
-(max_lon <- max(site_actual$lon, na.rm = T))
+(min_lat <- min(site_info$lat, na.rm = T))
+(max_lat <- max(site_info$lat, na.rm = T))
+(min_lon <- min(site_info$lon, na.rm = T))
+(max_lon <- max(site_info$lon, na.rm = T))
 
 # Define latitude / longitude limits
 (lat_lims <- c((min_lat - 0.1 * min_lat), (max_lat + 0.1 * max_lat)))
@@ -23,9 +34,9 @@ map <- borders %>%
   # Set map extent
   coord_sf(xlim = lon_lims, ylim = lat_lims, expand = F) +
   # Add points & labels for LTER sites
-  geom_point(data = site_actual, aes(x = lon, y = lat, fill = habitat), pch = 21, size = 4) +
-  geom_label(data = site_actual, aes(x = lon, y = lat),
-             label = site_actual$code, nudge_y = 0, nudge_x = 5, size = 3, fontface = "bold", 
+  geom_point(data = site_info, aes(x = lon, y = lat, fill = habitat), pch = 21, size = 4) +
+  geom_label(data = site_info, aes(x = lon, y = lat),
+             label = site_info$code, nudge_y = 0, nudge_x = 5, size = 3, fontface = "bold", 
              label.padding = unit(x = 0.15, units = "lines")) +
   # Customize color
   scale_fill_manual(values = habitat_colors) +
