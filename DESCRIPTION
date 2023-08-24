@@ -18,8 +18,7 @@ Authors@R: c(
          role = "fnd",
          comment = "NSF 1929393, 09/01/2019 - 08/31/2024"),
     person(family = "University of California, Santa Barbara",
-         role = "cph")
-         )
+         role = "cph") )
 Description: Set of the data science tools created by various members of the Long Term 
     Ecological Research (LTER) community. These functions were initially written largely 
     as standalone operations and have later been aggregated into this package.
@@ -35,6 +34,7 @@ Depends: R (>= 3.5)
 Imports:
   dplyr,
   ggplot2,
+  magrittr,
   stats,
   stringr,
   tidyr
