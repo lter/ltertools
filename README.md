@@ -42,6 +42,13 @@ devtools::install_github("lter/ltertools")
 As functions are added to the package they will be briefly summarized
 below and attributed to their author(s)
 
+### LTER Information
+
+- **`site_timeline`** – Create a timeline of sites that meet
+  user-specified site code and/or habitat criteria. Uses built in
+  `lter_sites` data object that includes much useful site information.
+  Function written by [Nick Lyon](https://njlyon0.github.io/)
+
 ### Data Wrangling
 
 - **`convert`** – Convert values from one set of units to another.
