@@ -27,10 +27,10 @@ site_timeline <- function(sites = NULL, habitats = NULL, colors = NULL){
   sites_sub <- site_subset(sites = sites, habitats = habitats)
   
   # Define default colors
-  habitat_colors <- c("Admin" = "#fcbf49", "Urban" = "#f77f00",
-                      "Marine" = "#0466c8", "Coastal" = "#34a0a4", "Freshwater" = "#8ecae6", 
-                      "Forest" = "#007200", "Grassland" = "#70e000", 
-                      "Mixed" = "#9d4edd", "Tundra" = "#bb9457")
+  habitat_colors <- c("Admin" = "#6F6F6F", "Urban" = "#2C2B2C",
+                      "Marine" = "#35658B", "Coastal" = "#67CDAA", "Freshwater" = "#77EDC6", 
+                      "Forest" = "#227923", "Grassland" = "#9ACE32", 
+                      "Mixed" = "#CD950B", "Tundra" = "#D2B48C")
   
   # Pivot to long format
   sites_long <- tidyr::pivot_longer(data = sites_sub, cols = dplyr::ends_with("_year"), 
@@ -54,6 +54,9 @@ site_timeline <- function(sites = NULL, habitats = NULL, colors = NULL){
           axis.line = ggplot2::element_line(color = "black"),
           axis.title = ggplot2::element_blank(),
           axis.text = ggplot2::element_text(size = 12),
+          legend.key = ggplot2::element_blank(),
+          legend.background = ggplot2::element_blank(),
+          legend.box.background = ggplot2::element_blank(),
           legend.title = ggplot2::element_blank())
   
   # If the user provided colors that are the correct length
