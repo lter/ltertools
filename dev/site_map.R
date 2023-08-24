@@ -34,8 +34,9 @@ map <- borders %>%
   # Set map extent
   coord_sf(xlim = lon_lims, ylim = lat_lims, expand = F) +
   # Add points & labels for LTER sites
-  geom_point(data = site_info, aes(x = lon, y = lat, fill = habitat), pch = 21, size = 4) +
-  geom_label(data = site_info, aes(x = lon, y = lat),
+  geom_point(data = site_info, aes(x = longitude, y = latitude, fill = habitat), 
+             pch = 21, size = 4) +
+  geom_label(data = site_info, aes(x = longitude, y = latitude),
              label = site_info$code, nudge_y = 0, nudge_x = 5, size = 3, fontface = "bold", 
              label.padding = unit(x = 0.15, units = "lines")) +
   # Customize color
