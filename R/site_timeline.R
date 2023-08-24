@@ -72,15 +72,15 @@ site_timeline <- function(sites = NULL, habitats = NULL, colors = NULL){
     
     # Use the default colors
     times_v2 <- times_v1 +
-      ggplot2::scale_fill_manual(values = habitat_colors) +
-      ggplot2::scale_color_manual(values = habitat_colors) }
+      ggplot2::scale_fill_manual(values = habitat_colors, breaks = rev(names(habitat_colors))) +
+      ggplot2::scale_color_manual(values = habitat_colors, breaks = rev(names(habitat_colors))) }
   
   # If no palette is provided, just use the default colors (no error message)
   if(is.null(colors) == TRUE){
     
     times_v2 <- times_v1 +
-      ggplot2::scale_fill_manual(values = habitat_colors) +
-      ggplot2::scale_color_manual(values = habitat_colors) }
+      ggplot2::scale_fill_manual(values = habitat_colors, breaks = rev(names(habitat_colors))) +
+      ggplot2::scale_color_manual(values = habitat_colors, breaks = rev(names(habitat_colors))) }
   
   # Return that object
   return(times_v2) }
