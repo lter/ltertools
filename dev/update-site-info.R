@@ -65,7 +65,7 @@ site_list[["arc"]] <- as_lter_site(name = "Arctic", code = "ARC", hab = "tundra"
 # Baltimore
 site_list[["bes"]] <- as_lter_site(name = "Baltimore Ecosystem Study", code = "BES", hab = "urban", 
                                    start = 1997, end = 2021, lat = 39.1, lon = -76.3, 
-                                   url = "https://baltimoreecosystemstudy.org/", status = "active")
+                                   url = "https://baltimoreecosystemstudy.org/", status = "inactive")
 
 # Beaufort Lagoon
 site_list[["ble"]] <- as_lter_site(name = "Beaufort Lagoon Ecosystem", code = "BLE", hab = "marine", 
@@ -95,7 +95,7 @@ site_list[["cap"]] <- as_lter_site(name = "Central Arizona - Phoenix", code = "C
 # Coweeta
 site_list[["cwt"]] <- as_lter_site(name = "Coweeta", code = "CWT", hab = "forest", 
                                    start = 1980, end = 2020, lat = 35, lon = -83.5, 
-                                   url = "http://coweeta.uga.edu/", status = "active")
+                                   url = "http://coweeta.uga.edu/", status = "inactive")
 
 # FL Everglades
 site_list[["fce"]] <- as_lter_site(name = "Florida Coastal Everglades", code = "FCE", hab = "coastal", 
@@ -224,17 +224,17 @@ site_list[["lno1"]] <- data.frame("name" = "LTER Network Office", "code" = "LNO-
                                   "habitat" = stringr::str_to_title("admin"),
                                   "start_year" = 1983, "end_year" = 1997,
                                   "latitude" = 47.6546, "longitude" = -122.3075,
-                                  "site_url" = "", "site_status" = "active")
+                                  "site_url" = "", "site_status" = "inactive")
 
 ## Network Office 2 (U of New Mexico)
 site_list[["lno2"]] <- data.frame("name" = "Network Communication Office", "code" = "LNO-UNM", 
                                   "habitat" = stringr::str_to_title("admin"),
                                   "start_year" = 1997, "end_year" = 2015,
                                   "latitude" = 35.0843, "longitude" = -106.6198,
-                                  "site_url" = "", "site_status" = "active")
+                                  "site_url" = "", "site_status" = "inactive")
 
 ## Network Office 3 (UC Santa Barbara / NCEAS)
-site_list[["lno3"]] <- data.frame("name" = "LTER Network Office", "code" = "LNO-UCSB", 
+site_list[["lno3"]] <- data.frame("name" = "LTER Network Office", "code" = "LNO", 
                                   "habitat" = stringr::str_to_title("admin"),
                                   "start_year" = 2015, "end_year" = 2024,
                                   "latitude" = 34.4140, "longitude" = -119.8489,
