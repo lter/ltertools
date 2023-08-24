@@ -34,5 +34,7 @@ RoxygenNote: 7.2.3
 Depends: R (>= 3.5)
 Imports:
   dplyr,
+  ggplot2,
   stats,
-  stringr
+  stringr,
+  tidyr
