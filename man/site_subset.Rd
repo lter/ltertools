@@ -9,7 +9,7 @@ site_subset(sites = NULL, habitats = NULL)
 \arguments{
 \item{sites}{(character) three letter site code(s) identifying site(s) of interest}
 
-\item{habitats}{(character) habitat(s) of interest. See `unique(lter_sites`}
+\item{habitats}{(character) habitat(s) of interest. See `unique(lter_sites$habitat)`}
 }
 \value{
 (dataframe) complete site information (8 columns) for all sites that meet the provided site code and/or habitat criteria
