@@ -10,6 +10,8 @@
 #' 
 #' @export
 #' 
+#' @importFrom magrittr %>%
+#' 
 #' @examples
 #' # Make the full timeline of all sites with default colors by supplying no arguments
 #' site_timeline()
@@ -24,21 +26,26 @@ site_timeline <- function(sites = NULL, habitats = NULL, colors = NULL){
   # Subset to just those sites / habitats
   sites_sub <- site_subset(sites = sites, habitats = habitats)
   
-  # Pivot to long format
-  sites_long <- tidyr::pivot_longer(data = sites_sub, cols = dplyr::ends_with("_year"), 
-                                    names_to = "cols", values_to = "year")
-  
   # Define default colors
   habitat_colors <- c("Admin" = "#fcbf49", "Urban" = "#f77f00",
                       "Marine" = "#0466c8", "Coastal" = "#34a0a4", "Freshwater" = "#8ecae6", 
                       "Forest" = "#007200", "Grassland" = "#70e000", 
                       "Mixed" = "#9d4edd", "Tundra" = "#bb9457")
   
+  # Pivot to long format
+  sites_long <- tidyr::pivot_longer(data = sites_sub, cols = dplyr::ends_with("_year"), 
+                                    names_to = "cols", values_to = "year") %>%
+    # And factor habitats into a more intuitive order
+    dplyr::mutate(habitat = factor(habitat, levels = names(habitat_colors))) %>%
+    # Arrange by habitat (needed to get codes grouped by habitat in timeline)
+    dplyr::arrange(habitat)
+  
   # Make initial timeline graph
   times_v1 <- ggplot2::ggplot(sites_long, ggplot2::aes(x = year, 
-                                              y = factor(code, levels = sites_sub$code))) +
+                                                       y = factor(code, levels = unique(code)))) +
     # Lines for timeline
-    ggplot2::geom_path(ggplot2::aes(group = code, color = habitat), lwd = 1.5, lineend = 'round') +
+    ggplot2::geom_path(ggplot2::aes(group = code, color = habitat), 
+                       lwd = 1.5, lineend = 'round') +
     # Start / end points of timeline
     ggplot2::geom_point(ggplot2::aes(fill = habitat), pch = 21, size = 3) +
     # Customize theme elements
