@@ -15,20 +15,22 @@ rm(list = ls()); gc()
 librarian::shelf(devtools, tidyverse)
 
 # Create data objects to harmonize
-df1 <- data.frame("x" = c(1:3),
-                  "y" = letters[1:3])
-df2 <- data.frame("LETTERS" = letters[4:6],
-                  "NUMBERS" = c(4:6))
+(df1 <- data.frame("x" = c(1:3),
+                  "garbage" = c("52", "hello", "ooo"),
+                  "y" = letters[1:3]))
+(df2 <- data.frame("LETTERS" = letters[4:6],
+                  "NUMBERS" = c(4:6),
+                  "BONUS" = c("not", "needed", "column")))
 
 # Export both of these for later re-use
 write.csv(df1, file = file.path("dev", "test_df1.csv"), na = "", row.names = F)
 write.csv(df2, file = file.path("dev", "test_df2.csv"), na = "", row.names = F)
 
 # Create data key
-key <- data.frame("source" = c("test_df1.csv", "test_df1.csv", 
-                               "test_df2.csv", "test_df2.csv"),
-                  "raw_name" = c("x", "y", "NUMBERS", "LETTERS"),
-                  "harmony_name" = c("numbers", "letters", "numbers", "letters"))
+(key <- data.frame("source" = c("test_df1.csv", "test_df1.csv", "test_df1.csv",
+                               "test_df2.csv", "test_df2.csv", "test_df2.csv"),
+                  "raw_name" = c("x", "gar_typo", "y", "NUMBERS", "LETTERS", "BONUS"),
+                  "harmony_name" = c("numbers", "garbage", "letters", "numbers", "letters", NA)) )
 
 ## ----------------------------------- ##
           # Script Variant ----
@@ -72,7 +74,7 @@ for(file in unique(key$source)){
   
   # Warn the user if any are found
   if(length(missing_cols) != 0){
-    message("Following columns in ", file, " _not_ found in data key")
+    message("Following columns in data key NOT found in '", file, "'. Removing from harmonization effort")
     print(missing_cols) }
   
   # Drop the missing cols object for the next iteration of the loop
