@@ -58,3 +58,6 @@ rsconnect/
 # CRAN Submission info
 CRAN-SUBMISSION
 docs
+
+# Ignore test data files
+dev/test_*.csv
