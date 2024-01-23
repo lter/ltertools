@@ -26,89 +26,43 @@ librarian::shelf(devtools, tidyverse)
 write.csv(df1, file = file.path("dev", "test_df1.csv"), na = "", row.names = F)
 write.csv(df2, file = file.path("dev", "test_df2.csv"), na = "", row.names = F)
 
-
-
-
-
-
-# Create data key
-(data_key <- data.frame("source" = c("test_df1.csv", "test_df1.csv", "test_df1.csv",
-                                     "test_df2.csv", "test_df2.csv", "test_df2.csv"),
-                        "raw_name" = c("x", "gar_typo", "y", "NUMBERS", "LETTERS", "BONUS"),
-                        "tidy_name" = c("numbers", "garbage", "letters", "numbers", "letters", NA)) )
+# Clear environment again
+rm(list = ls())
 
 ## ----------------------------------- ##
-# Script Variant ----
+            # Script Variant ----
 ## ----------------------------------- ##
-# Data key harmonization _in script format_
+# List files ending in CSV in the directory (`raw_folder`)
+raw_files <- dir(path = file.path("dev"), pattern = ".csv")
 
 # Make an empty list
 file_list <- list()
 
-# Loop across files named in the data key
-for(file in unique(data_key$source)){
-  ## file <- "test_df1.csv"
+# Loop across identified files
+for(file in raw_files){
   
-  # Prepare the data key
-  data_key_sub <- data_key %>% 
-    # Subset to just this file
-    dplyr::filter(source == file) %>% 
-    # Drop any instances where the harmonized name is absent (i.e., the raw column is unwanted)
-    dplyr::filter(is.na(tidy_name) != TRUE & nchar(tidy_name) != 0)
+  # Read it in
+  df <- read.csv(file = file.path("dev", file))
   
-  # Read in file
-  df_v1 <- read.csv(file = file.path("dev", file))
+  # Grab the column names
+  df_names <- names(x = df)
   
-  # Prepare the data for harmonization via data key
-  df_v2 <- df_v1 %>% 
-    # Add a row number column to preserve original rows
-    ## (name is bizarre to avoid overwriting extant column name)
-    dplyr::mutate(xxxx_row_num = 1:nrow(.),
-                  source = file) %>% 
-    # Make all columns characters
-    dplyr::mutate(dplyr::across(.cols = dplyr::everything(),
-                                .fns = as.character)) %>% 
-    # Pivot the data into 'ultimate' long format
-    tidyr::pivot_longer(cols = -xxxx_row_num:-source,
-                        names_to = "raw_name",
-                        values_to = "values")
+  # Assemble this facet of the data key
+  key_sub <- data.frame("source" = file,
+                        "raw_name" = df_names,
+                        "tidy_name" = NA)
   
-  # Identify any columns in the data key but apparently not in the data key
-  missing_cols <- setdiff(x = unique(data_key_sub$raw_name),
-                          y = unique(df_v2$raw_name))
-  
-  # Warn the user if any are found
-  if(length(missing_cols) != 0){
-    message("Following columns in data key NOT found in '", file, "'. Removing from harmonization effort")
-    print(missing_cols) }
-  
-  # Drop the missing cols object for the next iteration of the loop
-  missing_cols <- NULL
-  
-  # Perform actual harmonization
-  df_v3 <- df_v2 %>% 
-    # Attach the data key to the data
-    dplyr::left_join(y = data_key_sub, by = c("source", "raw_name")) %>% 
-    # Drop any columns without a standardized name
-    dplyr::filter(is.na(tidy_name) != TRUE & nchar(tidy_name) != 0) %>% 
-    # Trash the old column names
-    dplyr::select(-raw_name) %>% 
-    # Pivot back to original format
-    tidyr::pivot_wider(names_from = tidy_name, values_from = values) %>% 
-    # Trash row number column created in loop
-    dplyr::select(-xxxx_row_num)
-  
-  # Add to list
-  file_list[[file]] <- df_v3 }
+  # Add that to the file list
+  file_list[[file]] <- key_sub }
 
-# Unlist the list
-harmonized_df <- purrr::list_rbind(x = file_list)
+# Unlist the file list
+key <- purrr::list_rbind(x = file_list)
 
-# Check that out
-harmonized_df
+# See if that worked
+key
 
-# Clear environment of everything except data key
-rm(list = setdiff(x = ls(), y = "data_key"))
+# Re-clear environment
+rm(list = ls())
 
 ## ----------------------------------- ##
 # Function Variant ----
