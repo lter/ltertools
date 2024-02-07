@@ -60,7 +60,7 @@ for(file in unique(data_key$source)){
   
   # Prepare the data for harmonization via data key
   df_v2 <- df_v1 %>% 
-    # Add a row number column to preserve original rows
+    # Add a source column and row number column to preserve original rows
     ## (name is bizarre to avoid overwriting extant column name)
     dplyr::mutate(xxxx_row_num = 1:nrow(.),
                   source = file) %>% 
@@ -72,7 +72,7 @@ for(file in unique(data_key$source)){
                         names_to = "raw_name",
                         values_to = "values")
   
-  # Identify any columns in the data key but apparently not in the data key
+  # Identify any columns in the data key but apparently not in the data
   missing_cols <- setdiff(x = unique(data_key_sub$raw_name),
                           y = unique(df_v2$raw_name))
   
@@ -162,7 +162,7 @@ harmonize <- function(key = NULL, raw_folder = NULL, quiet = TRUE){
     
     # Prepare the data for harmonization via data key
     dat_v2 <- dat_v1 %>% 
-      # Add a source folumn and row number column to preserve original rows
+      # Add a source column and row number column to preserve original rows
       ## (name is bizarre to avoid overwriting extant column name)
       dplyr::mutate(xxxx_row_num = 1:nrow(.),
                     source = focal_file) %>% 
@@ -174,7 +174,7 @@ harmonize <- function(key = NULL, raw_folder = NULL, quiet = TRUE){
                           names_to = "raw_name",
                           values_to = "values")
     
-    # Identify any columns in the data key but apparently not in the data key
+    # Identify any columns in the data key but apparently not in the data
     missing_cols <- generics::setdiff(x = unique(key_sub$raw_name),
                                       y = unique(dat_v2$raw_name))
     
