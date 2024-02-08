@@ -14,7 +14,7 @@ convert_temp(value = NULL, from = NULL, to = NULL)
 \item{to}{(character) units to which to convert, not case sensitive.}
 }
 \value{
-(numeric) converted tempearture values
+(numeric) converted temperature values
 }
 \description{
 Converts a given set of temperature values from one unit to another. This function was built by the following authors: Nicholas Lyon

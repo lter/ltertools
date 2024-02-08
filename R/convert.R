@@ -6,7 +6,7 @@
 #' @param from (character) starting units of the value, not case sensitive.
 #' @param to (character) units to which to convert, not case sensitive.
 #' 
-#' @return (numeric) converted tempearture values
+#' @return (numeric) converted temperature values
 #' 
 #' @export
 #' 
