@@ -73,7 +73,7 @@ read <- function(raw_folder = NULL, data_formats = c("csv", "txt", "xls", "xlsx"
     # CSV Files
     if(type_df[k,]$type %in% c("csv")){
       # Read in
-      data <- read.csv(file = file.path(raw_folder, type_df[k,]$name))
+      data <- utils::read.csv(file = file.path(raw_folder, type_df[k,]$name))
       
       # Add to list
       data_list[[type_df[k,]$name]] <- data }
@@ -81,7 +81,7 @@ read <- function(raw_folder = NULL, data_formats = c("csv", "txt", "xls", "xlsx"
     # TXT files
     if(type_df[k,]$type %in% c("txt")){
       # Read in
-      data <- read.delim(file = file.path(raw_folder, type_df[k,]$name))
+      data <- utils::read.delim(file = file.path(raw_folder, type_df[k,]$name))
       
       # Add to list
       data_list[[type_df[k,]$name]] <- data }
