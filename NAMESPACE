@@ -2,5 +2,6 @@
 
 export(convert_temp)
 export(cv)
+export(read)
 export(site_timeline)
 importFrom(magrittr,"%>%")
