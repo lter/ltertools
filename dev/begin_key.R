@@ -15,10 +15,15 @@ librarian::shelf(devtools, tidyverse)
 devtools::load_all()
 
 # Define function
-begin_key <- function(raw_folder = NULL, data_format = c("csv", "txt", "xls", "xlsx")){
+begin_key <- function(raw_folder = NULL, data_format = c("csv", "txt", "xls", "xlsx"), guess_tidy = FALSE){
   # raw_folder = file.path("dev", "testing")
   # data_format = c("csv", "txt", "xls", "xlsx")
-  
+
+  # Warn if `guess_tidy` isn't a logical and coerce to FALSE
+  if(is.logical(guess_tidy) != TRUE){
+    guess_tidy <- FALSE
+    message("`guess_tidy` argument must be provided as TRUE or FALSE") }
+    
   # Read in all files in folder of specified type
   df_list <- ltertools::read(raw_folder = raw_folder, data_format = data_format)
   
@@ -46,15 +51,46 @@ begin_key <- function(raw_folder = NULL, data_format = c("csv", "txt", "xls", "x
   key_df <- purrr::list_rbind(x = key_list)
   
   # Create a column for the tidy name
-  key_skeleton <- dplyr::mutate(.data = key_df,
-                                tidy_name = NA)
+  ## If `guess_tidy` is TRUE attempt to "guess" each raw name's tidy equivalent
+  if(guess_tidy == TRUE){
+    key_skeleton <- key_df %>% 
+      # Wrangling performed one step at a time
+      dplyr::mutate(
+        # Make lowercase
+        lower_name = tolower(raw_name),
+        # Drop any trailing parentheses
+        no_paren_end = gsub(pattern = "\\)", replacement = "", x = lower_name),
+        # Coerce all special characters to underscores
+        no_spec_char = gsub(pattern = "\\.| |\\-|\\/|\\(", 
+                            replacement = "_", x = no_paren_end),
+        # Remove runs of multiple underscores
+        no_dups = gsub(pattern = "__|___|____|_____", 
+                       replacement = "_", x = no_spec_char),
+        # If the final character is an underscore, remove it
+        no_trail_score = ifelse(test = stringr::str_sub(string = no_dups, 
+                                                        start = nchar(no_dups), 
+                                                        end = nchar(no_dups)) == "_",
+                                yes = stringr::str_sub(string = no_dups, 
+                                                       start = 1, 
+                                                       end = nchar(no_dups) - 1),
+                                no = no_dups)
+        # Finish `mutate` call for wrangling
+      ) %>% 
+      # After this, name the final one appropriately
+      dplyr::rename(tidy_name = no_trail_score) %>% 
+      # And drop any intermediary columns (implicitly)
+      dplyr::select(source, raw_name, tidy_name)
+
+    ## Otherwise, simply create an empty column with the correct name
+  } else { key_skeleton <- dplyr::mutate(.data = key_df, tidy_name = NA) }
   
-  # Return this key skeleton
+  # Return the key skeleton
   return(key_skeleton) }
 
 # Invoke function
 fxn_out <- begin_key(raw_folder = file.path("dev", "testing"),
-                     data_format = c("csv", "txt", "xls", "xlsx"))
+                     data_format = c("csv", "txt", "xls", "xlsx"),
+                     guess_tidy = TRUE)
 
 # Look at output
 fxn_out
