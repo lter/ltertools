@@ -3,6 +3,7 @@
 Development version of `ltertools`. There are no ERRORs, WARNINGs, or NOTEs returned by `devtools::check()`. Changes from latest release will be listed here as they are made.
 
 - New function: `read` -- reads in all data files in a particular folder and stores them in a list
+- New function: `begin_key` -- creates the start of a "column key" for data harmonization
 - New function: `cv` -- calculates coefficient of variation for a vector of numbers
 - New function: `convert_temp` -- converts temperature values from one specified unit to another
 - New dataset: `lter_sites` -- includes primary habitat, latitude/longitude coordinates, and funding start/end years for every site currently in the network

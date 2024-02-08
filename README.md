@@ -42,6 +42,31 @@ devtools::install_github("lter/ltertools")
 As functions are added to the package they will be briefly summarized
 below and attributed to their author(s)
 
+### Harmonization
+
+The LTER Network is hypothesis-driven with a focus on long term data
+from sites in the network. This results in data that may reasonably be
+compared but are–potentially–quite differently formatted based on the
+logic of the investigators responsible for each dataset. Data
+harmonization (the process of resolving these formatting inconsistencies
+to facilitate combination/comparison across projects) is therefore a
+significant hurdle for many projects using LTER data. We suggest a
+“column key”-based approach that has the potential to *greatly* simplify
+harmonization efforts.
+
+This method requires researchers to develop a 3-column key that contains
+(1) the name of each raw data file to be harmonized, (2) the name of all
+of the columns in each of those files, and (3) the “tidy name” that
+corresponds to each raw column name. Each dataset can then be read in,
+reshaped into long format, exchange its raw names with the tidy ones
+specified in the key and reshaped back into its original structure. To
+facilitate this approach, we’ve developed the following tools:
+
+- **`begin_key`** – creates the first two columns of a key and–if the
+  optional `guess_tidy` argument is set to `TRUE`–“guesses” at what the
+  tidy names ‘should be’. Function written by [Nick
+  Lyon](https://njlyon0.github.io/)
+
 ### Data Wrangling
 
 - **`read`** – Reads in all files of specified types in a particular
@@ -78,11 +103,11 @@ See `CONTRIBUTING.md` for specifics but at a glance:
   content to the `dev` folder, and open a pull request when you are
   finished
 
-`ltertools` will maintain a consistent “feel” of casing and style of
-functions but we (the maintainers) are happy to perform these edits on
-your behalf. If you’d like to take care of this yourself (completely
-optional!) you are welcome to do so. Please see `CONTRIBUTING.md` for a
-specific style guide.
+`ltertools` will maintain a consistent “feel” and style of functions but
+we (the maintainers) are happy to perform these edits on your behalf. If
+you’d like to take care of this yourself (completely optional!) you are
+welcome to do so. Please see `CONTRIBUTING.md` for a specific style
+guide.
 
 ## Synonymous Function Procedure
 
