@@ -12,7 +12,7 @@ read(raw_folder = NULL, data_formats = c("csv", "txt", "xls", "xlsx"))
 \item{data_formats}{(character) file extensions to identify within the `raw_folder`. Default behavior is to search for all supported file types.}
 }
 \value{
-(list) data found in specified folder / of specified file format
+(list) data found in specified folder of specified file format(s)
 }
 \description{
 Reads in all data files of specified types found in the designated folder. Returns a list with one element for each data file. Currently supports CSV, TXT, XLS, and XLSX. This function was built by the following authors: Nicholas Lyon

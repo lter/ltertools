@@ -5,7 +5,7 @@
 #' @param raw_folder (character) folder / folder path containing data files to read
 #' @param data_formats (character) file extensions to identify within the `raw_folder`. Default behavior is to search for all supported file types.
 #' 
-#' @return (list) data found in specified folder / of specified file format
+#' @return (list) data found in specified folder of specified file format(s)
 #' 
 #' @export
 #' 
@@ -16,32 +16,32 @@
 #' }
 #' 
 read <- function(raw_folder = NULL, data_formats = c("csv", "txt", "xls", "xlsx")){
-  # raw_folder <- file.path("dev", "testing")
-  # data_formats <- c(".csv", ".txt", ".xls", ".xlsx", "xlsx")
   
   # Error out for missing raw folder
   if(is.null(x = raw_folder) == TRUE)
     stop("Raw folder must be specified")
   
-  # # Check for unsupported file types
-  # bad_ext <- setdiff(x = data_formats, y = c("csv", "txt", "xls", "xlsx"))
-  # 
-  # # Warn / skip unsupported file types
-  # if(length(bad_ext) != 0){
-  #   
-  #   message()
-  #   
-  # }
-
-    # Make sure periods are not included in file extensions and drop non-unique entries
+  # Make sure periods are not included in file extensions and drop non-unique entries
   formats <- unique(gsub(pattern = "\\.", replacement = "", x = data_formats))
+  
+  # Check for unsupported file types
+  bad_ext <- setdiff(x = formats, y = c("csv", "txt", "xls", "xlsx"))
+  
+  # Warn / skip unsupported file types
+  if(length(bad_ext) != 0){
+    
+    # Removal of unsupported file types
+    formats <- setdiff(x = formats, y = bad_ext)
+    
+    # Warning about them
+    message("The following are not supported file types and will be ignored: ", paste(bad_ext, collapse = "; ")) }
   
   # Make an empty list
   type_list <- list()
   
   # Loop across user-supplied file extensions
   for(ext in formats){
-
+    
     # Check for files of that type in the folder
     found_vec <- dir(path = raw_folder, pattern = paste0(".", ext))
     
@@ -54,12 +54,12 @@ read <- function(raw_folder = NULL, data_formats = c("csv", "txt", "xls", "xlsx"
       # And remove them (they'll be found by the dedicated check for their file extension)
       found_vec <- setdiff(x = found_vec, y = found_vec[modern_excel]) }
     
-    # Create a simple dataframe for storing this information
-    found_df <- data.frame("name" = found_vec,
-                           "type" = ext)
-    
-    # Add to the list
-    type_list[[ext]] <- found_df } # Close file type loop
+    # If at least one file is found:
+    if(length(x = found_vec) != 0){
+      # Create a simple dataframe and add to the list
+      type_list[[ext]] <- data.frame("name" = found_vec,
+                                     "type" = ext) } 
+  } # Close file type loop
   
   # Unlist the type list
   type_df <- purrr::list_rbind(x = type_list)
