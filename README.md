@@ -44,6 +44,12 @@ below and attributed to their author(s)
 
 ### Data Wrangling
 
+- **`read`** – Reads in all files of specified types in a particular
+  folder and stores them as elements in a list. List element names are
+  the respective file names. Currently supports CSV, TXT, XLS, and XLSX
+  file formats. Function written by [Nick
+  Lyon](https://njlyon0.github.io/)
+
 - **`cv`** – Calculate coefficient of variation (CV) from a vector of
   numbers. Function written by [Nick Lyon](https://njlyon0.github.io/)
 
