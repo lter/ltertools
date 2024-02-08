@@ -64,7 +64,7 @@ begin_key <- function(raw_folder = NULL, data_format = c("csv", "txt", "xls", "x
         no_spec_char = gsub(pattern = "\\.| |\\-|\\/|\\(", 
                             replacement = "_", x = no_paren_end),
         # Remove runs of multiple underscores and replace with just one
-        no_dups = gsub(pattern = "_{2,100}", replacement = "_", x = no_spec_char),
+        no_dups = gsub(pattern = "_+", replacement = "_", x = no_spec_char),
         # If the final character is an underscore, remove it
         no_trail_score = ifelse(test = stringr::str_sub(string = no_dups, 
                                                         start = nchar(no_dups), 
