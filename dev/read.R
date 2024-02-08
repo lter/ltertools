@@ -97,13 +97,91 @@ str(data_list)
 rm(list = ls())
 
 ## ----------------------------------- ##
-# Function Variant ----
+          # Function Variant ----
 ## ----------------------------------- ##
 # Initial reading in _function format_
 
 # Define function
+read <- function(raw_folder = NULL, data_formats = c("csv", "txt", "xls", "xlsx")){
+  # raw_folder <- file.path("dev", "testing")
+  # data_formats <- c(".csv", ".txt", ".xls", ".xlsx", "xlsx")
+  
+  # Error out for missing raw folder
+  if(is.null(x = raw_folder) == TRUE)
+    stop("Raw folder must be specified")
+  
+  # Make sure periods are not included in file extensions and drop non-unique entries
+  formats <- unique(gsub(pattern = "\\.", replacement = "", x = data_formats))
+  
+  # Make an empty list
+  type_list <- list()
+  
+  # Loop across user-supplied file extensions
+  for(ext in formats){
+    # ext <- "xls"
+    
+    # Check for files of that type in the folder
+    found_vec <- dir(path = raw_folder, pattern = paste0(".", ext))
+    
+    # For the check of ".xls" files we need to do an additional step
+    if(ext == "xls"){
+      
+      # Identify any modern Excel files (.xlsx) were found
+      modern_excel <- stringr::str_detect(string = found_vec, pattern = ".xlsx")
+      
+      # And remove them (they'll be found by the dedicated check for their file extension)
+      found_vec <- setdiff(x = found_vec, y = found_vec[modern_excel]) }
+    
+    # Create a simple dataframe for storing this information
+    found_df <- data.frame("name" = found_vec,
+                           "type" = ext)
+    
+    # Add to the list
+    type_list[[ext]] <- found_df } # Close file type loop
+  
+  # Unlist the type list
+  type_df <- purrr::list_rbind(x = type_list)
+  
+  # Create a new list
+  data_list <- list()
+  
+  # Loop across rows of the type dataframe
+  for(k in 1:nrow(type_df)){
+    
+    # CSV Files
+    if(type_df[k,]$type %in% c("csv")){
+      # Read in
+      data <- read.csv(file = file.path(raw_folder, type_df[k,]$name))
+      
+      # Add to list
+      data_list[[type_df[k,]$name]] <- data }
+    
+    # TXT files
+    if(type_df[k,]$type %in% c("txt")){
+      # Read in
+      data <- read.delim(file = file.path(raw_folder, type_df[k,]$name))
+      
+      # Add to list
+      data_list[[type_df[k,]$name]] <- data }
+    
+    # Microsoft Excel files
+    if(type_df[k,]$type %in% c("xls", "xlsx")){
+      # Read in
+      data <- readxl::read_excel(path = file.path(raw_folder, type_df[k,]$name))
+      
+      # Add to list
+      data_list[[type_df[k,]$name]] <- data }
+    
+  } # Close loop
+  
+  # Return that list
+  return(data_list) }
 
+# Invoke function
+test <- read(raw_folder = file.path("dev", "testing"))
 
+# Check output
+str(test)
 
 # Clear environment / collect garbage
 rm(list = ls()); gc()
