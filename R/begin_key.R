@@ -1,24 +1,26 @@
-## ----------------------------------- ##
-        # 'Make Key' Testing ----
-## ----------------------------------- ##
-
-# Purpose:
-## Support "data key"-based harmonization workflow by testing a function that can create (the start of) the column key
-
-# Clear environment
-rm(list = ls())
-
-# Load libraries
-librarian::shelf(devtools, tidyverse)
-
-# Load all ltertools functions
-devtools::load_all()
-
-# Define function
+#' @title Generate the Skeleton of a Column Key
+#'
+#' @description Creates the start of a 'column key'
+#' Currently supports CSV, TXT, XLS, and XLSX. This function was built by the following authors: Nicholas Lyon
+#' 
+#' @param raw_folder (character) folder / folder path containing data files to include in key
+#' @param data_format (character) file extensions to identify within the `raw_folder`. Default behavior is to search for all supported file types.
+#' @param guess_tidy (logical)
+#' 
+#' @return (dataframe) skeleton of column key 
+#' 
+#' @importFrom magrittr %>%
+#' 
+#' @export
+#' 
+#' @examples
+#' \dontrun{
+#' # Create a column key from CSV files in a particular folder
+#' begin_key(raw_folder = "raw_data", data_format = "csv", guess_tidy = FALSE)
+#' }
+#' 
 begin_key <- function(raw_folder = NULL, data_format = c("csv", "txt", "xls", "xlsx"), guess_tidy = FALSE){
-  # raw_folder = file.path("dev", "testing")
-  # data_format = c("csv", "txt", "xls", "xlsx")
-
+  
   # Warn if `guess_tidy` isn't a logical and coerce to FALSE
   if(is.logical(guess_tidy) != TRUE){
     guess_tidy <- FALSE
@@ -85,13 +87,3 @@ begin_key <- function(raw_folder = NULL, data_format = c("csv", "txt", "xls", "x
   
   # Return the key skeleton
   return(key_skeleton) }
-
-# Invoke function
-fxn_out <- begin_key(raw_folder = file.path("dev", "testing"),
-                     data_format = c("csv", "txt", "xls", "xlsx"),
-                     guess_tidy = TRUE)
-
-# Look at output
-fxn_out
-
-# End ----
