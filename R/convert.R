@@ -1,23 +1,20 @@
-#' @title Convert Units of a Value
+#' @title Convert Temperature Values
 #' 
-#' @description Converts a given set of values from one user-specified unit to another. Currently only supports inter-conversion of temperature (i.e., Kelvin, Fahrenheit, Celsius) or miles to kilometers. If you would like other units added, please post an issue on our GitHub repository with your requested units and the formula used to convert between them. This function was built by the following authors: Nicholas Lyon
+#' @description Converts a given set of temperature values from one unit to another. This function was built by the following authors: Nicholas Lyon
 #' 
-#' @param value (numeric) value to convert between
-#' @param from (character) starting units of the value. Casing (upper vs. lower) does not matter though spelling does
-#' @param to (character) units to which to convert. Again, casing does not affect the function
+#' @param value (numeric) temperature values to convert
+#' @param from (character) starting units of the value, not case sensitive.
+#' @param to (character) units to which to convert, not case sensitive.
 #' 
-#' @return (numeric) value converted from specified units to desired units
+#' @return (numeric) converted tempearture values
 #' 
 #' @export
 #' 
 #' @examples
 #' # Convert from Fahrenheit to Celsius
-#' convert(value = 32, from = "Fahrenheit", to = "c")
+#' convert_temp(value = 32, from = "Fahrenheit", to = "c")
 #' 
-#' # Convert from kilometers to miles
-#' convert(value = 5, from = "km", to = "mi")
-#' 
-convert <- function(value = NULL, from = NULL, to = NULL){
+convert_temp <- function(value = NULL, from = NULL, to = NULL){
   
   # Error out if any are NULL
   if(is.null(value) == TRUE | is.null(from) == TRUE | is.null(to) == TRUE)
@@ -36,8 +33,7 @@ convert <- function(value = NULL, from = NULL, to = NULL){
   to_low <- tolower(x = to)
   
   # Identify supported units
-  valid_units <- c("c", "celsius", "f", "fahrenheit", "k", "kelvin",
-                   "km", "kilometers", "mi", "miles")
+  valid_units <- c("c", "celsius", "f", "fahrenheit", "k", "kelvin")
   
   # Error out if units are unknown
   if(!from_low %in% valid_units | !to_low %in% valid_units)
@@ -74,24 +70,6 @@ convert <- function(value = NULL, from = NULL, to = NULL){
   if(from_low %in% c("k", "kelvin") & to_low %in% c("f", "fahrenheit")){
     converted <- ((value - 273.15) * (9 / 5)) + 32
   }
-  
-  # Distance ----
-  
-  # miles to kilometers conversion
-  if(from_low %in% c("mi", "miles") & to_low %in% c("km", "kilometers")){
-    converted <- value * 1.609344
-  }
-  
-  # kilometers to miles conversion
-  if(from_low %in% c("km", "kilometers") & to_low %in% c("mi", "miles")){
-    converted <- value * 0.621371
-  }
-  
-  # Template Conditional  ----
-  ## For future conversions
-  # if(from_low %in% c() & to_low %in% c()){
-  #   converted <- value
-  # }
   
   # Return Converted value ----
   return(converted) }

@@ -42,23 +42,21 @@ devtools::install_github("lter/ltertools")
 As functions are added to the package they will be briefly summarized
 below and attributed to their author(s)
 
+### Data Wrangling
+
+- **`cv`** – Calculate coefficient of variation (CV) from a vector of
+  numbers. Function written by [Nick Lyon](https://njlyon0.github.io/)
+
+- **`convert_temp`** – Convert temperature values from one set of units
+  to another. Function written by [Nick
+  Lyon](https://njlyon0.github.io/)
+
 ### LTER Information
 
 - **`site_timeline`** – Create a timeline of sites that meet
   user-specified site code and/or habitat criteria. Uses built in
   `lter_sites` data object that includes much useful site information.
   Function written by [Nick Lyon](https://njlyon0.github.io/)
-
-### Data Wrangling
-
-- **`convert`** – Convert values from one set of units to another.
-  Currently supports temperature units as well as kilometers versus
-  miles. Function written by [Nick Lyon](https://njlyon0.github.io/)
-
-### Calculations
-
-- **`cv`** – Calculate coefficient of variation (CV) from a vector of
-  numbers. Function written by [Nick Lyon](https://njlyon0.github.io/)
 
 ## Contributing
 
