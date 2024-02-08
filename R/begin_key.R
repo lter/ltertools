@@ -19,6 +19,9 @@
 #' }
 #' 
 begin_key <- function(raw_folder = NULL, data_format = c("csv", "txt", "xls", "xlsx"), guess_tidy = FALSE){
+  # Squelching 'visible bindings' NOTE
+  raw_name <- tidy_name <- NULL
+  lower_name <- no_paren_end <- no_spec_char <- no_dups <- no_trail_score <- NULL
   
   # Warn if `guess_tidy` isn't a logical and coerce to FALSE
   if(is.logical(guess_tidy) != TRUE){
