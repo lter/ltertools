@@ -40,13 +40,17 @@ begin_key <- function(raw_folder = NULL, data_format = c("csv", "txt", "xls", "x
     
     # Assemble this facet of the column key and add to the list
     key_list[[file_name]] <- data.frame("source" = file_name,
-                                        "raw_name" = col_names,
-                                        "tidy_name" = NA) }
+                                        "raw_name" = col_names) }
+  
   # Unlist into a dataframe
   key_df <- purrr::list_rbind(x = key_list)
   
+  # Create a column for the tidy name
+  key_skeleton <- dplyr::mutate(.data = key_df,
+                                tidy_name = NA)
+  
   # Return this key skeleton
-  return(key_df) }
+  return(key_skeleton) }
 
 # Invoke function
 fxn_out <- begin_key(raw_folder = file.path("dev", "testing"),
