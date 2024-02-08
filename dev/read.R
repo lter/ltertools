@@ -1,33 +1,20 @@
 ## ----------------------------------- ##
-# 'Make Key' Testing ----
+          # 'Read' Testing ----
 ## ----------------------------------- ##
 
 # Purpose:
-## Support "data key"-based harmonization workflow by testing a function that can create (the start of) the column key
+## Both `harmonize` and `begin_key` need to read in every data file in a user-defined folder
+## This operation needs to be pretty flexible to handle different data types, so it makes sense to create a helper function to do this that both of those functions can then invoke to read in the desired data
+## Future updates to supported data types can then be made here and will automatically affect the downstream functions without the need for semi-duplicated revisions
 
 ## ----------------------------------- ##
-# Housekeeping ----
+            # Housekeeping ----
 ## ----------------------------------- ##
-# Clear environment / collect garbage
-rm(list = ls()); gc()
-
 # Load libraries
 librarian::shelf(devtools, tidyverse)
 
-# Create data objects to harmonize
-(df1 <- data.frame("x" = c(1:3),
-                   "garbage" = c("52", "hello", "ooo"),
-                   "y" = letters[1:3]))
-(df2 <- data.frame("LETTERS" = letters[4:6],
-                   "NUMBERS" = c(4:6),
-                   "BONUS" = c("not", "needed", "column")))
-
-# Export both of these for later re-use
-write.csv(df1, file = file.path("dev", "test_df1.csv"), na = "", row.names = F)
-write.csv(df2, file = file.path("dev", "test_df2.csv"), na = "", row.names = F)
-
-# Clear environment again
-rm(list = ls())
+# Clear environment / collect garbage
+rm(list = ls()); gc()
 
 ## ----------------------------------- ##
 # Script Variant ----
