@@ -30,48 +30,34 @@ file_list <- list()
 # Loop across these identifying files of each type in a particular folder
 for(ext in sufx){
   
+  # Check for files of that type in the folder
+  found_vec <- dir(path = file.path("dev", "testing"), pattern = ext)
   
-}
-
-
-
-# Experiment with concatenating file suffixes
-(sufx <- paste0(c(".csv", ".txt", ".xlsx", ".xls"), collapse = "|") )
-
-# List all files in the testing data folder
-( files <- dir(path = file.path("dev", "testing"), pattern = sufx) )
-
-
-
-
-# List files ending in CSV in the directory (`raw_folder`)
-raw_files <- dir(path = file.path("dev"), pattern = ".csv")
-
-# Make an empty list
-file_list <- list()
-
-# Loop across identified files
-for(file in raw_files){
+  # For the check of ".xls" files we need to do an additional step
+  if(ext == ".xls"){
+    
+    # Identify any modern Excel files (.xlsx) were found
+    modern_excel <- stringr::str_detect(string = found_vec, pattern = ".xlsx")
+    
+    # And remove them (they'll be found by the dedicated check for their file extension)
+    found_vec <- setdiff(x = found_vec, y = found_vec[modern_excel]) }
   
-  # Read it in
-  df <- read.csv(file = file.path("dev", file))
+  # Create a simple dataframe for storing this information
+  found_df <- data.frame("name" = found_vec,
+                         "type" = ext)
   
-  # Grab the column names
-  df_names <- names(x = df)
-  
-  # Assemble this facet of the data key
-  key_sub <- data.frame("source" = file,
-                        "raw_name" = df_names,
-                        "tidy_name" = NA)
-  
-  # Add that to the file list
-  file_list[[file]] <- key_sub }
+  # Add to the list
+  file_list[[ext]] <- found_df }
 
-# Unlist the file list
-key <- purrr::list_rbind(x = file_list)
+# Unlist the list
+file_df <- purrr::list_rbind(x = file_list)
 
-# See if that worked
-key
+# check that out
+file_df
+
+
+
+
 
 # Re-clear environment
 rm(list = ls())
