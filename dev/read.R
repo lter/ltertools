@@ -11,7 +11,7 @@
             # Housekeeping ----
 ## ----------------------------------- ##
 # Load libraries
-librarian::shelf(devtools, tidyverse)
+librarian::shelf(devtools, tidyverse, readxl)
 
 # Clear environment / collect garbage
 rm(list = ls())
@@ -20,6 +20,9 @@ rm(list = ls())
           # Script Variant ----
 ## ----------------------------------- ##
 # Initial reading in _script format_
+
+# Make an object for the focal directory
+data_folder <- file.path("dev", "testing")
 
 # Create vector of file extensions to look for
 sufx <- c(".csv", ".txt", ".xlsx", ".xls")
@@ -31,7 +34,7 @@ file_list <- list()
 for(ext in sufx){
   
   # Check for files of that type in the folder
-  found_vec <- dir(path = file.path("dev", "testing"), pattern = ext)
+  found_vec <- dir(path = data_folder, pattern = ext)
   
   # For the check of ".xls" files we need to do an additional step
   if(ext == ".xls"){
@@ -55,9 +58,40 @@ file_df <- purrr::list_rbind(x = file_list)
 # check that out
 file_df
 
+# Create a new list
+data_list <- list()
 
+# Loop across rows in the dataframe produced above
+for(k in 1:nrow(file_df)){
+  
+  # CSV Files
+  if(file_df[k,]$type %in% c(".csv")){
+    # Read in
+    data <- read.csv(file = file.path(data_folder, file_df[k,]$name))
+    
+    # Add to list
+    data_list[[file_df[k,]$name]] <- data }
+  
+  # TXT files
+  if(file_df[k,]$type %in% c(".txt")){
+    # Read in
+    data <- read.delim(file = file.path(data_folder, file_df[k,]$name))
+    
+    # Add to list
+    data_list[[file_df[k,]$name]] <- data }
+  
+  # Microsoft Excel files
+  if(file_df[k,]$type %in% c(".xls", ".xlsx")){
+    # Read in
+    data <- readxl::read_excel(path = file.path(data_folder, file_df[k,]$name))
+    
+    # Add to list
+    data_list[[file_df[k,]$name]] <- data }
+  
+} # Close loop
 
-
+# Check out resulting list
+str(data_list)
 
 # Re-clear environment
 rm(list = ls())
