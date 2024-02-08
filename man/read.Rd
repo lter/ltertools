@@ -4,12 +4,12 @@
 \alias{read}
 \title{Read Data from Folder}
 \usage{
-read(raw_folder = NULL, data_formats = c("csv", "txt", "xls", "xlsx"))
+read(raw_folder = NULL, data_format = c("csv", "txt", "xls", "xlsx"))
 }
 \arguments{
 \item{raw_folder}{(character) folder / folder path containing data files to read}
 
-\item{data_formats}{(character) file extensions to identify within the `raw_folder`. Default behavior is to search for all supported file types.}
+\item{data_format}{(character) file extensions to identify within the `raw_folder`. Default behavior is to search for all supported file types.}
 }
 \value{
 (list) data found in specified folder of specified file format(s)
@@ -20,7 +20,7 @@ Reads in all data files of specified types found in the designated folder. Retur
 \examples{
 \dontrun{
 # Read in all CSV files in the "raw_data" folder
-df_list <- read(raw_folder = "raw_data", data_formats = "csv")
+df_list <- read(raw_folder = "raw_data", data_format = "csv")
 }
 
 }

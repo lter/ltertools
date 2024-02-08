@@ -3,7 +3,7 @@
 #' @description Reads in all data files of specified types found in the designated folder. Returns a list with one element for each data file. Currently supports CSV, TXT, XLS, and XLSX. This function was built by the following authors: Nicholas Lyon
 #' 
 #' @param raw_folder (character) folder / folder path containing data files to read
-#' @param data_formats (character) file extensions to identify within the `raw_folder`. Default behavior is to search for all supported file types.
+#' @param data_format (character) file extensions to identify within the `raw_folder`. Default behavior is to search for all supported file types.
 #' 
 #' @return (list) data found in specified folder of specified file format(s)
 #' 
@@ -12,17 +12,17 @@
 #' @examples
 #' \dontrun{
 #' # Read in all CSV files in the "raw_data" folder
-#' df_list <- read(raw_folder = "raw_data", data_formats = "csv")
+#' df_list <- read(raw_folder = "raw_data", data_format = "csv")
 #' }
 #' 
-read <- function(raw_folder = NULL, data_formats = c("csv", "txt", "xls", "xlsx")){
+read <- function(raw_folder = NULL, data_format = c("csv", "txt", "xls", "xlsx")){
   
   # Error out for missing raw folder
   if(is.null(x = raw_folder) == TRUE)
     stop("Raw folder must be specified")
   
   # Make sure periods are not included in file extensions and drop non-unique entries
-  formats <- unique(gsub(pattern = "\\.", replacement = "", x = data_formats))
+  formats <- unique(gsub(pattern = "\\.", replacement = "", x = data_format))
   
   # Check for unsupported file types
   bad_ext <- setdiff(x = formats, y = c("csv", "txt", "xls", "xlsx"))
