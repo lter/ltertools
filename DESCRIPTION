@@ -35,6 +35,9 @@ Imports:
   dplyr,
   ggplot2,
   magrittr,
+  purrr,
+  readxl,
   stats,
   stringr,
-  tidyr
+  tidyr,
+  utils
