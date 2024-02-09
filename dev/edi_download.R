@@ -3,13 +3,7 @@
 ## ------------------------------------- ##
 # Purpose:
 ## Want to make a tool that lets users download *any* EDI dataset
-## Using the PASTA identifier makes sense as an initial stab
-
-# Some potentially valuable testing datasets' links
-## Non-LTER Bees: https://portal.edirepository.org/nis/mapbrowse?packageid=edi.1210.1
-## BES shapefile: "https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-bes&identifier=52"
-## AND trees: https://portal.edirepository.org/nis/mapbrowse?packageid=knb-lter-and.4544.4
-## KNZ soil: https://portal.edirepository.org/nis/mapbrowse?packageid=knb-lter-knz.180.2
+## Using the Package ID identifier makes sense as an initial stab
 
 ## --------------- ##
 # Housekeeping ----
@@ -29,7 +23,7 @@ dir.create(path = file.path("dev", "edi"), showWarnings = F)
 ## --------------- ##
 
 # Define function
-edi_download <- function(package_id = NULL, folder = NULL, quiet = FALSE){
+edi_download <- function(package_id = NULL, folder = getwd(), quiet = FALSE){
   
   # Error out for missing package ID or folder path
   if(is.null(package_id) == TRUE | is.null(folder) == TRUE)
@@ -126,13 +120,18 @@ edi_download <- function(package_id = NULL, folder = NULL, quiet = FALSE){
   } # Close loop 
 }
 
-# Invoke function
+# Tests of function with various data types in the package
+## Generic CSV + XML
 edi_download(package_id = "edi.1210.1", folder = file.path("dev", "edi"))
 
-# # Other tests of function on different data products (they work!)
-# edi_download(package_id = "knb-lter-bes.52.600", folder = file.path("dev", "edi"))
-# edi_download(package_id = "knb-lter-and.4544.4", folder = file.path("dev", "edi"))
-# edi_download(package_id = "edi.190.2", folder = file.path("dev", "edi"))
+## Zipped Shapefile + XML
+edi_download(package_id = "knb-lter-bes.52.600", folder = file.path("dev", "edi"))
+
+## GeoJSON + ZIP + XML
+edi_download(package_id = "knb-lter-cap.710.1", folder = file.path("dev", "edi"))
+
+## NetCDF + XML
+edi_download(package_id = "knb-lter-sbc.162.1", folder = file.path("dev", "edi"))
 
 # Clear environment
 rm(list = ls())
