@@ -26,7 +26,7 @@ begin_key <- function(raw_folder = NULL, data_format = c("csv", "txt", "xls", "x
   # Warn if `guess_tidy` isn't a logical and coerce to FALSE
   if(is.logical(guess_tidy) != TRUE){
     guess_tidy <- FALSE
-    message("`guess_tidy` argument must be provided as TRUE or FALSE") }
+    message("`guess_tidy` argument must be provided as TRUE or FALSE; defaulting to FALSE") }
     
   # Read in all files in folder of specified type
   df_list <- ltertools::read(raw_folder = raw_folder, data_format = data_format)
