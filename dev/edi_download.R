@@ -116,26 +116,35 @@ rm(list = ls())
 # Script Variant ----
 ## --------------- ##
 
-# Pick one
-id <- "edi.1210.1"
+# Clear environment
+rm(list = ls())
 
-# Generate a file path for the package
-folder <- file.path("dev", "edi", id)
+# Define objects that are equivalent to function arguments
+package_id <- "knb-lter-and.4544.4"
+folder <- file.path("dev", "edi")
+quiet <- FALSE
+
+# Add the package ID to the end of the folder path
+path <- file.path(folder, package_id)
 
 # Create a folder for the package
-dir.create(path = folder, showWarnings = F)
+dir.create(path = path, showWarnings = F)
 
 # Identify the PASTA identifier
 pasta_ident <- paste0("https://pasta.lternet.edu/package/eml/",
-                      gsub(pattern = "\\.", replacement = "/", x = id))
+                      gsub(pattern = "\\.", replacement = "/", x = package_id))
 
 # Identify the products within that package
 products <- read.csv(file = url(description = pasta_ident), header = F) %>%
   ## Dropping the identifier we just used
   dplyr::filter(V1 != pasta_ident)
 
+# If `quiet` isn't `TRUE`, print a message about how many files there are
+if(quiet != TRUE){
+  message(length(products[, 1]), " files identified in specified data package")
+}
+
 # Loop across the number of files in the package
-# for(k in 1){
 for(k in 1:length(products[, 1])){
   
   # Generate a temporary file name
@@ -144,28 +153,38 @@ for(k in 1:length(products[, 1])){
   # GET information on that link (needed later)
   link_info <- httr::GET(url = products[k, 1])
   
-  # Attempt a download one way
+  # Attempt a download with the 'curl' method
   try(utils::download.file(url = products[k, 1], destfile = temp_name,
-                           method = "curl", quiet = FALSE))
+                           method = "curl", quiet = quiet))
   
   # Download with the 'auto' method if the other one didn't work
   if(is.na(file.size(temp_name)) == TRUE){
     utils::download.file(url = products[k, 1], destfile = temp_name,
-                         method = "auto", quiet = FALSE) }
+                         method = "auto", quiet = quiet) }
   
-  # Identify the file's actual extension
-  type <- stringr::str_extract(string = link_info$all_headers[[1]]$headers$`content-type`,
-                               pattern = "/[:alnum:]{3,10}")
+  # Grab the content type and disposition
+  type <- link_info$all_headers[[1]]$headers$`content-type`
+  disp <- link_info$all_headers[[1]]$headers$`content-disposition`
   
-  # Swap slash for period
-  ext <- gsub(pattern = "\\/", replacement = ".", x = type)
-  
-  # Generate a nice(r) file name for that
-  real_name <- paste0(id, "-file-", k, ext)
+  # If the disposition is missing:
+  if(is.null(disp) == TRUE){
+    # Process the content type to infer the file extension
+    ext <- gsub(pattern = "\\/", replacement = ".", 
+                x = stringr::str_extract(string = type, pattern = "/[:alnum:]{3,10}"))
+    
+    # Assemble into a full file name
+    file_name <- paste0(package_id, "-file-", k, ext)
+    
+    # Otherwise:
+  } else {
+    # Grab the "content disposition" and trim off unwanted components
+    file_name <- gsub(pattern = '\"|attachment\\; filename\\=', replacement = "", 
+                      x = disp)
+  }
   
   # Move that file where we want it do be
-  file.rename(from = temp_name, to = file.path(folder, real_name))
+  file.copy(from = temp_name, to = file.path(path, file_name), overwrite = TRUE)
   
-} # Close loop
+} # Close loop 
 
 # End ----
