@@ -132,7 +132,7 @@ edi_download(package_id = "edi.1210.1", folder = file.path("dev", "edi"))
 # Other tests of function on different data products
 edi_download(package_id = "knb-lter-bes.52.600", folder = file.path("dev", "edi"))
 edi_download(package_id = "knb-lter-and.4544.4", folder = file.path("dev", "edi"))
-edi_download(package_id = "knb-lter-knz.180.2", folder = file.path("dev", "edi"))
+edi_download(package_id = "edi.190.2", folder = file.path("dev", "edi"))
 
 # Clear environment
 rm(list = ls())
