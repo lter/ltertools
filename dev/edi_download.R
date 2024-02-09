@@ -73,24 +73,39 @@ edi_download <- function(package_id = NULL, folder = NULL, quiet = FALSE){
     # Generate a temporary file name
     temp_name <- tempfile()
     
+    # Grab the specific product URL
+    prod_url <- products[k, 1]
+    
     # GET information on that link (needed later)
-    link_info <- httr::GET(url = products[k, 1])
+    link_info <- httr::GET(url = prod_url)
     
     # Attempt a download with the 'curl' method
-    try(utils::download.file(url = products[k, 1], destfile = temp_name,
+    try(utils::download.file(url = prod_url, destfile = temp_name,
                              method = "curl", quiet = quiet))
     
     # Download with the 'auto' method if the other one didn't work
     if(is.na(file.size(temp_name)) == TRUE){
-      utils::download.file(url = products[k, 1], destfile = temp_name,
+      utils::download.file(url = prod_url, destfile = temp_name,
                            method = "auto", quiet = quiet) }
     
     # Grab the content type and disposition
     type <- link_info$all_headers[[1]]$headers$`content-type`
     disp <- link_info$all_headers[[1]]$headers$`content-disposition`
     
-    # If the disposition is missing:
-    if(is.null(disp) == TRUE){
+    # If the product is the metadata:
+    if(stringr::str_detect(string = prod_url, pattern = "package/metadata/eml") == TRUE){
+      
+      # Generate a neat file name
+      file_name <- paste0(package_id, "-metadata.xml")
+      
+      # If the product is the quality report
+    } else if(stringr::str_detect(string = prod_url, pattern = "package/report/eml")){
+      
+      # Generate a neat file name
+      file_name <- paste0(package_id, "-quality-report.xml")
+      
+      # If the disposition is missing:
+    } else if(is.null(disp) == TRUE){
       # Process the content type to infer the file extension
       ext <- gsub(pattern = "\\/", replacement = ".", 
                   x = stringr::str_extract(string = type, pattern = "/[:alnum:]{3,10}"))
@@ -160,24 +175,39 @@ for(k in 1:length(products[, 1])){
   # Generate a temporary file name
   temp_name <- tempfile()
   
+  # Grab the specific product URL
+  prod_url <- products[k, 1]
+  
   # GET information on that link (needed later)
-  link_info <- httr::GET(url = products[k, 1])
+  link_info <- httr::GET(url = prod_url)
   
   # Attempt a download with the 'curl' method
-  try(utils::download.file(url = products[k, 1], destfile = temp_name,
+  try(utils::download.file(url = prod_url, destfile = temp_name,
                            method = "curl", quiet = quiet))
   
   # Download with the 'auto' method if the other one didn't work
   if(is.na(file.size(temp_name)) == TRUE){
-    utils::download.file(url = products[k, 1], destfile = temp_name,
+    utils::download.file(url = prod_url, destfile = temp_name,
                          method = "auto", quiet = quiet) }
   
   # Grab the content type and disposition
   type <- link_info$all_headers[[1]]$headers$`content-type`
   disp <- link_info$all_headers[[1]]$headers$`content-disposition`
   
-  # If the disposition is missing:
-  if(is.null(disp) == TRUE){
+  # If the product is the metadata:
+  if(stringr::str_detect(string = prod_url, pattern = "package/metadata/eml") == TRUE){
+    
+    # Generate a neat file name
+    file_name <- paste0(package_id, "-metadata.xml")
+    
+    # If the product is the quality report
+  } else if(stringr::str_detect(string = prod_url, pattern = "package/report/eml")){
+    
+    # Generate a neat file name
+    file_name <- paste0(package_id, "-quality-report.xml")
+    
+    # If the disposition is missing:
+  } else if(is.null(disp) == TRUE){
     # Process the content type to infer the file extension
     ext <- gsub(pattern = "\\/", replacement = ".", 
                 x = stringr::str_extract(string = type, pattern = "/[:alnum:]{3,10}"))
