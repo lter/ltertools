@@ -85,18 +85,28 @@ edi_download <- function(package_id = NULL, folder = NULL, quiet = FALSE){
       utils::download.file(url = products[k, 1], destfile = temp_name,
                            method = "auto", quiet = quiet) }
     
-    # Identify the file's actual extension
-    type <- stringr::str_extract(string = link_info$all_headers[[1]]$headers$`content-type`,
-                                 pattern = "/[:alnum:]{3,10}")
+    # Grab the content type and disposition
+    type <- link_info$all_headers[[1]]$headers$`content-type`
+    disp <- link_info$all_headers[[1]]$headers$`content-disposition`
     
-    # Swap slash for period
-    ext <- gsub(pattern = "\\/", replacement = ".", x = type)
-    
-    # Generate a nice(r) file name for that
-    real_name <- paste0(package_id, "-file-", k, ext)
+    # If the disposition is missing:
+    if(is.null(disp) == TRUE){
+      # Process the content type to infer the file extension
+      ext <- gsub(pattern = "\\/", replacement = ".", 
+                  x = stringr::str_extract(string = type, pattern = "/[:alnum:]{3,10}"))
+      
+      # Assemble into a full file name
+      file_name <- paste0(package_id, "-file-", k, ext)
+      
+      # Otherwise:
+    } else {
+      # Grab the "content disposition" and trim off unwanted components
+      file_name <- gsub(pattern = '\"|attachment\\; filename\\=', replacement = "", 
+                        x = disp)
+    }
     
     # Move that file where we want it do be
-    file.rename(from = temp_name, to = file.path(path, real_name))
+    file.copy(from = temp_name, to = file.path(path, file_name), overwrite = TRUE)
     
   } # Close loop 
 }
