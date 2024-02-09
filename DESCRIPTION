@@ -33,10 +33,12 @@ RoxygenNote: 7.2.3
 Depends: R (>= 3.5)
 Imports:
   dplyr,
+  generics,
   ggplot2,
   magrittr,
   purrr,
   readxl,
+  rlang,
   stats,
   stringr,
   tidyr,
