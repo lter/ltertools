@@ -67,6 +67,11 @@ facilitate this approach, we’ve developed the following tools:
   tidy names ‘should be’. Function written by [Nick
   Lyon](https://njlyon0.github.io/)
 
+- **`harmonize`** – performs column key-based harmonization. We strongly
+  recommend using the `begin_key` to start the creation of a column key
+  to make sure the formatting requirements are met. Function written by
+  [Nick Lyon](https://njlyon0.github.io/)
+
 ### Data Wrangling
 
 - **`read`** – Reads in all files of specified types in a particular

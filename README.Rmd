@@ -42,6 +42,8 @@ This method requires researchers to develop a 3-column key that contains (1) the
 
 - **`begin_key`** -- creates the first two columns of a key and--if the optional `guess_tidy` argument is set to `TRUE`--"guesses" at what the tidy names 'should be'. Function written by [Nick Lyon](https://njlyon0.github.io/)
 
+- **`harmonize`** -- performs column key-based harmonization. We strongly recommend using the `begin_key` to start the creation of a column key to make sure the formatting requirements are met. Function written by [Nick Lyon](https://njlyon0.github.io/)
+
 ### Data Wrangling
 
 - **`read`** -- Reads in all files of specified types in a particular folder and stores them as elements in a list. List element names are the respective file names. Currently supports CSV, TXT, XLS, and XLSX file formats. Function written by [Nick Lyon](https://njlyon0.github.io/)
