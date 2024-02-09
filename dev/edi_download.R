@@ -16,6 +16,24 @@ librarian::shelf(tidyverse, devtools)
 rm(list = ls())
 
 ## --------------- ##
+# EDI Method ----
+## --------------- ##
+
+# Define URL
+inUrl1  <- "https://pasta.lternet.edu/package/data/eml/edi/1210/1/c71bb3c137607da2d03d06342f9f1cad" 
+
+# Create tempfile
+infile1 <- tempfile()
+
+# Try one mode of downloading
+try(download.file(url = inUrl1, destfile = infile1, method = "curl"))
+
+# Try another if that doesn't work
+if(is.na(file.size(infile1))) 
+  download.file(url = inUrl1, destfile = infile1, method = "auto")
+
+
+## --------------- ##
 # Script Variant ----
 ## --------------- ##
 
@@ -52,16 +70,17 @@ products <- read.csv(file = url(description = pasta_ident), header = F)
 for(k in length(products[1,])){
   
   # Generate a nice(r) file name for that
-  file <- paste0(id, "_file-", k)
+  # file <- paste0(id, "_file-", k)
+  file <- tempfile()
   
   # Attempt a download one way
   try(utils::download.file(url = products[1, k], destfile = file.path(folder, file),
-                           method = "curl", quiet = TRUE))
+                           method = "curl", quiet = FALSE))
   
   # Download with 'auto' if the other one didn't work
   if(is.na(file.size(file.path(folder, file))) == TRUE){
     utils::download.file(url = products[1, k], destfile = file.path(folder, file),
-                         method = "auto", quiet = TRUE) }
+                         method = "auto", quiet = FALSE) }
   
 } # Close loop
 
