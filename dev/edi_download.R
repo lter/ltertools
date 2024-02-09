@@ -136,6 +136,9 @@ edi_download(package_id = "knb-lter-sbc.162.1", folder = file.path("dev", "edi")
 ## TIF + XML
 edi_download(package_id = "knb-lter-jrn.100.3", folder = file.path("dev", "edi"))
 
+## LAS + XML
+edi_download(package_id = "knb-lter-jrn.210543004.1", folder = file.path("dev", "edi"))
+
 # Clear environment
 rm(list = ls())
 
