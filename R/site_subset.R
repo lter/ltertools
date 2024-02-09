@@ -35,11 +35,12 @@ site_subset <- function(sites = NULL, habitats = NULL){
     
     # If user wants the LNO, exchange the provided abbreviation for the expanded abbreviations
     if("LNO" %in% sites | "NCO" %in% sites){
-      sites <- c(setdiff(x = sites, y = c("LNO", "NCO")), "LNO-UW", "LNO-UNM", "LNO-UCSB")
+      sites <- c(generics::setdiff(x = sites, y = c("LNO", "NCO")), 
+                 "LNO-UW", "LNO-UNM", "LNO-UCSB")
     }
     
     # Identify any user-provided sites not in the data
-    missing_sites <- setdiff(x = sites, y = lter_sites$code)
+    missing_sites <- generics::setdiff(x = sites, y = lter_sites$code)
     
     # If any user-provided codes aren't in the data
     if(length(missing_sites) > 0){
@@ -48,7 +49,7 @@ site_subset <- function(sites = NULL, habitats = NULL){
       message("Site abbreviation(s) '", paste0(missing_sites, collapse = "', '"), "' not recognized. Excluding now.")
       
       # And drop them
-      sites <- setdiff(x = sites, y = missing_sites) }
+      sites <- generics::setdiff(x = sites, y = missing_sites) }
     
     # After all that processing, subset to only those sites
     sites_sub1 <- dplyr::filter(.data = lter_sites, code %in% sites)
@@ -63,7 +64,7 @@ site_subset <- function(sites = NULL, habitats = NULL){
     habitats <- tolower(x = habitats)
     
     # Check for missing habitats (in full dataset rather than subset to avoid confusion)
-    missing_habs <- setdiff(x = habitats, y = lter_sites$habitat)
+    missing_habs <- generics::setdiff(x = habitats, y = lter_sites$habitat)
     
     # If any are found
     if(length(missing_habs) > 0){
@@ -72,7 +73,7 @@ site_subset <- function(sites = NULL, habitats = NULL){
       message("Habitat(s) '", paste0(missing_habs, collapse = "', '"), "' not recognized. Excluding now.")
       
       # Drop them
-      habitats <- setdiff(x = habitats, y = missing_habs) }
+      habitats <- generics::setdiff(x = habitats, y = missing_habs) }
     
     # Now we can actually do the subsetting (if any needs to be done)
     sites_sub2 <- dplyr::filter(.data = sites_sub1, habitat %in% habitats)

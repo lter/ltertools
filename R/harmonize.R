@@ -39,7 +39,7 @@ harmonize <- function(key = NULL, raw_folder = NULL, data_format = c("csv", "txt
   df_list <- ltertools::read(raw_folder = raw_folder, data_format = data_format)
   
   # Collapse data formats into a 1-element vector
-  formats <- paste0(data_format, collapse="|")
+  formats <- paste0(data_format, collapse = "|")
   
   # Identify available raw files *that are also present in the data key*
   raw_files <- generics::intersect(x = dir(path = raw_folder, pattern = formats),
@@ -107,9 +107,7 @@ harmonize <- function(key = NULL, raw_folder = NULL, data_format = c("csv", "txt
       dplyr::select(-xxxx_row_num)
     
     # Add to list
-    file_list[[focal_file]] <- dat_v3
-    
-  } # Close harmonization loop
+    file_list[[focal_file]] <- dat_v3 } # Close harmonization loop
   
   # Unlist the list
   files_df <- purrr::list_rbind(x = file_list)

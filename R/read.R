@@ -25,13 +25,13 @@ read <- function(raw_folder = NULL, data_format = c("csv", "txt", "xls", "xlsx")
   formats <- unique(gsub(pattern = "\\.", replacement = "", x = data_format))
   
   # Check for unsupported file types
-  bad_ext <- setdiff(x = formats, y = c("csv", "txt", "xls", "xlsx"))
+  bad_ext <- generics::setdiff(x = formats, y = c("csv", "txt", "xls", "xlsx"))
   
   # Warn / skip unsupported file types
   if(length(bad_ext) != 0){
     
     # Removal of unsupported file types
-    formats <- setdiff(x = formats, y = bad_ext)
+    formats <- generics::setdiff(x = formats, y = bad_ext)
     
     # Warning about them
     message("The following are not supported file types and will be ignored: ", paste(bad_ext, collapse = "; ")) }
@@ -52,7 +52,7 @@ read <- function(raw_folder = NULL, data_format = c("csv", "txt", "xls", "xlsx")
       modern_excel <- stringr::str_detect(string = found_vec, pattern = ".xlsx")
       
       # And remove them (they'll be found by the dedicated check for their file extension)
-      found_vec <- setdiff(x = found_vec, y = found_vec[modern_excel]) }
+      found_vec <- generics::setdiff(x = found_vec, y = found_vec[modern_excel]) }
     
     # If at least one file is found:
     if(length(x = found_vec) != 0){
