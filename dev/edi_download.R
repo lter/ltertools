@@ -145,7 +145,7 @@ rm(list = ls())
 rm(list = ls())
 
 # Define objects that are equivalent to function arguments
-package_id <- "knb-lter-and.4544.4"
+package_id <- "knb-lter-bes.52.600"
 folder <- file.path("dev", "edi")
 quiet <- FALSE
 
