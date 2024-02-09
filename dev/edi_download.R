@@ -19,17 +19,56 @@ rm(list = ls())
 # Script Variant ----
 ## --------------- ##
 
-# Define a local folder for downloading
-folder <- file.path("dev", "edi")
-
-# Create that folder if it doesn't exist
-dir.create(path = folder, showWarnings = F)
+# Create a local folder for downloading
+dir.create(path = file.path("dev", "edi"), showWarnings = F)
 
 # Identify a data package
 ## Non-LTER Bees: https://portal.edirepository.org/nis/mapbrowse?packageid=edi.1210.1
 ## BES shapefile: "https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-bes&identifier=52"
 ## AND trees: https://portal.edirepository.org/nis/mapbrowse?packageid=knb-lter-and.4544.4
 ## KNZ soil: https://portal.edirepository.org/nis/mapbrowse?packageid=knb-lter-knz.180.2
+
+# Define some Package IDs
+package_ids <- c("edi.1210.1", "knb-lter-bes.52.600",
+                 "knb-lter-and.4544.4", "knb-lter-knz.180.2")
+
+# Pick one
+id <- unique(package_ids)[1]
+
+# Generate a file path for the package
+folder <- file.path("dev", "edi", id)
+
+# Create a folder for the package
+dir.create(path = folder, showWarnings = F)
+
+# Identify the PASTA identifier
+pasta_ident <- paste0("https://pasta.lternet.edu/package/eml/",
+                      gsub(pattern = "\\.", replacement = "/", x = id))
+
+# Identify the products within that package
+products <- read.csv(file = url(description = pasta_ident), header = F)
+
+# Loop across the number of files in the package
+for(k in length(products[1,])){
+  
+  # Generate a nice(r) file name for that
+  file <- paste0(id, "_file-", k)
+  
+  # Attempt a download one way
+  try(utils::download.file(url = products[1, k], destfile = file.path(folder, file),
+                           method = "curl", quiet = TRUE))
+  
+  # Download with 'auto' if the other one didn't work
+  if(is.na(file.size(file.path(folder, file))) == TRUE){
+    utils::download.file(url = products[1, k], destfile = file.path(folder, file),
+                         method = "auto", quiet = TRUE) }
+  
+} # Close loop
+
+
+
+
+
 
 
 # Define links
