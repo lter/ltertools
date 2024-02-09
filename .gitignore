@@ -60,9 +60,9 @@ CRAN-SUBMISSION
 docs
 
 # Ignore test data files
-dev/testing/
 dev/edi/
-dev/test_*.xlsx
-dev/test_*.xls
-dev/test_*.txt
-dev/test_*.csv
+dev/*.csv
+dev/*.xls
+dev/*.txt
+
+
