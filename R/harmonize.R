@@ -1,29 +1,29 @@
-## ----------------------------------- ##
-      # Harmonization Testing ----
-## ----------------------------------- ##
-
-# Purpose:
-## Explore possibility of function variant of "data key"-based harmonization workflow
-
-# Load libraries
-librarian::shelf(devtools, tidyverse)
-
-# Clear environment
-rm(list = ls())
-
-# Read in testing key
-key_obj <- read.csv(file = file.path("dev", "test_column-key.csv"))
-
-# Check structure
-dplyr::glimpse(key_obj)
-
-# Define function
+#' @title Harmonize Data via a Column Key
+#' 
+#' @description A "column key" is meant to streamline harmonization of disparate datasets. This key must include three columns containing: (1) the name of each raw data file to be harmonized, (2) the name of all of the columns in each of those files, and (3) the "tidy name" that corresponds to each raw column name. This function accepts that key and the path to a folder containing all raw data files included in the key. Each dataset is then read in and the original column names are replaced with their respective "tidy_name" indicated in the key. Once this has been done to all files, a single dataframe is returned with only columns indicated in the column name. Currently the following file formats are supported for the raw data: CSV, TXT, XLS, and XLSX.
+#' 
+#' Note that raw column names without an associated tidy name in the key are removed. We recommend using the `begin_key` function in this package to generate the skeleton of the key to make achieving the required structure simpler.
+#'
+#' @param key (dataframe) key object including a "source", "raw_name" and "tidy_name" column. Additional columns are allowed but ignored
+#' @param raw_folder (character) folder / folder path containing data files to include in key
+#' @param data_format (character) file extensions to identify within the `raw_folder`. Default behavior is to search for all supported file types.
+#' @param quiet (logical) whether to suppress certain non-warning messages. Defaults to `TRUE`
+#' 
+#' @return (dataframe)
+#' 
+#' @importFrom magrittr %>% 
+#' 
+#' @export
+#' 
+#' @examples
+#' \dontrun{
+#' # Harmonize a set of raw data with a column key
+#' ## Note that the `data_format` argument is not specified which defaults to all supported file types
+#' harmonize(key = key_object, raw_folder = file.path("raw_data"), quiet = FALSE)
+#' }
+#' 
 harmonize <- function(key = NULL, raw_folder = NULL, data_format = c("csv", "txt", "xls", "xlsx"), quiet = TRUE){
-  # key <- key_obj
-  # raw_folder <- file.path("dev", "testing")
-  # data_format = c("csv", "txt", "xls", "xlsx")
-  # quiet <- F
-  
+
   # Error out if data key does not contain all needed information
   if(all(c("source", "raw_name", "tidy_name") %in% names(key)) != TRUE)
     stop("Data key must include 'source', 'raw_name' and 'tidy_name' columns")
@@ -57,8 +57,7 @@ harmonize <- function(key = NULL, raw_folder = NULL, data_format = c("csv", "txt
   
   # Loop across files that *are* in the data key
   for(focal_file in raw_files){
-    # focal_file <- raw_files[1]
-    
+
     # Prepare the data key
     key_sub <- key_actual %>% 
       # Subset to just this file
@@ -74,7 +73,7 @@ harmonize <- function(key = NULL, raw_folder = NULL, data_format = c("csv", "txt
     dat_v2 <- dat_v1 %>% 
       # Add a source column and row number column to preserve original rows
       ## (name is bizarre to avoid overwriting extant column name)
-      dplyr::mutate(xxxx_row_num = 1:nrow(.),
+      dplyr::mutate(xxxx_row_num = 1:nrow(),
                     source = focal_file) %>% 
       # Make all columns characters
       dplyr::mutate(dplyr::across(.cols = dplyr::everything(),
@@ -115,11 +114,3 @@ harmonize <- function(key = NULL, raw_folder = NULL, data_format = c("csv", "txt
   
   # Return that
   return(files_df) }
-
-# Invoke function
-ready_df <- harmonize(key = key_obj, raw_folder = file.path("dev", "testing"), 
-                      data_format = c("csv", "txt", "xls", "xlsx"), quiet = F)
-
-# Check structure
-str(ready_df)
-

@@ -3,6 +3,7 @@
 export(begin_key)
 export(convert_temp)
 export(cv)
+export(harmonize)
 export(read)
 export(site_timeline)
 importFrom(magrittr,"%>%")
