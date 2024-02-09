@@ -90,9 +90,8 @@
 <p>The LTER Network is hypothesis-driven with a focus on long term data from sites in the network. This results in data that may reasonably be compared but are–potentially–quite differently formatted based on the logic of the investigators responsible for each dataset. Data harmonization (the process of resolving these formatting inconsistencies to facilitate combination/comparison across projects) is therefore a significant hurdle for many projects using LTER data. We suggest a “column key”-based approach that has the potential to <em>greatly</em> simplify harmonization efforts.</p>
 <p>This method requires researchers to develop a 3-column key that contains (1) the name of each raw data file to be harmonized, (2) the name of all of the columns in each of those files, and (3) the “tidy name” that corresponds to each raw column name. Each dataset can then be read in, reshaped into long format, exchange its raw names with the tidy ones specified in the key and reshaped back into its original structure. To facilitate this approach, we’ve developed the following tools:</p>
 <ul>
-<li>
-<strong><code>begin_key</code></strong> – creates the first two columns of a key and–if the optional <code>guess_tidy</code> argument is set to <code>TRUE</code>–“guesses” at what the tidy names ‘should be’. Function written by <a href="https://njlyon0.github.io/" class="external-link">Nick Lyon</a>
-</li>
+<li><p><strong><code>begin_key</code></strong> – creates the first two columns of a key and–if the optional <code>guess_tidy</code> argument is set to <code>TRUE</code>–“guesses” at what the tidy names ‘should be’. Function written by <a href="https://njlyon0.github.io/" class="external-link">Nick Lyon</a></p></li>
+<li><p><strong><code>harmonize</code></strong> – performs column key-based harmonization. We strongly recommend using the <code>begin_key</code> to start the creation of a column key to make sure the formatting requirements are met. Function written by <a href="https://njlyon0.github.io/" class="external-link">Nick Lyon</a></p></li>
 </ul>
 </div>
 <div class="section level3">
