@@ -121,7 +121,7 @@ edi_download <- function(package_id = NULL, folder = getwd(), quiet = FALSE){
 }
 
 # Tests of function with various data types in the package
-## Generic CSV + XML
+## CSV + XML
 edi_download(package_id = "edi.1210.1", folder = file.path("dev", "edi"))
 
 ## Zipped Shapefile + XML
@@ -132,6 +132,9 @@ edi_download(package_id = "knb-lter-cap.710.1", folder = file.path("dev", "edi")
 
 ## NetCDF + XML
 edi_download(package_id = "knb-lter-sbc.162.1", folder = file.path("dev", "edi"))
+
+## TIF + XML
+edi_download(package_id = "knb-lter-jrn.100.3", folder = file.path("dev", "edi"))
 
 # Clear environment
 rm(list = ls())
