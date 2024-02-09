@@ -5,6 +5,12 @@
 ## Want to make a tool that lets users download *any* EDI dataset
 ## Using the PASTA identifier makes sense as an initial stab
 
+# Some potentially valuable testing datasets' links
+## Non-LTER Bees: https://portal.edirepository.org/nis/mapbrowse?packageid=edi.1210.1
+## BES shapefile: "https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-bes&identifier=52"
+## AND trees: https://portal.edirepository.org/nis/mapbrowse?packageid=knb-lter-and.4544.4
+## KNZ soil: https://portal.edirepository.org/nis/mapbrowse?packageid=knb-lter-knz.180.2
+
 ## --------------- ##
 # Housekeeping ----
 ## --------------- ##
@@ -15,18 +21,18 @@ librarian::shelf(tidyverse, devtools)
 # Clear environment
 rm(list = ls())
 
-## --------------- ##
-# Script Variant ----
-## --------------- ##
-
 # Create a local folder for downloading
 dir.create(path = file.path("dev", "edi"), showWarnings = F)
 
-# Identify a data package
-## Non-LTER Bees: https://portal.edirepository.org/nis/mapbrowse?packageid=edi.1210.1
-## BES shapefile: "https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-bes&identifier=52"
-## AND trees: https://portal.edirepository.org/nis/mapbrowse?packageid=knb-lter-and.4544.4
-## KNZ soil: https://portal.edirepository.org/nis/mapbrowse?packageid=knb-lter-knz.180.2
+## --------------- ##
+# Function Var. ----
+## --------------- ##
+
+
+
+## --------------- ##
+# Script Variant ----
+## --------------- ##
 
 # Define some Package IDs
 package_ids <- c("edi.1210.1", "knb-lter-bes.52.600",
@@ -83,12 +89,5 @@ for(k in 1:length(products[, 1])){
   file.rename(from = temp_name, to = file.path(folder, real_name))
   
 } # Close loop
-
-
-
-## --------------- ##
-# Function Var. ----
-## --------------- ##
-
 
 # End ----
