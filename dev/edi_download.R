@@ -69,22 +69,22 @@ products <- read.csv(file = url(description = pasta_ident), header = F) %>%
   dplyr::filter(V1 != pasta_ident)
 
 # Loop across the number of files in the package
-for(k in 1){
-# for(k in length(products[1,])){
+# for(k in 1){
+for(k in 1:length(products[, 1])){
   
   # Generate a temporary file name
   temp_name <- tempfile()
   
   # GET information on that link (needed later)
-  link_info <- httr::GET(url = products[1, k])
+  link_info <- httr::GET(url = products[k, 1])
   
   # Attempt a download one way
-  try(utils::download.file(url = products[1, k], destfile = temp_name,
+  try(utils::download.file(url = products[k, 1], destfile = temp_name,
                            method = "curl", quiet = FALSE))
   
   # Download with the 'auto' method if the other one didn't work
   if(is.na(file.size(temp_name)) == TRUE){
-    utils::download.file(url = products[1, k], destfile = temp_name,
+    utils::download.file(url = products[k, 1], destfile = temp_name,
                          method = "auto", quiet = FALSE) }
   
   # Identify the file's actual extension
