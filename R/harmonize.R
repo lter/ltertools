@@ -23,6 +23,8 @@
 #' }
 #' 
 harmonize <- function(key = NULL, raw_folder = NULL, data_format = c("csv", "txt", "xls", "xlsx"), quiet = TRUE){
+  # Squelch 'visible bindings' NOTE
+  raw_name <- tidy_name <- xxxx_row_num <- values <- NULL
 
   # Error out if data key does not contain all needed information
   if(all(c("source", "raw_name", "tidy_name") %in% names(key)) != TRUE)
