@@ -16,7 +16,7 @@
 ## --------------- ##
 
 # Load needed libraries
-librarian::shelf(tidyverse, devtools)
+librarian::shelf(tidyverse, devtools, XML, httr)
 
 # Clear environment
 rm(list = ls())
@@ -58,7 +58,7 @@ edi_download <- function(package_id = NULL, folder = NULL, quiet = FALSE){
                         gsub(pattern = "\\.", replacement = "/", x = package_id))
   
   # Identify the products within that package
-  products <- read.csv(file = url(description = pasta_ident), header = F) %>%
+  products <- utils::read.csv(file = url(description = pasta_ident), header = F) %>%
     ## Dropping the identifier we just used
     dplyr::filter(V1 != pasta_ident)
   
@@ -92,7 +92,7 @@ edi_download <- function(package_id = NULL, folder = NULL, quiet = FALSE){
     type <- link_info$all_headers[[1]]$headers$`content-type`
     disp <- link_info$all_headers[[1]]$headers$`content-disposition`
     
-    # If the product is the metadata:
+    # If the product is the EML metadata:
     if(stringr::str_detect(string = prod_url, pattern = "package/metadata/eml") == TRUE){
       
       # Generate a neat file name
@@ -141,10 +141,23 @@ rm(list = ls())
 # Downstream Checks ----
 ## --------------- ##
 
+# Load package functions
+devtools::load_all()
+
 # Examine compatibility with `read` function
 test_out <- ltertools::read(raw_folder = file.path("dev", "edi", "edi.1210.1"))
 
 # Check structure
 str(test_out)
+
+## --------------- ##
+
+## --------------- ##
+
+# Name the path to one of the XML docs
+xml_path <- file.path("dev", "edi", "edi.1210.1", "edi.1210.1-metadata.xml")
+
+# Parse the XML doc
+(meta <- XML::xmlParse(file = xml_path) )
 
 # End ----
