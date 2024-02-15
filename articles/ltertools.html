@@ -98,8 +98,28 @@ of <code>ltertools</code> as they currently exist.</p>
 <div class="section level3">
 <h3 id="harmonization">Harmonization<a class="anchor" aria-label="anchor" href="#harmonization"></a>
 </h3>
+<p>The LTER Network is hypothesis-driven with a focus on long term data
+from sites in the network. This results in data that may reasonably be
+compared but are–potentially–quite differently formatted based on the
+logic of the investigators responsible for each dataset. Data
+harmonization (the process of resolving these formatting inconsistencies
+to facilitate combination/comparison across projects) is therefore a
+significant hurdle for many projects using LTER data. We suggest a
+“column key”-based approach that has the potential to <em>greatly</em>
+simplify harmonization efforts.</p>
+<p>This method requires researchers to develop a 3-column key that
+contains (1) the name of each raw data file to be harmonized, (2) the
+name of all of the columns in each of those files, and (3) the “tidy
+name” that corresponds to each raw column name. Each dataset can then be
+read in and have its raw names replaced with the tidy ones specified in
+the key. Once this has been done to all files in the specified folder,
+they can be combined by their newly consistent column names.</p>
 <p><code>begin_key</code></p>
 <p><code>harmonize</code></p>
+<p>A visual version of this column key approach to harmonization is
+included for convenience here:</p>
+<p align="center">
+<img src="harmonize-workflow.png" alt="Four color-coded tables are in a soft rectangle. One is pulled out and its column names are replaced based on their respective 'tidy names' in the column key table. This is done for each of the other tables then the four tables--with fixed column names--are combined into a single data table" width="100%"></p>
 </div>
 <div class="section level3">
 <h3 id="wrangling">Wrangling<a class="anchor" aria-label="anchor" href="#wrangling"></a>
