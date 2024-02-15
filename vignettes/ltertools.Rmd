@@ -8,5 +8,36 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r knitr-mechanics, include = F}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
 
-Hello!
+```{r pre-setup, echo = FALSE, message = FALSE}
+# devtools::install_github("lter/ltertools")
+```
+
+## Overview
+
+The `ltertools` package 
+
+The goal of `ltertools` is to centralize the R functions created by members of the Long Term Ecological Research (LTER) community. Many of these functions likely have broad relevance that expands beyond the context of their creation and this package is an attempt to share those tools and limit the amount of "re-inventing the wheel" that we each do in our own silos.
+
+The conceptual theme of functions in `ltertools` is necessarily broad given the scope of the community we aim to serve. That said, the identity of this package will likely become more clear as we accrue contributed functions. This vignette describes the main functions of `ltertools` as they currently exist.
+
+```{r setup}
+# devtools::install_github("lter/ltertools")
+library(ltertools)
+```
+
+### Harmonization
+
+
+
+
+### Wrangling
+
+
+
+
+### LTER Information
+
