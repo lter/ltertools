@@ -44,6 +44,7 @@ Imports:
   tidyr,
   utils
 Suggests:
-  knitr
+  knitr,
+  rmarkdown
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
