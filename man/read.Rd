@@ -9,7 +9,7 @@ read(raw_folder = NULL, data_format = c("csv", "txt", "xls", "xlsx"))
 \arguments{
 \item{raw_folder}{(character) folder / folder path containing data files to read}
 
-\item{data_format}{(character) file extensions to identify within the `raw_folder`. Default behavior is to search for all supported file types.}
+\item{data_format}{(character) file extensions to identify within the \code{raw_folder}. Default behavior is to search for all supported file types.}
 }
 \value{
 (list) data found in specified folder of specified file format(s)

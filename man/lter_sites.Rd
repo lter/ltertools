@@ -7,14 +7,14 @@
 \format{
 Dataframe with 8 columns and 32 rows
 \describe{
-    \item{name}{Full name of the LTER site}
-    \item{code}{Abbreviation (typically three letters) of the site name}
-    \item{habitat}{Simplified habitat designation of the site (or "mixed" for more complex habitat contexts)}
-    \item{start_year}{Year of initial funding by NSF as an official LTER site}
-    \item{end_year}{End of current funding cycle grant}
-    \item{latitude}{Degrees latitude of site}
-    \item{longitude}{Degrees longitude of site}
-    \item{site_url}{Website URL for the site}
+\item{name}{Full name of the LTER site}
+\item{code}{Abbreviation (typically three letters) of the site name}
+\item{habitat}{Simplified habitat designation of the site (or "mixed" for more complex habitat contexts)}
+\item{start_year}{Year of initial funding by NSF as an official LTER site}
+\item{end_year}{End of current funding cycle grant}
+\item{latitude}{Degrees latitude of site}
+\item{longitude}{Degrees longitude of site}
+\item{site_url}{Website URL for the site}
 }
 }
 \source{

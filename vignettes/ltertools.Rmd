@@ -1,0 +1,12 @@
+---
+title: "ltertools Vignette"
+author: "Nicholas J Lyon"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ltertools Vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+Hello!

@@ -15,7 +15,7 @@ cv(x, na_rm = TRUE)
 (numeric) coefficient of variation
 }
 \description{
-Computes the coefficient of variation (CV), by dividing the standard deviation (SD) by the arithmetic mean of a set of numbers. If `na_rm` is `TRUE` then missing values are removed before calculation is completed. This function was built by the following authors: Nicholas Lyon
+Computes the coefficient of variation (CV), by dividing the standard deviation (SD) by the arithmetic mean of a set of numbers. If \code{na_rm} is \code{TRUE} then missing values are removed before calculation is completed. This function was built by the following authors: Nicholas Lyon
 }
 \examples{
 # Convert from Fahrenheit to Celsius

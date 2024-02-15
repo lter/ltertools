@@ -19,10 +19,10 @@ Authors@R: c(
          comment = "NSF 1929393, 09/01/2019 - 08/31/2024"),
     person(family = "University of California, Santa Barbara",
          role = "cph") )
+Maintainer: Nicholas Lyon <lyon@nceas.ucsb.edu>
 Description: Set of the data science tools created by various members of the Long Term 
     Ecological Research (LTER) community. These functions were initially written largely 
     as standalone operations and have later been aggregated into this package.
-Maintainer: Nicholas Lyon <lyon@nceas.ucsb.edu>
 License: BSD_3_clause + file LICENSE
 Encoding: UTF-8
 Language: en-US
@@ -43,3 +43,7 @@ Imports:
   stringr,
   tidyr,
   utils
+Suggests:
+  knitr
+Roxygen: list(markdown = TRUE)
+VignetteBuilder: knitr

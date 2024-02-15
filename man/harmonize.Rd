@@ -16,9 +16,9 @@ harmonize(
 
 \item{raw_folder}{(character) folder / folder path containing data files to include in key}
 
-\item{data_format}{(character) file extensions to identify within the `raw_folder`. Default behavior is to search for all supported file types.}
+\item{data_format}{(character) file extensions to identify within the \code{raw_folder}. Default behavior is to search for all supported file types.}
 
-\item{quiet}{(logical) whether to suppress certain non-warning messages. Defaults to `TRUE`}
+\item{quiet}{(logical) whether to suppress certain non-warning messages. Defaults to \code{TRUE}}
 }
 \value{
 (dataframe) harmonized dataframe including all columns defined in the "tidy_name" column of the key object
@@ -26,7 +26,7 @@ harmonize(
 \description{
 A "column key" is meant to streamline harmonization of disparate datasets. This key must include three columns containing: (1) the name of each raw data file to be harmonized, (2) the name of all of the columns in each of those files, and (3) the "tidy name" that corresponds to each raw column name. This function accepts that key and the path to a folder containing all raw data files included in the key. Each dataset is then read in and the original column names are replaced with their respective "tidy_name" indicated in the key. Once this has been done to all files, a single dataframe is returned with only columns indicated in the column name. Currently the following file formats are supported for the raw data: CSV, TXT, XLS, and XLSX. This function was built by the following authors: Nicholas Lyon
 
-Note that raw column names without an associated tidy name in the key are removed. We recommend using the `begin_key` function in this package to generate the skeleton of the key to make achieving the required structure simpler.
+Note that raw column names without an associated tidy name in the key are removed. We recommend using the \code{begin_key} function in this package to generate the skeleton of the key to make achieving the required structure simpler.
 }
 \examples{
 \dontrun{

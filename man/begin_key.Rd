@@ -13,9 +13,9 @@ begin_key(
 \arguments{
 \item{raw_folder}{(character) folder / folder path containing data files to include in key}
 
-\item{data_format}{(character) file extensions to identify within the `raw_folder`. Default behavior is to search for all supported file types.}
+\item{data_format}{(character) file extensions to identify within the \code{raw_folder}. Default behavior is to search for all supported file types.}
 
-\item{guess_tidy}{(logical) whether to attempt to "guess" what the tidy name equivalent should be for each raw column name. This is accomplished via coercion to lowercase and removal of special character/repeated characters. If `FALSE` (the default) the "tidy_name" column is returned empty}
+\item{guess_tidy}{(logical) whether to attempt to "guess" what the tidy name equivalent should be for each raw column name. This is accomplished via coercion to lowercase and removal of special character/repeated characters. If \code{FALSE} (the default) the "tidy_name" column is returned empty}
 }
 \value{
 (dataframe) skeleton of column key

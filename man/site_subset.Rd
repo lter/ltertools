@@ -9,13 +9,13 @@ site_subset(sites = NULL, habitats = NULL)
 \arguments{
 \item{sites}{(character) three letter site code(s) identifying site(s) of interest}
 
-\item{habitats}{(character) habitat(s) of interest. See `unique(lter_sites$habitat)`}
+\item{habitats}{(character) habitat(s) of interest. See \code{unique(lter_sites$habitat)}}
 }
 \value{
 (dataframe) complete site information (8 columns) for all sites that meet the provided site code and/or habitat criteria
 }
 \description{
-Subsets the information on long term ecological research (LTER) sites based on user-specified site codes (i.e., three letter abbreviations), and/or desired habitats. See `lter_sites` for the full set of site information. This function was built by the following authors: Nicholas Lyon
+Subsets the information on long term ecological research (LTER) sites based on user-specified site codes (i.e., three letter abbreviations), and/or desired habitats. See \code{lter_sites} for the full set of site information. This function was built by the following authors: Nicholas Lyon
 }
 \examples{
 \dontrun{
