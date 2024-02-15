@@ -17,7 +17,7 @@
 #' site_timeline()
 #' 
 #' # Or make a timeline of only sites that meet certain criteria
-#' site_timeline(habitats = c("gassland", "forest"))
+#' site_timeline(habitats = c("grassland", "forest"))
 #' 
 site_timeline <- function(sites = NULL, habitats = NULL, colors = NULL){
   # Squelch visible bindings NOTE

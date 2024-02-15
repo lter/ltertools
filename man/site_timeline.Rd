@@ -24,6 +24,6 @@ Creates a ggplot2 plot of all sites that meet the user-specified site code (i.e.
 site_timeline()
 
 # Or make a timeline of only sites that meet certain criteria
-site_timeline(habitats = c("gassland", "forest"))
+site_timeline(habitats = c("grassland", "forest"))
 
 }
