@@ -11,7 +11,7 @@ site_timeline(sites = NULL, habitats = NULL, colors = NULL)
 
 \item{habitats}{(character) habitat(s) of interest. See \code{unique(lter_sites$habitat)}}
 
-\item{colors}{(character)}
+\item{colors}{(character) colors to assign to the timelines expressed as a hexadecimal (e.g, #00FF00). Note there must be as many colors as habitats included in the graph}
 }
 \value{
 (ggplot2) plot object of timeline of site(s) that meet user-specified criteria

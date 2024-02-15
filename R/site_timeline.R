@@ -4,7 +4,7 @@
 #' 
 #' @param sites (character) three letter site code(s) identifying site(s) of interest
 #' @param habitats (character) habitat(s) of interest. See `unique(lter_sites$habitat)`
-#' @param colors (character) 
+#' @param colors (character) colors to assign to the timelines expressed as a hexadecimal (e.g, #00FF00). Note there must be as many colors as habitats included in the graph
 #' 
 #' @return (ggplot2) plot object of timeline of site(s) that meet user-specified criteria
 #' 
