@@ -65,4 +65,7 @@ dev/*.csv
 dev/*.xls
 dev/*.txt
 
-
+# Ignore weird invisible files Git "sees" when a Microsoft Office file is currently open
+~$*.pptx
+~$*.xlsx
+~$*.docx
