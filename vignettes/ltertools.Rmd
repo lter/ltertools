@@ -1,6 +1,5 @@
 ---
 title: "ltertools Vignette"
-author: "Nicholas J Lyon"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{ltertools Vignette}
@@ -31,13 +30,37 @@ library(ltertools)
 
 ### Harmonization
 
+`begin_key`
 
+
+`harmonize`
 
 
 ### Wrangling
 
+`read`
+
+
+
+`cv`
+
+
+`convert_temp`
 
 
 
 ### LTER Information
 
+The LTER Network is composed of many separate sites. While all of these sites are "long term" they do vary slightly in when they were created. For those interested in knowing the temporal coverage of data from a particular site or group of sites, `site_timeline` can prove a helpful function. This function creates a `ggplot2` timeline where sites are on the vertical axis and years are on the horizontal. Lines are colored based on the habitat of the site and there is support for a user-defined set of hexadecimal colors though by default an internal palette is used.
+
+Sites can be specified by their three letter site code or all sites in a particular habitat can be included.
+```{r site-timeline-1, fig.align = 'center', fig.height = 3, fig.width = 7}
+# Check the timeline for all grassland or forest LTER sites
+ltertools::site_timeline(habitats = c("grassland", "forest"))
+```
+
+Running the function without specifying site codes or habitat types will result in a timeline of all active LTER sites.
+```{r site-timeline-2, fig.align = 'center', fig.height = 4, fig.width = 7}
+# Check the timeline for all LTER sites
+ltertools::site_timeline()
+```
