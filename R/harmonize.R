@@ -24,7 +24,7 @@
 #' 
 harmonize <- function(key = NULL, raw_folder = NULL, data_format = c("csv", "txt", "xls", "xlsx"), quiet = TRUE){
   # Squelch 'visible bindings' NOTE
-  raw_name <- tidy_name <- xxxx_row_num <- values <- NULL
+  . <- raw_name <- tidy_name <- xxxx_row_num <- values <- NULL
 
   # Error out if data key does not contain all needed information
   if(all(c("source", "raw_name", "tidy_name") %in% names(key)) != TRUE)
@@ -75,7 +75,7 @@ harmonize <- function(key = NULL, raw_folder = NULL, data_format = c("csv", "txt
     dat_v2 <- dat_v1 %>% 
       # Add a source column and row number column to preserve original rows
       ## (name is bizarre to avoid overwriting extant column name)
-      dplyr::mutate(xxxx_row_num = 1:nrow(),
+      dplyr::mutate(xxxx_row_num = 1:nrow(x = .),
                     source = focal_file) %>% 
       # Make all columns characters
       dplyr::mutate(dplyr::across(.cols = dplyr::everything(),
