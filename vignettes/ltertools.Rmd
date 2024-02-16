@@ -36,16 +36,16 @@ This method requires researchers to develop a 3-column key that contains (1) the
 
 To demonstrate this workflow, we will need to create some example data tables and export them to a temporary directory (so that they can be read back in as is required by the harmonization functions).
 
-```{r harmony-prep}
+```{r harmony-prep-1}
 # Generate two simple tables
 ## Dataframe 1
 df1 <- data.frame("xx" = c(1:3),
-                   "unwanted" = c("not", "needed", "column"),
-                   "yy" = letters[1:3])
+                  "unwanted" = c("not", "needed", "column"),
+                  "yy" = letters[1:3])
 ## Dataframe 2
 df2 <- data.frame("LETTERS" = letters[4:7],
-                   "NUMBERS" = c(4:7),
-                   "BONUS" = c("plantae", "animalia", "fungi", "protista"))
+                  "NUMBERS" = c(4:7),
+                  "BONUS" = c("plantae", "animalia", "fungi", "protista"))
 
 # Generate a known temporary folder for exporting
 temp_folder <- tempdir()
@@ -55,18 +55,41 @@ utils::write.csv(x = df1, file = file.path(temp_folder, "df1.csv"), row.names = 
 utils::write.csv(x = df2, file = file.path(temp_folder, "df2.csv"), row.names = FALSE)
 ```
 
-With some example files generated, we can now demonstrate the actual workflow! The most fundamental of these functions is `harmonize`. This function 
+While the raw data must be in a folder, the data key is a dataframe in R to allow more flexibility on the user's end about file format / storage (many LTER working groups like generating their key collaboratively as a Google Sheet). For this example, we can generate a data key manually here.
 
-```{r}
-
+```{r harmony-prep-2}
+# Generate a key that matches the data we created above
+key_obj <- data.frame("source" = c(rep("df1.csv", 3), 
+                                   rep("df2.csv", 3)),
+                      "raw_name" = c("xx", "unwanted", "yy",
+                                     "LETTERS", "NUMBERS", "BONUS"),
+                      "tidy_name" = c("numbers", NA, "letters",
+                                      "letters", "numbers", "kingdom"))
+# Check that out
+key_obj
 ```
 
+With some example files and a key object generated, we can now demonstrate the actual workflow! The most fundamental of these functions is `harmonize`. This function requires the "column key" described above, as well as the _folder_ containing the raw data files to which the key refers. Raw data format can also be specified to any of CSV, TXT, XLS, and/or XLSX. There is a `quiet` argument that will silence messages about key-to-data mismatches (either expected-but-missing column names or unexpected columns).
 
-`begin_key`
+```{r harmonize, eval = FALSE}
+# Use the key to harmonize our example data
+harmony_df <- ltertools::harmonize(key = key_obj, raw_folder = temp_folder, 
+                                   data_format = "csv", quiet = TRUE)
 
+# Check the structure of that
+utils::str(harmony_df)
+```
 
-`harmonize`
+For users that want help generating the column key, we have created the `begin_key` function. This function accepts the raw folder and data format arguments included in `harmonize` with an additional (optional) `guess_tidy` argument. If `TRUE`, that argument attempts to "guess" the desired tidy name for each raw column name; it does this by standardizing casing and removing special characters. This may be ideal if you anticipate that many of your raw data files only differ in casing/special characters rather than being phrased incompatibly. For our example here we'll allow the key to "guess".
 
+```{r begin-key}
+# Generate a column key with "guesses" at tidy column names
+test_key <- ltertools::begin_key(raw_folder = temp_folder, data_format = "csv", 
+                                 guess_tidy = TRUE)
+
+# Examine what that generated
+test_key
+```
 
 A visual version of this column key approach to harmonization is included for convenience here:
 
