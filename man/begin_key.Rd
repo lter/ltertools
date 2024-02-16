@@ -21,7 +21,7 @@ begin_key(
 (dataframe) skeleton of column key
 }
 \description{
-Creates the start of a 'column key' for harmonizing data. A column key includes a column for the file names to be harmonized into a single data object as well as a column for the column names in those files. Finally, it includes a column indicating the tidied name that corresponds with each raw column name. Harmonization can accept this key object and use it to reproducibly rename all raw column names to standardize across datasets. Currently supports raw files of the following formats: CSV, TXT, XLS, and XLSX. This function was built by the following authors: Nicholas Lyon
+Creates the start of a 'column key' for harmonizing data. A column key includes a column for the file names to be harmonized into a single data object as well as a column for the column names in those files. Finally, it includes a column indicating the tidied name that corresponds with each raw column name. Harmonization can accept this key object and use it to reproducibly rename all raw column names to standardize across datasets. Currently supports raw files of the following formats: CSV, TXT, XLS, and XLSX
 }
 \examples{
 \dontrun{

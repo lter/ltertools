@@ -1,6 +1,6 @@
 #' @title Read Data from Folder
 #' 
-#' @description Reads in all data files of specified types found in the designated folder. Returns a list with one element for each data file. Currently supports CSV, TXT, XLS, and XLSX. This function was built by the following authors: Nicholas Lyon
+#' @description Reads in all data files of specified types found in the designated folder. Returns a list with one element for each data file. Currently supports CSV, TXT, XLS, and XLSX
 #' 
 #' @param raw_folder (character) folder / folder path containing data files to read
 #' @param data_format (character) file extensions to identify within the `raw_folder`. Default behavior is to search for all supported file types.

@@ -15,7 +15,7 @@ read(raw_folder = NULL, data_format = c("csv", "txt", "xls", "xlsx"))
 (list) data found in specified folder of specified file format(s)
 }
 \description{
-Reads in all data files of specified types found in the designated folder. Returns a list with one element for each data file. Currently supports CSV, TXT, XLS, and XLSX. This function was built by the following authors: Nicholas Lyon
+Reads in all data files of specified types found in the designated folder. Returns a list with one element for each data file. Currently supports CSV, TXT, XLS, and XLSX
 }
 \examples{
 \dontrun{

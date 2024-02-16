@@ -46,35 +46,30 @@ below and attributed to their author(s)
 
 - **`begin_key`** – creates the first two columns of a ‘column key’
   and–if the optional `guess_tidy` argument is set to `TRUE`–“guesses”
-  at what the tidy names ‘should be’. Function written by [Nick
-  Lyon](https://njlyon0.github.io/)
+  at what the tidy names ‘should be’
 
 - **`harmonize`** – performs column key-based harmonization. We strongly
   recommend using the `begin_key` to start the creation of a column key
-  to make sure the formatting requirements of this function are met.
-  Function written by [Nick Lyon](https://njlyon0.github.io/)
+  to make sure the formatting requirements of this function are met
 
 ### Data Wrangling
 
 - **`read`** – Reads in all files of specified types in a particular
   folder and stores them as elements in a list. List element names are
   the respective file names. Currently supports CSV, TXT, XLS, and XLSX
-  file formats. Function written by [Nick
-  Lyon](https://njlyon0.github.io/)
+  file formats
 
 - **`cv`** – Calculate coefficient of variation (CV) from a vector of
-  numbers. Function written by [Nick Lyon](https://njlyon0.github.io/)
+  numbers
 
 - **`convert_temp`** – Convert temperature values from one set of units
-  to another. Function written by [Nick
-  Lyon](https://njlyon0.github.io/)
+  to another
 
 ### LTER Information
 
 - **`site_timeline`** – Create a timeline of sites that meet
   user-specified site code and/or habitat criteria. Uses built in
-  `lter_sites` data object that includes much useful site information.
-  Function written by [Nick Lyon](https://njlyon0.github.io/)
+  `lter_sites` data object that includes much useful site information
 
 ## Contributing
 

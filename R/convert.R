@@ -1,6 +1,6 @@
 #' @title Convert Temperature Values
 #' 
-#' @description Converts a given set of temperature values from one unit to another. This function was built by the following authors: Nicholas Lyon
+#' @description Converts a given set of temperature values from one unit to another
 #' 
 #' @param value (numeric) temperature values to convert
 #' @param from (character) starting units of the value, not case sensitive.

@@ -17,7 +17,7 @@ convert_temp(value = NULL, from = NULL, to = NULL)
 (numeric) converted temperature values
 }
 \description{
-Converts a given set of temperature values from one unit to another. This function was built by the following authors: Nicholas Lyon
+Converts a given set of temperature values from one unit to another
 }
 \examples{
 # Convert from Fahrenheit to Celsius

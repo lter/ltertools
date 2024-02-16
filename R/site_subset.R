@@ -1,6 +1,6 @@
 #' @title Subsets the LTER Site Information Table by Site Codes and Habitats
 #' 
-#' @description Subsets the information on long term ecological research (LTER) sites based on user-specified site codes (i.e., three letter abbreviations), and/or desired habitats. See `lter_sites` for the full set of site information. This function was built by the following authors: Nicholas Lyon
+#' @description Subsets the information on long term ecological research (LTER) sites based on user-specified site codes (i.e., three letter abbreviations), and/or desired habitats. See `lter_sites` for the full set of site information
 #' 
 #' @param sites (character) three letter site code(s) identifying site(s) of interest
 #' @param habitats (character) habitat(s) of interest. See `unique(lter_sites$habitat)`

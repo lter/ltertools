@@ -11,7 +11,7 @@ Adding a function you've written is the core of `ltertools`' reason for existing
 - Please also provide a **1-paragraph description** of what your function does and/or the contexts where your function should be invoked
 
     - This description should provide sufficient detail that an R expert can gain a fundamental understanding of your function's purpose such that we can do any necessary maintenance during integration
-    - This will likely form the basis of the "Description" field of the function that package users can access with `?function` so feel free to use an existing function's help file as a reference (e.g., `?dplyr::filter`, etc.)
+    - This will likely form the basis of the "Description" field of the function that `ltertools` users can access with `?function` so feel free to use an existing function's help file as a reference (e.g., `?dplyr::filter`, etc.)
 
 Once you've provided this information we can work towards standardizing function formatting (casing, syntax, etc.) so that your function can be included in our suite of available tools!
 
@@ -22,8 +22,6 @@ If you decide to contribute a function to `ltertools` we offer the following ben
 - We will list your preferred name in the `DESCRIPTION` file as an author
 
 - If you'd like, we can add any of: your email, professional website, or a link to your [ORCiD](https://orcid.org/)
-
-- We will also specifically reference you in the description field of the function(s) that you contribute
 
 By taking these steps we hope to ensure that your intellectual contributions will be appropriately credited and that `ltertools` users can find other facets of your professional work based on your links to this R package.
 
@@ -47,10 +45,10 @@ If you have a major change necessitating systemic/structural changes to `ltertoo
 
 ## Style Guide
 
-We are happy to tweak function/argument names as needed to maintain a concistent "feel" of functions in `ltertools`. That said, if you'd like to make those changes yourself you are more than welcome to though **such aesthetic changes are _optional_**. `ltertools` will adhere to the following stylistic elements:
+We are happy to tweak function/argument names as needed to maintain a consistent "feel" of functions in `ltertools`. That said, if you'd like to make those changes yourself you are more than welcome to though **such aesthetic changes are _optional_**. `ltertools` will adhere to the following stylistic elements:
 
 - Use "snake case" (i.e., all lowercase separated by underscores) for functions and arguments (e.g., `my_function(argument_1 = ...)`, etc.)
 
-- If your function prints informative messages, include a `quiet` argument that accepts a logical (i.e., `TRUE` or `FALSE`). If `quiet = TRUE` please suppress all messages
+- If your function prints informative messages, include a `quiet` argument that accepts a logical (i.e., `TRUE` or `FALSE`). Please suppress all of these messages when `quiet = TRUE`.
 
-- Include errors / warnings for user inputs to arguments that are inappropriate class or structure
+- Include errors / warnings for user inputs to arguments that are inappropriate class or structure (i.e., code defensively)

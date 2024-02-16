@@ -1,6 +1,6 @@
 #' @title Create a Timeline of Site(s) that Meet Criteria
 #' 
-#' @description Creates a ggplot2 plot of all sites that meet the user-specified site code (i.e., three letter abbreviation) and/or habitat criteria. See `lter_sites` for the full set of site information including accepted site codes and habitat designations (unrecognized entries will trigger a warning and be ignored). Lines are grouped and colored by habitat to better emphasize possible similarities among sites. This function was built by the following authors: Nicholas Lyon
+#' @description Creates a ggplot2 plot of all sites that meet the user-specified site code (i.e., three letter abbreviation) and/or habitat criteria. See `lter_sites` for the full set of site information including accepted site codes and habitat designations (unrecognized entries will trigger a warning and be ignored). Lines are grouped and colored by habitat to better emphasize possible similarities among sites
 #' 
 #' @param sites (character) three letter site code(s) identifying site(s) of interest
 #' @param habitats (character) habitat(s) of interest. See `unique(lter_sites$habitat)`
