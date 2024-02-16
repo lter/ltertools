@@ -8,3 +8,4 @@ Development version of `ltertools`. There are no ERRORs, WARNINGs, or NOTEs retu
 - New function: `cv` -- calculates coefficient of variation for a vector of numbers
 - New function: `convert_temp` -- converts temperature values from one specified unit to another
 - New dataset: `lter_sites` -- includes primary habitat, latitude/longitude coordinates, and funding start/end years for every site currently in the network
+- New function: `site_timeline` -- creates a `ggplot2`-style timeline of all sites that meet the user-specified criteria (for site code and/or habitat)
