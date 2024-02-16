@@ -17,6 +17,12 @@ habitat_colors <- c("Admin" = "#fcbf49", "Urban" = "#f77f00",
                     "Forest" = "#007200", "Grassland" = "#70e000", 
                     "Mixed" = "#9d4edd", "Tundra" = "#bb9457")
 
+# Custom point shape (also by habitat)
+habitat_shapes <- c("Admin" = 21, "Urban" = 21, # "Test" = 15,
+                    "Marine" = 23, "Coastal" = 23, "Freshwater" = 23, 
+                    "Forest" = 22, "Grassland" = 22, 
+                    "Mixed" = 24, "Tundra" = 25)
+
 # Get an object of world / US state borders
 borders <- sf::st_as_sf(maps::map(database = "world", plot = F, fill = T)) %>%
   dplyr::bind_rows(sf::st_as_sf(maps::map(database = "state", plot = F, fill = T)))
@@ -40,10 +46,12 @@ mcr_map <- borders %>%
   # Set map extent
   coord_sf(xlim = c(-160, -100), ylim = c(-25, 40), expand = F) +
   # Add points & labels for LTER sites
-  geom_point(data = site_info, aes(x = longitude, y = latitude, fill = habitat), 
-             pch = 21, size = 10) +
+  geom_point(data = site_info, aes(x = longitude, y = latitude, 
+                                   fill = habitat, shape = habitat), 
+             size = 10) +
   # Customize color
   scale_fill_manual(values = habitat_colors) +
+  scale_shape_manual(values = habitat_shapes) +
   # Customize axis labels
   labs(x = "Longitude", y = "Latitude") +
   # Tweak theme / formatting
@@ -62,11 +70,12 @@ south_map <- borders %>%
   geom_sf(fill = "gray95") +
   # Set map extent
   coord_sf(xlim = c(-80, 170), ylim = c(-80, -60), expand = F) +
-  # Add points & labels for LTER sites
-  geom_point(data = site_info, aes(x = longitude, y = latitude, fill = habitat), 
-             pch = 21, size = 10) +
+  geom_point(data = site_info, aes(x = longitude, y = latitude, 
+                                   fill = habitat, shape = habitat), 
+             size = 10) +
   # Customize color
   scale_fill_manual(values = habitat_colors) +
+  scale_shape_manual(values = habitat_shapes) +
   # Customize axis labels
   labs(x = "Longitude", y = "Latitude") +
   # Tweak theme / formatting
@@ -85,11 +94,12 @@ ak_map <- borders %>%
   geom_sf(fill = "gray95") +
   # Set map extent
   coord_sf(xlim = c(-170, -130), ylim = c(58, 72), expand = F) +
-  # Add points & labels for LTER sites
-  geom_point(data = site_info, aes(x = longitude, y = latitude, fill = habitat), 
-             pch = 21, size = 10) +
+  geom_point(data = site_info, aes(x = longitude, y = latitude, 
+                                   fill = habitat, shape = habitat), 
+             size = 10) +
   # Customize color
   scale_fill_manual(values = habitat_colors) +
+  scale_shape_manual(values = habitat_shapes) +
   # Customize axis labels
   labs(x = "Longitude", y = "Latitude") +
   # Tweak theme / formatting
@@ -108,11 +118,12 @@ luq_map <- borders %>%
   geom_sf(fill = "gray95") +
   # Set map extent
   coord_sf(xlim = c(-90, -60), ylim = c(10, 35), expand = F) +
-  # Add points & labels for LTER sites
-  geom_point(data = site_info, aes(x = longitude, y = latitude, fill = habitat), 
-             pch = 21, size = 10) +
+  geom_point(data = site_info, aes(x = longitude, y = latitude, 
+                                   fill = habitat, shape = habitat), 
+             size = 10) +
   # Customize color
   scale_fill_manual(values = habitat_colors) +
+  scale_shape_manual(values = habitat_shapes) +
   # Customize axis labels
   labs(x = "Longitude", y = "Latitude") +
   # Tweak theme / formatting
@@ -134,11 +145,11 @@ usa_map <- borders %>%
   geom_sf(fill = "gray95") +
   # Set map extent
   coord_sf(xlim = c(-125, -68), ylim = c(25, 48), expand = F) +
-  # Add points & labels for LTER sites
-  geom_point(data = site_info, aes(x = longitude, y = latitude, fill = habitat), 
-             pch = 21, size = 6) +
+  geom_point(data = site_info, aes(x = longitude, y = latitude, 
+                                   fill = habitat, shape = habitat), size = 6) +
   # Customize color
   scale_fill_manual(values = habitat_colors) +
+  scale_shape_manual(values = habitat_shapes) +
   # Customize axis labels
   labs(x = "Longitude", y = "Latitude") +
   # Tweak theme / formatting
