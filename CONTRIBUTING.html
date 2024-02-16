@@ -57,7 +57,7 @@
 <li>
 <p>Please also provide a <strong>1-paragraph description</strong> of what your function does and/or the contexts where your function should be invoked</p>
 <ul><li>This description should provide sufficient detail that an R expert can gain a fundamental understanding of your function’s purpose such that we can do any necessary maintenance during integration</li>
-<li>This will likely form the basis of the “Description” field of the function that package users can access with <code>?function</code> so feel free to use an existing function’s help file as a reference (e.g., <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">?dplyr::filter</a></code>, etc.)</li>
+<li>This will likely form the basis of the “Description” field of the function that <code>ltertools</code> users can access with <code>?function</code> so feel free to use an existing function’s help file as a reference (e.g., <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">?dplyr::filter</a></code>, etc.)</li>
 </ul></li>
 </ul><p>Once you’ve provided this information we can work towards standardizing function formatting (casing, syntax, etc.) so that your function can be included in our suite of available tools!</p>
 <div class="section level3">
@@ -65,7 +65,6 @@
 <p>If you decide to contribute a function to <code>ltertools</code> we offer the following benefits:</p>
 <ul><li><p>We will list your preferred name in the <code>DESCRIPTION</code> file as an author</p></li>
 <li><p>If you’d like, we can add any of: your email, professional website, or a link to your <a href="https://orcid.org/" class="external-link">ORCiD</a></p></li>
-<li><p>We will also specifically reference you in the description field of the function(s) that you contribute</p></li>
 </ul><p>By taking these steps we hope to ensure that your intellectual contributions will be appropriately credited and that <code>ltertools</code> users can find other facets of your professional work based on your links to this R package.</p>
 </div>
 </div>
@@ -84,10 +83,10 @@
 </ol></div>
 <div class="section level2">
 <h2 id="style-guide">Style Guide<a class="anchor" aria-label="anchor" href="#style-guide"></a></h2>
-<p>We are happy to tweak function/argument names as needed to maintain a concistent “feel” of functions in <code>ltertools</code>. That said, if you’d like to make those changes yourself you are more than welcome to though <strong>such aesthetic changes are <em>optional</em></strong>. <code>ltertools</code> will adhere to the following stylistic elements:</p>
+<p>We are happy to tweak function/argument names as needed to maintain a consistent “feel” of functions in <code>ltertools</code>. That said, if you’d like to make those changes yourself you are more than welcome to though <strong>such aesthetic changes are <em>optional</em></strong>. <code>ltertools</code> will adhere to the following stylistic elements:</p>
 <ul><li><p>Use “snake case” (i.e., all lowercase separated by underscores) for functions and arguments (e.g., <code>my_function(argument_1 = ...)</code>, etc.)</p></li>
-<li><p>If your function prints informative messages, include a <code>quiet</code> argument that accepts a logical (i.e., <code>TRUE</code> or <code>FALSE</code>). If <code>quiet = TRUE</code> please suppress all messages</p></li>
-<li><p>Include errors / warnings for user inputs to arguments that are inappropriate class or structure</p></li>
+<li><p>If your function prints informative messages, include a <code>quiet</code> argument that accepts a logical (i.e., <code>TRUE</code> or <code>FALSE</code>). Please suppress all of these messages when <code>quiet = TRUE</code>.</p></li>
+<li><p>Include errors / warnings for user inputs to arguments that are inappropriate class or structure (i.e., code defensively)</p></li>
 </ul></div>
 </div>
 
