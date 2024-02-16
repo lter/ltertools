@@ -14,8 +14,25 @@
 #' 
 #' @examples
 #' \dontrun{
-#' # Create a column key from CSV files in a particular folder
-#' begin_key(raw_folder = "raw_data", data_format = "csv", guess_tidy = FALSE)
+#' # Generate two simple tables
+#' ## Dataframe 1
+#' df1 <- data.frame("xx" = c(1:3),
+#'                   "unwanted" = c("not", "needed", "column"),
+#'                   "yy" = letters[1:3])
+#' ## Dataframe 2
+#' df2 <- data.frame("LETTERS" = letters[4:7],
+#'                   "NUMBERS" = c(4:7),
+#'                   "BONUS" = c("plantae", "animalia", "fungi", "protista"))
+#' 
+#' # Generate a local folder for exporting
+#' dir.create(path = "ltertools_test", showWarnings = FALSE)
+#' 
+#' # Export both files to that folder
+#' utils::write.csv(x = df1, file = file.path("ltertools_test", "df1.csv"), row.names = FALSE)
+#' utils::write.csv(x = df2, file = file.path("ltertools_test", "df2.csv"), row.names = FALSE)
+#' 
+#' # Generate a column key with "guesses" at tidy column names
+#' ltertools::begin_key(raw_folder = "ltertools_test", data_format = "csv", guess_tidy = TRUE)
 #' }
 #' 
 begin_key <- function(raw_folder = NULL, data_format = c("csv", "txt", "xls", "xlsx"), guess_tidy = FALSE){

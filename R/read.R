@@ -11,8 +11,25 @@
 #' 
 #' @examples
 #' \dontrun{
-#' # Read in all CSV files in the "raw_data" folder
-#' df_list <- read(raw_folder = "raw_data", data_format = "csv")
+#' # Generate two simple tables
+#' ## Dataframe 1
+#' df1 <- data.frame("xx" = c(1:3),
+#'                   "unwanted" = c("not", "needed", "column"),
+#'                   "yy" = letters[1:3])
+#' ## Dataframe 2
+#' df2 <- data.frame("LETTERS" = letters[4:7],
+#'                   "NUMBERS" = c(4:7),
+#'                   "BONUS" = c("plantae", "animalia", "fungi", "protista"))
+#' 
+#' # Generate a local folder for exporting
+#' dir.create(path = "ltertools_test", showWarnings = FALSE)
+#' 
+#' # Export both files to that folder
+#' utils::write.csv(x = df1, file = file.path("ltertools_test", "df1.csv"), row.names = FALSE)
+#' utils::write.csv(x = df2, file = file.path("ltertools_test", "df2.csv"), row.names = FALSE)
+#' 
+#' # Read in all CSV files in that folder
+#' read(raw_folder = "ltertools_test", data_format = "csv")
 #' }
 #' 
 read <- function(raw_folder = NULL, data_format = c("csv", "txt", "xls", "xlsx")){
