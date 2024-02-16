@@ -71,7 +71,7 @@ key_obj
 
 With some example files and a key object generated, we can now demonstrate the actual workflow! The most fundamental of these functions is `harmonize`. This function requires the "column key" described above, as well as the _folder_ containing the raw data files to which the key refers. Raw data format can also be specified to any of CSV, TXT, XLS, and/or XLSX. There is a `quiet` argument that will silence messages about key-to-data mismatches (either expected-but-missing column names or unexpected columns).
 
-```{r harmonize, eval = FALSE}
+```{r harmonize}
 # Use the key to harmonize our example data
 harmony_df <- ltertools::harmonize(key = key_obj, raw_folder = temp_folder, 
                                    data_format = "csv", quiet = TRUE)
