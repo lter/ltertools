@@ -125,8 +125,30 @@ included for convenience here:</p>
 <h3 id="wrangling">Wrangling<a class="anchor" aria-label="anchor" href="#wrangling"></a>
 </h3>
 <p><code>read</code></p>
-<p><code>cv</code></p>
-<p><code>convert_temp</code></p>
+<p>Much of the synthesis work with LTER data–and indeed many ecological
+research projects generally–requires quantification of
+<em>variation</em>. To that end, we’ve written a function that simply
+calculates the coefficient of variation (standard deviation divided by
+mean) for a vector of numbers. Because <code>sd</code> and
+<code>mean</code> both support an argument for defining how missing
+values are handled, our <code>cv</code> function does as well.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Calculate CV (excluding missing values)</span></span>
+<span><span class="fu">ltertools</span><span class="fu">::</span><span class="fu"><a href="../reference/cv.html">cv</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>, na_rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.1557461</span></span></code></pre></div>
+<p>We also included a simple function for converting temperature values
+(<code>convert_temp</code>) among different accepted units. Simply
+specify the values to convert, their current units, and the units to
+which you would like to convert and the function will perform the needed
+arithmetic. Units are case-insensitive and support either the one-letter
+abbreviation or the full name of the unit.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Convert some temperatures from F to Kelvin</span></span>
+<span><span class="fu"><a href="../reference/convert_temp.html">convert_temp</a></span><span class="op">(</span>value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">32</span>, <span class="fl">110</span><span class="op">)</span>, from <span class="op">=</span> <span class="st">"Fahrenheit"</span>, to <span class="op">=</span> <span class="st">"k"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 255.3722 273.1500 316.4833</span></span></code></pre></div>
+<p>Note that we chose this function’s naming convention in part to allow
+for an ecosystem of related ‘unit conversion’ functions that may prove
+worthwhile to develop.</p>
 </div>
 <div class="section level3">
 <h3 id="lter-information">LTER Information<a class="anchor" aria-label="anchor" href="#lter-information"></a>
@@ -142,13 +164,13 @@ is support for a user-defined set of hexadecimal colors though by
 default an internal palette is used.</p>
 <p>Sites can be specified by their three letter site code or all sites
 in a particular habitat can be included.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Check the timeline for all grassland or forest LTER sites</span></span>
 <span><span class="fu">ltertools</span><span class="fu">::</span><span class="fu"><a href="../reference/site_timeline.html">site_timeline</a></span><span class="op">(</span>habitats <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"grassland"</span>, <span class="st">"forest"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ltertools_files/figure-html/site-timeline-1-1.png" width="672" style="display: block; margin: auto;"></p>
 <p>Running the function without specifying site codes or habitat types
 will result in a timeline of all active LTER sites.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Check the timeline for all LTER sites</span></span>
 <span><span class="fu">ltertools</span><span class="fu">::</span><span class="fu"><a href="../reference/site_timeline.html">site_timeline</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ltertools_files/figure-html/site-timeline-2-1.png" width="672" style="display: block; margin: auto;"></p>
