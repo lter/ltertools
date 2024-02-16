@@ -34,6 +34,34 @@ The LTER Network is hypothesis-driven with a focus on long term data from sites 
 
 This method requires researchers to develop a 3-column key that contains (1) the name of each raw data file to be harmonized, (2) the name of all of the columns in each of those files, and (3) the "tidy name" that corresponds to each raw column name. Each dataset can then be read in and have its raw names replaced with the tidy ones specified in the key. Once this has been done to all files in the specified folder, they can be combined by their newly consistent column names.
 
+To demonstrate this workflow, we will need to create some example data tables and export them to a temporary directory (so that they can be read back in as is required by the harmonization functions).
+
+```{r harmony-prep}
+# Generate two simple tables
+## Dataframe 1
+df1 <- data.frame("xx" = c(1:3),
+                   "unwanted" = c("not", "needed", "column"),
+                   "yy" = letters[1:3])
+## Dataframe 2
+df2 <- data.frame("LETTERS" = letters[4:7],
+                   "NUMBERS" = c(4:7),
+                   "BONUS" = c("plantae", "animalia", "fungi", "protista"))
+
+# Generate a known temporary folder for exporting
+temp_folder <- tempdir()
+
+# Export both files to that folder
+utils::write.csv(x = df1, file = file.path(temp_folder, "df1.csv"), row.names = FALSE)
+utils::write.csv(x = df2, file = file.path(temp_folder, "df2.csv"), row.names = FALSE)
+```
+
+With some example files generated, we can now demonstrate the actual workflow! The most fundamental of these functions is `harmonize`. This function 
+
+```{r}
+
+```
+
+
 `begin_key`
 
 
@@ -48,10 +76,17 @@ A visual version of this column key approach to harmonization is included for co
 
 ### Wrangling
 
-`read`
+Sometimes it is convenient to read in all of the data files from a specified folder. `read` offers the chance to do just that and returns a list where the name of each element is the corresponding file name and the contents of the list element is the full data table. Users may specify the data format or formats they wish to read in. Currently, `read` supports CSV, TXT, XLS, and XLSX files.
 
+We can demonstrate this with the test CSVs we created to demonstrate the harmonization workflow earlier.
 
+```{r read}
+# Read in all (both) of the CSVs that we created above
+data_list <- ltertools::read(raw_folder = temp_folder, data_format = "csv")
 
+# Check the structure of that
+utils::str(data_list)
+```
 
 Much of the synthesis work with LTER data--and indeed many ecological research projects generally--requires quantification of _variation_. To that end, we've written a function that simply calculates the coefficient of variation (standard deviation divided by mean) for a vector of numbers. Because `sd` and `mean` both support an argument for defining how missing values are handled, our `cv` function does as well.
 
