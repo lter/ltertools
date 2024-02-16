@@ -52,12 +52,22 @@ A visual version of this column key approach to harmonization is included for co
 
 
 
-`cv`
 
+Much of the synthesis work with LTER data--and indeed many ecological research projects generally--requires quantification of _variation_. To that end, we've written a function that simply calculates the coefficient of variation (standard deviation divided by mean) for a vector of numbers. Because `sd` and `mean` both support an argument for defining how missing values are handled, our `cv` function does as well.
 
-`convert_temp`
+```{r cv}
+# Calculate CV (excluding missing values)
+ltertools::cv(x = c(4, 5, 6, 4, 5, 5), na_rm = TRUE)
+```
 
+We also included a simple function for converting temperature values (`convert_temp`) among different accepted units. Simply specify the values to convert, their current units, and the units to which you would like to convert and the function will perform the needed arithmetic. Units are case-insensitive and support either the one-letter abbreviation or the full name of the unit.
 
+```{r convert-temp}
+# Convert some temperatures from F to Kelvin
+convert_temp(value = c(0, 32, 110), from = "Fahrenheit", to = "k")
+```
+
+Note that we chose this function's naming convention in part to allow for an ecosystem of related 'unit conversion' functions that may prove worthwhile to develop.
 
 ### LTER Information
 
