@@ -40,15 +40,18 @@ lter_map_theme <-  theme_bw() +
 dplyr::filter(site_info, code == "MCR")
 
 # Make map
-mcr_map <- borders %>%
+borders %>%
   ggplot() +
   geom_sf(fill = "gray95") +
   # Set map extent
-  coord_sf(xlim = c(-160, -100), ylim = c(-25, 40), expand = F) +
-  # Add points & labels for LTER sites
+  coord_sf(xlim = c(-160, -100), ylim = c(-26, 40), expand = F) +
+  # Add points for LTER sites
   geom_point(data = site_info, aes(x = longitude, y = latitude, 
-                                   fill = habitat, shape = habitat), 
-             size = 10) +
+                                   fill = habitat, shape = habitat), size = 8) +
+  # Add labels too
+  geom_label(aes(x = -149.826, y = -14), label = "MCR", 
+             size = 5, fontface = "bold", 
+             label.padding = unit(x = 0.15, units = "lines")) +
   # Customize color
   scale_fill_manual(values = habitat_colors) +
   scale_shape_manual(values = habitat_shapes) +
@@ -56,7 +59,7 @@ mcr_map <- borders %>%
   labs(x = "Longitude", y = "Latitude") +
   # Tweak theme / formatting
   lter_map_theme +
-  theme(legend.position = "none"); mcr_map
+  theme(legend.position = "none")
 
 ## ------------------------------ ##
   # Antarctica Map (MCM + PAL) ----
@@ -65,14 +68,21 @@ mcr_map <- borders %>%
 dplyr::filter(site_info, code %in% c("MCM", "PAL"))
 
 # Make map
-south_map <- borders %>%
+borders %>%
   ggplot() +
   geom_sf(fill = "gray95") +
   # Set map extent
   coord_sf(xlim = c(-80, 170), ylim = c(-80, -60), expand = F) +
+  # Add points
   geom_point(data = site_info, aes(x = longitude, y = latitude, 
-                                   fill = habitat, shape = habitat), 
-             size = 10) +
+                                   fill = habitat, shape = habitat), size = 10) +
+  # Add labels too
+  geom_label(aes(x = -64.0545, y = -68), label = "PAL", 
+             size = 5, fontface = "bold", 
+             label.padding = unit(x = 0.15, units = "lines")) +
+  geom_label(aes(x = 150, y = -77.62317), label = "MCM", 
+             size = 5, fontface = "bold", 
+             label.padding = unit(x = 0.15, units = "lines")) +
   # Customize color
   scale_fill_manual(values = habitat_colors) +
   scale_shape_manual(values = habitat_shapes) +
@@ -80,7 +90,7 @@ south_map <- borders %>%
   labs(x = "Longitude", y = "Latitude") +
   # Tweak theme / formatting
   lter_map_theme +
-  theme(legend.position = "none"); south_map
+  theme(legend.position = "none")
 
 ## ------------------------------ ##
           # Alaska Map ----
@@ -89,14 +99,19 @@ south_map <- borders %>%
 dplyr::filter(site_info, code %in% c("BLE", "ARC", "BNZ", "NGA"))
 
 # Make map
-ak_map <- borders %>%
+borders %>%
   ggplot() +
   geom_sf(fill = "gray95") +
   # Set map extent
   coord_sf(xlim = c(-170, -130), ylim = c(58, 72), expand = F) +
+  # Add points
   geom_point(data = site_info, aes(x = longitude, y = latitude, 
-                                   fill = habitat, shape = habitat), 
-             size = 10) +
+                                   fill = habitat, shape = habitat), size = 9) +
+  # Add labels too
+  geom_label(data = site_info, aes(x = longitude, y = latitude),
+             label = site_info$code, nudge_y = 0, nudge_x = 4, 
+             size = 3, fontface = "bold", 
+             label.padding = unit(x = 0.15, units = "lines")) +
   # Customize color
   scale_fill_manual(values = habitat_colors) +
   scale_shape_manual(values = habitat_shapes) +
@@ -104,7 +119,7 @@ ak_map <- borders %>%
   labs(x = "Longitude", y = "Latitude") +
   # Tweak theme / formatting
   lter_map_theme +
-  theme(legend.position = "none"); ak_map
+  theme(legend.position = "none")
 
 ## ------------------------------ ##
 # Puerto Rico Map (LUQ) ----
@@ -113,14 +128,18 @@ ak_map <- borders %>%
 dplyr::filter(site_info, code == "LUQ")
 
 # Make map
-luq_map <- borders %>%
+borders %>%
   ggplot() +
   geom_sf(fill = "gray95") +
   # Set map extent
   coord_sf(xlim = c(-90, -60), ylim = c(10, 35), expand = F) +
+  # Add points
   geom_point(data = site_info, aes(x = longitude, y = latitude, 
-                                   fill = habitat, shape = habitat), 
-             size = 10) +
+                                   fill = habitat, shape = habitat), size = 7) +
+  # Add labels
+  geom_label(aes(x = -65.8, y = 20), label = "LUQ", 
+             size = 5, fontface = "bold", 
+             label.padding = unit(x = 0.15, units = "lines")) +
   # Customize color
   scale_fill_manual(values = habitat_colors) +
   scale_shape_manual(values = habitat_shapes) +
@@ -128,7 +147,7 @@ luq_map <- borders %>%
   labs(x = "Longitude", y = "Latitude") +
   # Tweak theme / formatting
   lter_map_theme +
-  theme(legend.position = "none"); luq_map
+  theme(legend.position = "none")
 
 ## ------------------------------ ##
 # CONUS Map ----
@@ -140,7 +159,7 @@ dplyr::filter(site_info, !code %in% c("MCR", "MCM", "PAL", "LUQ",
                                       "BLE", "ARC", "BNZ", "NGA"))
 
 # Make map
-usa_map <- borders %>%
+borders %>%
   ggplot() +
   geom_sf(fill = "gray95") +
   # Set map extent
@@ -154,7 +173,7 @@ usa_map <- borders %>%
   labs(x = "Longitude", y = "Latitude") +
   # Tweak theme / formatting
   lter_map_theme +
-  theme(legend.position = "none"); usa_map
+  theme(legend.position = "none")
 
 
 # End ----
