@@ -121,12 +121,12 @@ be read back in as is required by the harmonization functions).</p>
 <code class="sourceCode R"><span><span class="co"># Generate two simple tables</span></span>
 <span><span class="co">## Dataframe 1</span></span>
 <span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">"xx"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>,</span>
-<span>                   <span class="st">"unwanted"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"not"</span>, <span class="st">"needed"</span>, <span class="st">"column"</span><span class="op">)</span>,</span>
-<span>                   <span class="st">"yy"</span> <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span>
+<span>                  <span class="st">"unwanted"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"not"</span>, <span class="st">"needed"</span>, <span class="st">"column"</span><span class="op">)</span>,</span>
+<span>                  <span class="st">"yy"</span> <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">## Dataframe 2</span></span>
 <span><span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">"LETTERS"</span> <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">7</span><span class="op">]</span>,</span>
-<span>                   <span class="st">"NUMBERS"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span>,</span>
-<span>                   <span class="st">"BONUS"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"plantae"</span>, <span class="st">"animalia"</span>, <span class="st">"fungi"</span>, <span class="st">"protista"</span><span class="op">)</span><span class="op">)</span></span>
+<span>                  <span class="st">"NUMBERS"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span>,</span>
+<span>                  <span class="st">"BONUS"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"plantae"</span>, <span class="st">"animalia"</span>, <span class="st">"fungi"</span>, <span class="st">"protista"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Generate a known temporary folder for exporting</span></span>
 <span><span class="va">temp_folder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -134,11 +134,67 @@ be read back in as is required by the harmonization functions).</p>
 <span><span class="co"># Export both files to that folder</span></span>
 <span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.csv</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">df1</span>, file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">temp_folder</span>, <span class="st">"df1.csv"</span><span class="op">)</span>, row.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.csv</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">df2</span>, file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">temp_folder</span>, <span class="st">"df2.csv"</span><span class="op">)</span>, row.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<p>With some example files generated, we can now demonstrate the actual
-workflow! The most fundamental of these functions is
-<code>harmonize</code>. This function</p>
-<p><code>begin_key</code></p>
-<p><code>harmonize</code></p>
+<p>While the raw data must be in a folder, the data key is a dataframe
+in R to allow more flexibility on the user’s end about file format /
+storage (many LTER working groups like generating their key
+collaboratively as a Google Sheet). For this example, we can generate a
+data key manually here.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Generate a key that matches the data we created above</span></span>
+<span><span class="va">key_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">"source"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"df1.csv"</span>, <span class="fl">3</span><span class="op">)</span>, </span>
+<span>                                   <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"df2.csv"</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                      <span class="st">"raw_name"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"xx"</span>, <span class="st">"unwanted"</span>, <span class="st">"yy"</span>,</span>
+<span>                                     <span class="st">"LETTERS"</span>, <span class="st">"NUMBERS"</span>, <span class="st">"BONUS"</span><span class="op">)</span>,</span>
+<span>                      <span class="st">"tidy_name"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"numbers"</span>, <span class="cn">NA</span>, <span class="st">"letters"</span>,</span>
+<span>                                      <span class="st">"letters"</span>, <span class="st">"numbers"</span>, <span class="st">"kingdom"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># Check that out</span></span>
+<span><span class="va">key_obj</span></span>
+<span><span class="co">#&gt;    source raw_name tidy_name</span></span>
+<span><span class="co">#&gt; 1 df1.csv       xx   numbers</span></span>
+<span><span class="co">#&gt; 2 df1.csv unwanted      &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 3 df1.csv       yy   letters</span></span>
+<span><span class="co">#&gt; 4 df2.csv  LETTERS   letters</span></span>
+<span><span class="co">#&gt; 5 df2.csv  NUMBERS   numbers</span></span>
+<span><span class="co">#&gt; 6 df2.csv    BONUS   kingdom</span></span></code></pre></div>
+<p>With some example files and a key object generated, we can now
+demonstrate the actual workflow! The most fundamental of these functions
+is <code>harmonize</code>. This function requires the “column key”
+described above, as well as the <em>folder</em> containing the raw data
+files to which the key refers. Raw data format can also be specified to
+any of CSV, TXT, XLS, and/or XLSX. There is a <code>quiet</code>
+argument that will silence messages about key-to-data mismatches (either
+expected-but-missing column names or unexpected columns).</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Use the key to harmonize our example data</span></span>
+<span><span class="va">harmony_df</span> <span class="op">&lt;-</span> <span class="fu">ltertools</span><span class="fu">::</span><span class="fu"><a href="../reference/harmonize.html">harmonize</a></span><span class="op">(</span>key <span class="op">=</span> <span class="va">key_obj</span>, raw_folder <span class="op">=</span> <span class="va">temp_folder</span>, </span>
+<span>                                   data_format <span class="op">=</span> <span class="st">"csv"</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Check the structure of that</span></span>
+<span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">harmony_df</span><span class="op">)</span></span></code></pre></div>
+<p>For users that want help generating the column key, we have created
+the <code>begin_key</code> function. This function accepts the raw
+folder and data format arguments included in <code>harmonize</code> with
+an additional (optional) <code>guess_tidy</code> argument. If
+<code>TRUE</code>, that argument attempts to “guess” the desired tidy
+name for each raw column name; it does this by standardizing casing and
+removing special characters. This may be ideal if you anticipate that
+many of your raw data files only differ in casing/special characters
+rather than being phrased incompatibly. For our example here we’ll allow
+the key to “guess”.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Generate a column key with "guesses" at tidy column names</span></span>
+<span><span class="va">test_key</span> <span class="op">&lt;-</span> <span class="fu">ltertools</span><span class="fu">::</span><span class="fu"><a href="../reference/begin_key.html">begin_key</a></span><span class="op">(</span>raw_folder <span class="op">=</span> <span class="va">temp_folder</span>, data_format <span class="op">=</span> <span class="st">"csv"</span>, </span>
+<span>                                 guess_tidy <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Examine what that generated</span></span>
+<span><span class="va">test_key</span></span>
+<span><span class="co">#&gt;    source raw_name tidy_name</span></span>
+<span><span class="co">#&gt; 1 df1.csv       xx        xx</span></span>
+<span><span class="co">#&gt; 2 df1.csv unwanted  unwanted</span></span>
+<span><span class="co">#&gt; 3 df1.csv       yy        yy</span></span>
+<span><span class="co">#&gt; 4 df2.csv  LETTERS   letters</span></span>
+<span><span class="co">#&gt; 5 df2.csv  NUMBERS   numbers</span></span>
+<span><span class="co">#&gt; 6 df2.csv    BONUS     bonus</span></span></code></pre></div>
 <p>A visual version of this column key approach to harmonization is
 included for convenience here:</p>
 <p align="center">
@@ -155,7 +211,7 @@ Users may specify the data format or formats they wish to read in.
 Currently, <code>read</code> supports CSV, TXT, XLS, and XLSX files.</p>
 <p>We can demonstrate this with the test CSVs we created to demonstrate
 the harmonization workflow earlier.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Read in all (both) of the CSVs that we created above</span></span>
 <span><span class="va">data_list</span> <span class="op">&lt;-</span> <span class="fu">ltertools</span><span class="fu">::</span><span class="fu"><a href="../reference/read.html">read</a></span><span class="op">(</span>raw_folder <span class="op">=</span> <span class="va">temp_folder</span>, data_format <span class="op">=</span> <span class="st">"csv"</span><span class="op">)</span></span>
 <span></span>
@@ -177,7 +233,7 @@ calculates the coefficient of variation (standard deviation divided by
 mean) for a vector of numbers. Because <code>sd</code> and
 <code>mean</code> both support an argument for defining how missing
 values are handled, our <code>cv</code> function does as well.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Calculate CV (excluding missing values)</span></span>
 <span><span class="fu">ltertools</span><span class="fu">::</span><span class="fu"><a href="../reference/cv.html">cv</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>, na_rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0.1557461</span></span></code></pre></div>
@@ -187,7 +243,7 @@ specify the values to convert, their current units, and the units to
 which you would like to convert and the function will perform the needed
 arithmetic. Units are case-insensitive and support either the one-letter
 abbreviation or the full name of the unit.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Convert some temperatures from F to Kelvin</span></span>
 <span><span class="fu"><a href="../reference/convert_temp.html">convert_temp</a></span><span class="op">(</span>value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">32</span>, <span class="fl">110</span><span class="op">)</span>, from <span class="op">=</span> <span class="st">"Fahrenheit"</span>, to <span class="op">=</span> <span class="st">"k"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 255.3722 273.1500 316.4833</span></span></code></pre></div>
@@ -209,13 +265,13 @@ is support for a user-defined set of hexadecimal colors though by
 default an internal palette is used.</p>
 <p>Sites can be specified by their three letter site code or all sites
 in a particular habitat can be included.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Check the timeline for all grassland or forest LTER sites</span></span>
 <span><span class="fu">ltertools</span><span class="fu">::</span><span class="fu"><a href="../reference/site_timeline.html">site_timeline</a></span><span class="op">(</span>habitats <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"grassland"</span>, <span class="st">"forest"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ltertools_files/figure-html/site-timeline-1-1.png" width="672" style="display: block; margin: auto;"></p>
 <p>Running the function without specifying site codes or habitat types
 will result in a timeline of all active LTER sites.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Check the timeline for all LTER sites</span></span>
 <span><span class="fu">ltertools</span><span class="fu">::</span><span class="fu"><a href="../reference/site_timeline.html">site_timeline</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ltertools_files/figure-html/site-timeline-2-1.png" width="672" style="display: block; margin: auto;"></p>
