@@ -146,38 +146,5 @@ usa_map <- borders %>%
   theme(legend.position = "none"); usa_map
 
 
-## ------------------------------ ##
-# Global Map ----
-## ------------------------------ ##
-
-
-# Identify min & max latitude / longitude
-(min_lat <- min(site_info$lat, na.rm = T))
-(max_lat <- max(site_info$lat, na.rm = T))
-(min_lon <- min(site_info$lon, na.rm = T))
-(max_lon <- max(site_info$lon, na.rm = T))
-
-# Define latitude / longitude limits
-(lat_lims <- c((min_lat - 0.1 * min_lat), (max_lat + 0.1 * max_lat)))
-(lon_lims <- c((min_lon + 0.15 * min_lon), (max_lon - 0.15 * max_lon)))
-
-
-# Make map
-map <- borders %>%
-  ggplot() +
-  geom_sf(fill = "gray95") +
-  # Set map extent
-  coord_sf(xlim = lon_lims, ylim = lat_lims, expand = F) +
-  # Add points & labels for LTER sites
-  geom_point(data = site_info, aes(x = longitude, y = latitude, fill = habitat), 
-             pch = 21, size = 4) +
-  geom_label(data = site_info, aes(x = longitude, y = latitude),
-             label = site_info$code, nudge_y = 0, nudge_x = 5, size = 3, fontface = "bold", 
-             label.padding = unit(x = 0.15, units = "lines")) +
-  # Customize color
-  scale_fill_manual(values = habitat_colors) +
-  # Customize axis labels
-  labs(x = "Longitude", y = "Latitude") +
-  # Tweak theme / formatting
-  lter_map_theme; map
+# End ----
 
