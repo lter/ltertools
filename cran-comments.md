@@ -26,7 +26,9 @@ checking for non-standard things in the check directory ... NOTE
 
 ### Changes per CRAN Reviewer Instructions
 
-No requested changes.
+- Deleted examples in an un-exported function (`site_subset`)
+- Removed `dontrun` from examples that are actually run-able
+- Changed examples that wrote by default to user's home filespace to instead write as temporary files using `tempdir` (relevant to `harmonize`, `begin_key`, and `read`)
 
 ## Downstream dependencies
 
