@@ -17,13 +17,3 @@ site_subset(sites = NULL, habitats = NULL)
 \description{
 Subsets the information on long term ecological research (LTER) sites based on user-specified site codes (i.e., three letter abbreviations), and/or desired habitats. See \code{lter_sites} for the full set of site information
 }
-\examples{
-\dontrun{
-# See only marine or coastal sites
-site_subset(habitats = c("marine", "coastal"))
-
-# Return only specified sites
-site_subset(sites = c("AND", "NGA", "BLE", "LNO"))
-}
-
-}
