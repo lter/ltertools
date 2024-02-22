@@ -29,7 +29,6 @@ A "column key" is meant to streamline harmonization of disparate datasets. This 
 Note that raw column names without an associated tidy name in the key are removed. We recommend using the \code{begin_key} function in this package to generate the skeleton of the key to make achieving the required structure simpler.
 }
 \examples{
-\dontrun{
 # Generate two simple tables
 ## Dataframe 1
 df1 <- data.frame("xx" = c(1:3),
@@ -41,11 +40,11 @@ df2 <- data.frame("LETTERS" = letters[4:7],
                   "BONUS" = c("plantae", "animalia", "fungi", "protista"))
 
 # Generate a local folder for exporting
-dir.create(path = "ltertools_test", showWarnings = FALSE)
+temp_folder <- tempdir()
 
 # Export both files to that folder
-utils::write.csv(x = df1, file = file.path("ltertools_test", "df1.csv"), row.names = FALSE)
-utils::write.csv(x = df2, file = file.path("ltertools_test", "df2.csv"), row.names = FALSE)
+utils::write.csv(x = df1, file = file.path(temp_folder, "df1.csv"), row.names = FALSE)
+utils::write.csv(x = df2, file = file.path(temp_folder, "df2.csv"), row.names = FALSE)
 
 # Generate a column key object manually
 key_obj <- data.frame("source" = c(rep("df1.csv", 3), 
@@ -56,7 +55,6 @@ key_obj <- data.frame("source" = c(rep("df1.csv", 3),
                                     "letters", "numbers", "kingdom"))
 
 # Use that to harmonize the 'raw' files we just created
-ltertools::harmonize(key = key_obj, raw_folder = "ltertools_test", data_format = "csv")
-}
+ltertools::harmonize(key = key_obj, raw_folder = temp_folder, data_format = "csv")
 
 }

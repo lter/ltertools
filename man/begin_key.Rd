@@ -24,7 +24,6 @@ begin_key(
 Creates the start of a 'column key' for harmonizing data. A column key includes a column for the file names to be harmonized into a single data object as well as a column for the column names in those files. Finally, it includes a column indicating the tidied name that corresponds with each raw column name. Harmonization can accept this key object and use it to rename all raw column names--in a reproducible way--to standardize across datasets. Currently supports raw files of the following formats: CSV, TXT, XLS, and XLSX
 }
 \examples{
-\dontrun{
 # Generate two simple tables
 ## Dataframe 1
 df1 <- data.frame("xx" = c(1:3),
@@ -36,14 +35,13 @@ df2 <- data.frame("LETTERS" = letters[4:7],
                   "BONUS" = c("plantae", "animalia", "fungi", "protista"))
 
 # Generate a local folder for exporting
-dir.create(path = "ltertools_test", showWarnings = FALSE)
+temp_folder <- tempdir()
 
 # Export both files to that folder
-utils::write.csv(x = df1, file = file.path("ltertools_test", "df1.csv"), row.names = FALSE)
-utils::write.csv(x = df2, file = file.path("ltertools_test", "df2.csv"), row.names = FALSE)
+utils::write.csv(x = df1, file = file.path(temp_folder, "df1.csv"), row.names = FALSE)
+utils::write.csv(x = df2, file = file.path(temp_folder, "df2.csv"), row.names = FALSE)
 
 # Generate a column key with "guesses" at tidy column names
-ltertools::begin_key(raw_folder = "ltertools_test", data_format = "csv", guess_tidy = TRUE)
-}
+ltertools::begin_key(raw_folder = temp_folder, data_format = "csv", guess_tidy = TRUE)
 
 }
