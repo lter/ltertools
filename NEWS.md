@@ -1,6 +1,12 @@
-## ltertools Version 1.0.0
+## ltertools Version 1.0.0.900
 
 Development version of `ltertools`. There are no ERRORs, WARNINGs, or NOTEs returned by `devtools::check()`. Changes from latest release will be listed here as they are made.
+
+- No changes (yet) from previous version
+
+## ltertools Version 1.0.0
+
+There are no ERRORs, WARNINGs, or NOTEs returned by `devtools::check()`.
 
 - New function: `read` -- reads in all data files in a particular folder and stores them in a list
 - New function: `begin_key` -- creates the start of a "column key" for data harmonization

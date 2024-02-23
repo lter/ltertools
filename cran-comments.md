@@ -1,10 +1,8 @@
 ## R CMD Check Results
 
-0 errors | 0 warnings | 3 notes
+0 errors | 0 warnings | 2 notes
 
-Note 1: This is a new release.
-
-Note 2: `devtools::check_rhub()` returns this note:
+Note 1: `devtools::check_rhub()` returns this note:
 
 ```
 * checking for detritus in the temp directory ... NOTE
@@ -14,7 +12,7 @@ Found the following files/directories:
 
 As noted in [R-hub issue #503](https://github.com/r-hub/rhub/issues/503), this could be due to a bug/crash in MiKTeX and can likely be ignored.
 
-Note 3: `devtools::check_rhub()` also returns this note:
+Note 2: `devtools::check_rhub()` also returns this note:
 
 ```
 checking for non-standard things in the check directory ... NOTE
@@ -26,9 +24,7 @@ checking for non-standard things in the check directory ... NOTE
 
 ### Changes per CRAN Reviewer Instructions
 
-- Deleted examples in an un-exported function (`site_subset`)
-- Removed `dontrun` from examples that are actually run-able
-- Changed examples that wrote by default to user's home filespace to instead write as temporary files using `tempdir` (relevant to `harmonize`, `begin_key`, and `read`)
+- No requested changes for this version of the package
 
 ## Downstream dependencies
 
