@@ -6,6 +6,7 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/lter/ltertools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/lter/ltertools/actions/workflows/R-CMD-check.yaml)
+[![](https://cranlogs.r-pkg.org/badges/ltertools)](https://cran.r-project.org/package=ltertools)
 ![GitHub
 issues](https://img.shields.io/github/issues-raw/lter/ltertools)
 ![GitHub pull
