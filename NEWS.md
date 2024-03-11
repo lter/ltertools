@@ -2,7 +2,7 @@
 
 Development version of `ltertools`. There are no ERRORs, WARNINGs, or NOTEs returned by `devtools::check()`. Changes from latest release will be listed here as they are made.
 
-- No changes (yet) from previous version
+- New function: `solar_day_info` identifies sunrise, sunset, solar noon, and day length for all dates within a user-specified range at particular coordinates
 
 ## ltertools Version 1.0.0
 

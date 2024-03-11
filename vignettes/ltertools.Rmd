@@ -111,6 +111,15 @@ data_list <- ltertools::read(raw_folder = temp_folder, data_format = "csv")
 utils::str(data_list)
 ```
 
+On a different note, the `solar_day_info` function allows you to identify the time of sunrise, sunset, and solar noon (as well as the total length of the day) for each day between a specified start and end date at a set of latitude/longitude coordinates. All times are in UTC and the information retrieved is returned as a dataframe.
+
+```{r solar-day-info, eval = FALSE}
+# Identify day information in Santa Barbara (California) for one week
+solar_day_info(lat = 34.41, lon = -119.71, 
+               start_date = "2022-02-07", end_date = "2022-02-12", 
+               quiet = TRUE)
+```
+
 Much of the synthesis work with LTER data--and indeed many ecological research projects generally--requires quantification of _variation_. To that end, we've written a function that simply calculates the coefficient of variation (standard deviation divided by mean) for a vector of numbers. Because `sd` and `mean` both support an argument for defining how missing values are handled, our `cv` function does as well.
 
 ```{r cv}

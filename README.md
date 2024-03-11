@@ -60,6 +60,10 @@ below and attributed to their author(s)
   the respective file names. Currently supports CSV, TXT, XLS, and XLSX
   file formats
 
+- **`solar_day_info`** – Identify sunrise, sunset, solar noon, and day
+  length for all dates within a user-specified range at particular
+  coordinates
+
 - **`cv`** – Calculate coefficient of variation (CV) from a vector of
   numbers
 
