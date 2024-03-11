@@ -1,9 +1,25 @@
-
-
-solar_day(lat = 34.416857, lon = -119.712777, 
-          start_date = "2022-02-07", end_date = "2022-02-12", 
-          quiet = F)
-
+#' @title Identify Solar Day Information
+#' 
+#' @description
+#' 
+#' @param lat
+#' @param lon
+#' @param start_date
+#' @param end_date
+#' @param quiet (logical) whether to suppress certain non-warning messages. Defaults to `TRUE`
+#' 
+#' @return 
+#' 
+#' @importFrom magrittr %>%
+#' 
+#' @export
+#' 
+#' @examples
+#' # Identify day information in Santa Barbara (California) for one week
+#' solar_day(lat = 34.416857, lon = -119.712777, 
+#'           start_date = "2022-02-07", end_date = "2022-02-12", 
+#'           quiet = F)
+#' 
 solar_day <- function(lat = NULL, lon = NULL, 
                       start_date = NULL, end_date = NULL, 
                       quiet = FALSE){
