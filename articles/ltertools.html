@@ -231,6 +231,16 @@ the harmonization workflow earlier.</p>
 <span><span class="co">#&gt;   ..$ LETTERS: chr [1:4] "d" "e" "f" "g"</span></span>
 <span><span class="co">#&gt;   ..$ NUMBERS: int [1:4] 4 5 6 7</span></span>
 <span><span class="co">#&gt;   ..$ BONUS  : chr [1:4] "plantae" "animalia" "fungi" "protista"</span></span></code></pre></div>
+<p>On a different note, the <code>solar_day_info</code> function allows
+you to identify the time of sunrise, sunset, and solar noon (as well as
+the total length of the day) for each day between a specified start and
+end date at a set of latitude/longitude coordinates. All times are in
+UTC and the information retrieved is returned as a dataframe.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Identify day information in Santa Barbara (California) for one week</span></span>
+<span><span class="fu"><a href="../reference/solar_day_info.html">solar_day_info</a></span><span class="op">(</span>lat <span class="op">=</span> <span class="fl">34.41</span>, lon <span class="op">=</span> <span class="op">-</span><span class="fl">119.71</span>, </span>
+<span>               start_date <span class="op">=</span> <span class="st">"2022-02-07"</span>, end_date <span class="op">=</span> <span class="st">"2022-02-12"</span>, </span>
+<span>               quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>Much of the synthesis work with LTER data–and indeed many ecological
 research projects generally–requires quantification of
 <em>variation</em>. To that end, we’ve written a function that simply
@@ -238,7 +248,7 @@ calculates the coefficient of variation (standard deviation divided by
 mean) for a vector of numbers. Because <code>sd</code> and
 <code>mean</code> both support an argument for defining how missing
 values are handled, our <code>cv</code> function does as well.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Calculate CV (excluding missing values)</span></span>
 <span><span class="fu">ltertools</span><span class="fu">::</span><span class="fu"><a href="../reference/cv.html">cv</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>, na_rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0.1557461</span></span></code></pre></div>
@@ -248,7 +258,7 @@ specify the values to convert, their current units, and the units to
 which you would like to convert and the function will perform the needed
 arithmetic. Units are case-insensitive and support either the one-letter
 abbreviation or the full name of the unit.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Convert some temperatures from F to Kelvin</span></span>
 <span><span class="fu"><a href="../reference/convert_temp.html">convert_temp</a></span><span class="op">(</span>value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">32</span>, <span class="fl">110</span><span class="op">)</span>, from <span class="op">=</span> <span class="st">"Fahrenheit"</span>, to <span class="op">=</span> <span class="st">"k"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 255.3722 273.1500 316.4833</span></span></code></pre></div>
@@ -270,13 +280,13 @@ is support for a user-defined set of hexadecimal colors though by
 default an internal palette is used.</p>
 <p>Sites can be specified by their three letter site code or all sites
 in a particular habitat can be included.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Check the timeline for all grassland or forest LTER sites</span></span>
 <span><span class="fu">ltertools</span><span class="fu">::</span><span class="fu"><a href="../reference/site_timeline.html">site_timeline</a></span><span class="op">(</span>habitats <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"grassland"</span>, <span class="st">"forest"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ltertools_files/figure-html/site-timeline-1-1.png" width="672" style="display: block; margin: auto;"></p>
 <p>Running the function without specifying site codes or habitat types
 will result in a timeline of all active LTER sites.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Check the timeline for all LTER sites</span></span>
 <span><span class="fu">ltertools</span><span class="fu">::</span><span class="fu"><a href="../reference/site_timeline.html">site_timeline</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ltertools_files/figure-html/site-timeline-2-1.png" width="672" style="display: block; margin: auto;"></p>
