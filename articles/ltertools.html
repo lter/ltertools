@@ -240,7 +240,14 @@ UTC and the information retrieved is returned as a dataframe.</p>
 <code class="sourceCode R"><span><span class="co"># Identify day information in Santa Barbara (California) for one week</span></span>
 <span><span class="fu"><a href="../reference/solar_day_info.html">solar_day_info</a></span><span class="op">(</span>lat <span class="op">=</span> <span class="fl">34.41</span>, lon <span class="op">=</span> <span class="op">-</span><span class="fl">119.71</span>, </span>
 <span>               start_date <span class="op">=</span> <span class="st">"2022-02-07"</span>, end_date <span class="op">=</span> <span class="st">"2022-02-12"</span>, </span>
-<span>               quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span>               quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt;         date    sunrise     sunset solar_noon day_length time_zone</span></span>
+<span><span class="co">#&gt; 1 2022-02-07 2:49:59 PM 1:35:56 AM 8:12:57 PM   10:45:57       UTC</span></span>
+<span><span class="co">#&gt; 2 2022-02-08 2:49:05 PM 1:36:54 AM 8:13:00 PM   10:47:49       UTC</span></span>
+<span><span class="co">#&gt; 3 2022-02-09 2:48:10 PM 1:37:52 AM 8:13:01 PM   10:49:42       UTC</span></span>
+<span><span class="co">#&gt; 4 2022-02-10 2:47:14 PM 1:38:50 AM 8:13:02 PM   10:51:36       UTC</span></span>
+<span><span class="co">#&gt; 5 2022-02-11 2:46:16 PM 1:39:48 AM 8:13:02 PM   10:53:32       UTC</span></span>
+<span><span class="co">#&gt; 6 2022-02-12 2:45:17 PM 1:40:45 AM 8:13:01 PM   10:55:28       UTC</span></span></code></pre></div>
 <p>Much of the synthesis work with LTER data–and indeed many ecological
 research projects generally–requires quantification of
 <em>variation</em>. To that end, we’ve written a function that simply
