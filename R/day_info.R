@@ -1,14 +1,14 @@
 #' @title Identify Solar Day Information
 #' 
-#' @description
+#' @description For all days between the specified start and end date, identify the time of sunrise, sunset, and solar noon (in UTC) as well as the day length.
 #' 
-#' @param lat
-#' @param lon
-#' @param start_date
-#' @param end_date
+#' @param lat (numeric) latitude coordinate for which to find day length
+#' @param lon (numeric) longitude coordinate for which to find day length
+#' @param start_date (character) starting date in 'YYYY-MM-DD' format
+#' @param end_date (character) ending date in 'YYYY-MM-DD' format
 #' @param quiet (logical) whether to suppress certain non-warning messages. Defaults to `TRUE`
 #' 
-#' @return 
+#' @return (dataframe) table of 6 columns and a number of rows equal to the number of days between the specified start and end dates (inclusive). Columns contain: (1) date, (2) sunrise time, (3) sunset time, (4) solar noon, (5) day length, and (6) time zone of columns 2 to 4.
 #' 
 #' @importFrom magrittr %>%
 #' 
@@ -16,13 +16,13 @@
 #' 
 #' @examples
 #' # Identify day information in Santa Barbara (California) for one week
-#' solar_day(lat = 34.416857, lon = -119.712777, 
-#'           start_date = "2022-02-07", end_date = "2022-02-12", 
-#'           quiet = F)
+#' solar_day_info(lat = 34.416857, lon = -119.712777, 
+#'                start_date = "2022-02-07", end_date = "2022-02-12", 
+#'                quiet = F)
 #' 
-solar_day <- function(lat = NULL, lon = NULL, 
-                      start_date = NULL, end_date = NULL, 
-                      quiet = FALSE){
+solar_day_info <- function(lat = NULL, lon = NULL, 
+                           start_date = NULL, end_date = NULL, 
+                           quiet = FALSE){
   
   # Error out for inappropriate coordinates
   if(abs(lat) > 90 | abs(lon) > 180)
