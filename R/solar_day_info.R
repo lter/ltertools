@@ -1,6 +1,6 @@
 #' @title Identify Solar Day Information
 #' 
-#' @description For all days between the specified start and end date, identify the time of sunrise, sunset, and solar noon (in UTC) as well as the day length.
+#' @description For all days between the specified start and end date, identify the time of sunrise, sunset, and solar noon (in UTC) as well as the day length. The idea for this function was contributed by [Miguel C. Leon](https://luquillo.lter.network/) and a Python equivalent lives in the Luquillo site's [LUQ-general-utils GitHub repository](https://github.com/LUQ-LTER/LUQ-general-utils).
 #' 
 #' @param lat (numeric) latitude coordinate for which to find day length
 #' @param lon (numeric) longitude coordinate for which to find day length

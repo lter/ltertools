@@ -62,7 +62,8 @@ below and attributed to their author(s)
 
 - **`solar_day_info`** – Identify sunrise, sunset, solar noon, and day
   length for all dates within a user-specified range at particular
-  coordinates
+  coordinates. Function concept contributed by [Miguel C.
+  Leon](https://luquillo.lter.network/)
 
 - **`cv`** – Calculate coefficient of variation (CV) from a vector of
   numbers

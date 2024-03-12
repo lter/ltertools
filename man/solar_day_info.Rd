@@ -27,7 +27,7 @@ solar_day_info(
 (dataframe) table of 6 columns and a number of rows equal to the number of days between the specified start and end dates (inclusive). Columns contain: (1) date, (2) sunrise time, (3) sunset time, (4) solar noon, (5) day length, and (6) time zone of columns 2 to 4.
 }
 \description{
-For all days between the specified start and end date, identify the time of sunrise, sunset, and solar noon (in UTC) as well as the day length.
+For all days between the specified start and end date, identify the time of sunrise, sunset, and solar noon (in UTC) as well as the day length. The idea for this function was contributed by \href{https://luquillo.lter.network/}{Miguel C. Leon} and a Python equivalent lives in the Luquillo site's \href{https://github.com/LUQ-LTER/LUQ-general-utils}{LUQ-general-utils GitHub repository}.
 }
 \examples{
 # Identify day information in Santa Barbara (California) for one week

@@ -26,6 +26,7 @@ Authors:
 
 Other contributors:
 \itemize{
+  \item Miguel C. Leon (\href{https://orcid.org/0000-0003-1260-9449}{ORCID}) (https://luquillo.lter.network/) [contributor]
   \item  National Science Foundation (NSF 1929393, 09/01/2019 - 08/31/2024) [funder]
   \item  University of California, Santa Barbara [copyright holder]
 }
