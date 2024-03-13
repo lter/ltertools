@@ -46,7 +46,7 @@
 #' 
 harmonize <- function(key = NULL, raw_folder = NULL, data_format = c("csv", "txt", "xls", "xlsx"), quiet = TRUE){
   # Squelch 'visible bindings' NOTE
-  . <- raw_name <- tidy_name <- xxxx_row_num <- values <- NULL
+  . <- raw_name <- tidy_name <- xxxx_row_num <- values <- ct <- NULL
 
   # Error out if column key does not contain all needed information
   if(all(c("source", "raw_name", "tidy_name") %in% names(key)) != TRUE)
@@ -119,21 +119,37 @@ harmonize <- function(key = NULL, raw_folder = NULL, data_format = c("csv", "txt
     if(length(missing_cols) != 0){
       rlang::warn(message = paste0("Removing the following columns in column key NOT found in '", focal_file, "': '", missing_cols, "'", collapse = " & ")) }
     
-    # Perform actual harmonization
+    # Attach tidy names
     dat_v3 <- dat_v2 %>% 
       # Attach the column key to the data
       dplyr::left_join(y = key_sub, by = c("source", "raw_name")) %>% 
       # Drop any columns without a standardized name
       dplyr::filter(is.na(tidy_name) != TRUE & nchar(tidy_name) != 0) %>% 
       # Trash the old column names
-      dplyr::select(-raw_name) %>% 
+      dplyr::select(-raw_name)
+      
+    # Check for problem columns that will create list-cols
+    list_check <- dat_v3 %>% 
+      # Count rows within combinations of known grouping variables
+      dplyr::group_by(xxxx_row_num, source, tidy_name) %>% 
+      dplyr::summarize(ct = dplyr::n()) %>% 
+      dplyr::ungroup() %>% 
+      # Filter to only instances with duplicates
+      dplyr::filter(ct > 1)
+    
+    # Return a warning if any problems found
+    if(nrow(list_check) != 0){
+      rlang::warn(message = paste0("Following columns result in non-unique identifiers:", focal_file, "': '", unique(list_check$tidy_name), "'", collapse = " & ")) }
+      
+    # Perform actual harmonization
+    dat_v4 <- dat_v3 %>% 
       # Pivot back to original format
       tidyr::pivot_wider(names_from = tidy_name, values_from = values) %>% 
       # Trash row number column created in loop
       dplyr::select(-xxxx_row_num)
     
     # Add to list
-    file_list[[focal_file]] <- dat_v3 } # Close harmonization loop
+    file_list[[focal_file]] <- dat_v4 } # Close harmonization loop
   
   # Unlist the list
   files_df <- purrr::list_rbind(x = file_list)
