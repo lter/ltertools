@@ -64,12 +64,12 @@ harmonize <- function(key = NULL, raw_folder = NULL, data_format = c("csv", "txt
   formats <- paste0(data_format, collapse = "|")
   
   # Identify available raw files *that are also present in the column key*
-  raw_files <- generics::intersect(x = dir(path = raw_folder, pattern = formats),
-                                   y = unique(key_actual$source))
+  raw_files <- base::intersect(x = dir(path = raw_folder, pattern = formats),
+                               y = unique(key_actual$source))
   
   # Identify any files present but not in column key
-  unk_files <- generics::setdiff(x = dir(path = raw_folder, pattern = formats),
-                                 y = unique(key_actual$source))
+  unk_files <- base::setdiff(x = dir(path = raw_folder, pattern = formats),
+                             y = unique(key_actual$source))
   
   # If any are found and `quiet` isn't `TRUE`, report on these files
   if(length(unk_files) != 0 & quiet != TRUE){
@@ -112,12 +112,12 @@ harmonize <- function(key = NULL, raw_folder = NULL, data_format = c("csv", "txt
                           values_to = "values")
     
     # Identify any columns in the column key but apparently not in the data
-    missing_cols <- generics::setdiff(x = unique(key_sub$raw_name),
-                                      y = unique(dat_v2$raw_name))
+    missing_cols <- base::setdiff(x = unique(key_sub$raw_name),
+                                  y = unique(dat_v2$raw_name))
     
     # Warn the user if any are found (this is a warning so no `quiet` argument used)
     if(length(missing_cols) != 0){
-      rlang::warn(message = paste0("Removing the following columns in column key NOT found in '", focal_file, "': '", missing_cols, "'", collapse = " & ")) }
+      warning(message = paste0("Removing the following columns in column key NOT found in '", focal_file, "': '", missing_cols, "'", collapse = " & ")) }
     
     # Attach tidy names
     dat_v3 <- dat_v2 %>% 
@@ -139,7 +139,7 @@ harmonize <- function(key = NULL, raw_folder = NULL, data_format = c("csv", "txt
     
     # Return a warning if any problems found
     if(nrow(list_check) != 0){
-      rlang::warn(message = paste0("Following columns result in non-unique identifiers:", focal_file, "': '", unique(list_check$tidy_name), "'", collapse = " & ")) }
+      warning(message = paste0("Replicates (i.e., rows) will not be uniquely identified. Following columns result in this issue for ", focal_file, "': '", unique(list_check$tidy_name), "'", collapse = " & ")) }
       
     # Perform actual harmonization
     dat_v4 <- dat_v3 %>% 
