@@ -79,6 +79,10 @@ read <- function(raw_folder = NULL, data_format = c("csv", "txt", "xls", "xlsx")
   # Unlist the type list
   type_df <- purrr::list_rbind(x = type_list)
   
+  # Error out if no supported files are found in the specified folder
+  if(nrow(type_df) == 0)
+    stop("No files of supported type(s) found in specified folder")
+  
   # Create a new list
   data_list <- list()
   
