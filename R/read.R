@@ -49,7 +49,7 @@ read <- function(raw_folder = NULL, data_format = c("csv", "txt", "xls", "xlsx")
     formats <- generics::setdiff(x = formats, y = bad_ext)
     
     # Warning about them
-    message("The following are not supported file types and will be ignored: ", paste(bad_ext, collapse = "; ")) }
+    warning("The following are not supported file types and will be ignored: ", paste(bad_ext, collapse = "; ")) }
   
   # Make an empty list
   type_list <- list()
