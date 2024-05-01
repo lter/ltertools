@@ -1,3 +1,6 @@
+# Run all tests in this script:
+## testthat::test_file(file.path("tests", "testthat", "test-convert.R"))
+
 # `convert_temp` Tests ----
 
 # Simple error testing

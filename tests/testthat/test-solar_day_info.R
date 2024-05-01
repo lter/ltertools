@@ -1,3 +1,6 @@
+# Run all tests in this script:
+## testthat::test_file(file.path("tests", "testthat", "test-solar_day_info.R"))
+
 # Simple error testing
 test_that("Only accepts correct inputs", {
   expect_error(solar_day_info(lat = 4000, lon = -119, 

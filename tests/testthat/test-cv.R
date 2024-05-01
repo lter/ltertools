@@ -1,5 +1,5 @@
-# Test this function:
-## test_file(file.path("tests", "testthat", "test-cv.R"))
+# Run all tests in this script:
+## testthat::test_file(file.path("tests", "testthat", "test-cv.R"))
 
 # Simple error testing
 test_that("Only accepts correct inputs", {
