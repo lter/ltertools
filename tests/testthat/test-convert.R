@@ -10,6 +10,8 @@ test_that("Only accepts correct inputs", {
 
 # Output testing
 test_that("Outputs are correct", {
+  ## Class is correct
+  expect_type(convert_temp(value = 15, from = "C", to = "F"), "numeric")
   ## F & C
   expect_equal(convert_temp(value = 15, from = "C", to = "F"), 59)
   expect_equal(convert_temp(value = 59, from = "F", to = "C"), 15)
