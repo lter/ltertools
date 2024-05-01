@@ -36,6 +36,10 @@ read <- function(raw_folder = NULL, data_format = c("csv", "txt", "xls", "xlsx")
   if(is.null(x = raw_folder) == TRUE)
     stop("Raw folder must be specified")
   
+  # Error out if raw folder is specified but doesn't exist
+  if(dir.exists(raw_folder) != TRUE)
+    stop("Raw folder not found at specified path. Check spelling/working directory")
+  
   # Make sure periods are not included in file extensions and drop non-unique entries
   formats <- unique(gsub(pattern = "\\.", replacement = "", x = data_format))
   
