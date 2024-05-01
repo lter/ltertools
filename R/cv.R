@@ -21,8 +21,8 @@ cv <- function(x, na_rm = TRUE){
   
   # Coerce na_rm to TRUE if not logical and message coercion
   if(is.logical(na_rm) != TRUE){
+    warning("`na_rm` must be logical. Coercing to TRUE")
     na_rm <- TRUE
-    message("`na_rm` must be logical. Coercing to TRUE")
   }
   
   # Calculate CV
