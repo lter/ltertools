@@ -47,7 +47,9 @@ Imports:
   tidyr,
   utils
 Suggests:
-  knitr,
-  rmarkdown
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
+Config/testthat/edition: 3
