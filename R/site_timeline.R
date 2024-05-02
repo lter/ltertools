@@ -71,7 +71,7 @@ site_timeline <- function(sites = NULL, habitats = NULL, colors = NULL){
   if(is.null(colors) != TRUE & length(colors) < length(unique(sites_long$habitat))){
     
     # Print a warning
-    message("Insufficient colors provided. There are ", length(unique(sites_long$habitat)), " but only ", length(colors), " colors provided. Using default colors")
+    warning("Insufficient colors provided. There are ", length(unique(sites_long$habitat)), " but only ", length(colors), " colors provided. Using default colors")
     
     # Use the default colors
     times_v2 <- times_v1 +

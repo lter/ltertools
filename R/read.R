@@ -36,8 +36,12 @@ read <- function(raw_folder = NULL, data_format = c("csv", "txt", "xls", "xlsx")
   if(is.null(x = raw_folder) == TRUE)
     stop("Raw folder must be specified")
   
+  # Error out if raw folder is specified but doesn't exist
+  if(dir.exists(raw_folder) != TRUE)
+    stop("Raw folder not found at specified path. Check spelling/working directory")
+  
   # Make sure periods are not included in file extensions and drop non-unique entries
-  formats <- unique(gsub(pattern = "\\.", replacement = "", x = data_format))
+  formats <- tolower(unique(gsub(pattern = "\\.", replacement = "", x = data_format)))
   
   # Check for unsupported file types
   bad_ext <- generics::setdiff(x = formats, y = c("csv", "txt", "xls", "xlsx"))
@@ -49,7 +53,7 @@ read <- function(raw_folder = NULL, data_format = c("csv", "txt", "xls", "xlsx")
     formats <- generics::setdiff(x = formats, y = bad_ext)
     
     # Warning about them
-    message("The following are not supported file types and will be ignored: ", paste(bad_ext, collapse = "; ")) }
+    warning("The following are not supported file types and will be ignored: ", paste(bad_ext, collapse = "; ")) }
   
   # Make an empty list
   type_list <- list()
@@ -78,6 +82,10 @@ read <- function(raw_folder = NULL, data_format = c("csv", "txt", "xls", "xlsx")
   
   # Unlist the type list
   type_df <- purrr::list_rbind(x = type_list)
+  
+  # Error out if no supported files are found in the specified folder
+  if(nrow(type_df) == 0)
+    stop("No files of supported type(s) found in specified folder")
   
   # Create a new list
   data_list <- list()

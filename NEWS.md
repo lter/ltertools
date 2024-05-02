@@ -4,6 +4,7 @@ Development version of `ltertools`. There are no ERRORs, WARNINGs, or NOTEs retu
 
 - New function: `solar_day_info` identifies sunrise, sunset, solar noon, and day length for all dates within a user-specified range at particular coordinates
 - Function update: `harmonize` now includes new defensive warning/error checks with informative messages for likely sources of error
+- Unit tests added for all functions currently in package. Likely limited impact on users except better adherence to best practice will make for a stronger package in the long run
 
 ## ltertools Version 1.0.0
 

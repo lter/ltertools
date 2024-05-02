@@ -37,13 +37,15 @@ site_subset <- function(sites = NULL, habitats = NULL){
     if(length(missing_sites) > 0){
       
       # Warn the user about the mismatch(es) and drop it
-      message("Site abbreviation(s) '", paste0(missing_sites, collapse = "', '"), "' not recognized. Excluding now.")
+      warning("Site abbreviation(s) '", paste0(missing_sites, collapse = "', '"), "' not recognized. Excluding now.")
       
       # And drop them
       sites <- generics::setdiff(x = sites, y = missing_sites) }
     
     # After all that processing, subset to only those sites
-    sites_sub1 <- dplyr::filter(.data = lter_sites, code %in% sites)
+    if(length(sites) >= 1){
+    sites_sub1 <- dplyr::filter(.data = lter_sites, code %in% sites) 
+    } else { sites_sub1 <- lter_sites }
     
     # If no sites are provided to which to subset, keep the full object
   } else { sites_sub1 <- lter_sites }
@@ -61,13 +63,15 @@ site_subset <- function(sites = NULL, habitats = NULL){
     if(length(missing_habs) > 0){
       
       # Warn the user
-      message("Habitat(s) '", paste0(missing_habs, collapse = "', '"), "' not recognized. Excluding now.")
+      warning("Habitat(s) '", paste0(missing_habs, collapse = "', '"), "' not recognized. Excluding now.")
       
       # Drop them
       habitats <- generics::setdiff(x = habitats, y = missing_habs) }
     
     # Now we can actually do the subsetting (if any needs to be done)
-    sites_sub2 <- dplyr::filter(.data = sites_sub1, habitat %in% habitats)
+    if(length(habitats) >= 1){
+      sites_sub2 <- dplyr::filter(.data = sites_sub1, habitat %in% habitats)
+    } else { sites_sub2 <- sites_sub1 }
     
     # If no subsetting was required, keep everything from preceding step
   } else { sites_sub2 <- sites_sub1 }
