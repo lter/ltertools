@@ -1,19 +1,27 @@
-## --------------------------------------------------- ##
-                    # Write JSON Function
-## --------------------------------------------------- ##
-# Author(s): Nick J Lyon
-
-# Purpose:
-## We want a function that makes (simple) JSON files that contain user-defined content
-## Useful for housing user-specific information (incl. absolute file paths, emails, etc.)
-
-# Load libraries
-librarian::shelf(jsonlite, RJSONIO)
-
-# Clear environment
-rm(list = ls())
-
-# Define function
+#' @title Make a JSON File with Specified Contents
+#' 
+#' @description Creates a JSON (JavaScript Object Notation) file containing the specified name/value pairs. These files are hugely flexible and interpretable by a wide variety of coding languages and thus extremely useful in many contexts. This function is meant to assist those who wish to use JSON files to store user-specific information (e.g., email addresses, absolute file paths, etc.) in collaborative contexts.
+#' 
+#' @param x (character) named vector from which to generate JSON content. Vector elements become JSON values and the vector element names become JSON names. A named vector can be created like so: `c("greeting" = "hello", "farewell" = "goodbye")`. The characters on the left of the equal signs are names and the characters on the right are values.
+#' @param file (character) name of JSON file to create with contents provided to `x`. Must end with ".json"
+#' 
+#' @return nothing. Called for side-effects (i.e., creating JSON file)
+#' 
+#' @export
+#' 
+#' @examples
+#' # Create contents
+#' my_info <- c("data_path" = "Users/me/documents/my_project/data")
+#' 
+#' # Generate a local folder for exporting
+#' temp_folder <- tempdir()
+#' 
+#' # Create a JSON with those contents
+#' make_json(x = my_info, file = file.path(temp_folder, "user.json"))
+#' 
+#' # Read it back in
+#' (user_info <- RJSONIO::fromJSON(content = file.path(temp_folder, "user.json")))
+#' 
 make_json <- function(x = NULL, file = NULL){
   
   # Error for null and/or non-character 'x' argument
@@ -52,25 +60,3 @@ make_json <- function(x = NULL, file = NULL){
   
   # Export
   write(x = json_content, file = file) }
-
-# Invoke function
-make_json(x = c("greeting" = "hello", "farewell" = "goodbye"),
-          file = file.path("dev", "test.json"))
-
-# Read in JSON and see if it looks 'right'
-(user_info <- jsonlite::read_json(file.path("dev", "test.json")))
-
-# Try to access an element
-user_info$farewell
-
-# Test errors
-make_json(file = "hello")
-make_json(x = "hello")
-make_json(x = 1:3, file = file.path("dev", "test.json"))
-make_json(x = "hello", file = file.path("dev", "test.json"))
-make_json(x = c("greeting" = "hello", "goodbye"), file = file.path("dev", "test.json"))
-make_json(x = c("greeting" = "hello", "greeting" = "goodbye"), file = file.path("dev", "test.json"))
-make_json(x = c("greeting" = "hello"), file = c("first_name", "second_name"))
-make_json(x = c("greeting" = "hello"), file = file.path("dev", "test"))
-
-# End ----
