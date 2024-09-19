@@ -10,30 +10,6 @@
 # Load libraries
 librarian::shelf(jsonlite, RJSONIO)
 
-## ----------------------------------- ##
-# Exploration ----
-## ----------------------------------- ##
-
-# Clear environment
-rm(list = ls())
-
-# Make simple test objects
-(contents_vec <- c("greeting" = "hello"))
-
-# Make these into JSONs
-(contents_json <- RJSONIO::toJSON(x = contents_vec))
-
-# Attempt to save as a JSON
-write(x = contents_json, file = file.path("dev", "test.json"))
-
-# Read in JSON and see if it looks 'right'
-user_info <- jsonlite::read_json(file.path("dev", "test.json"))
-str(user_info)
-
-## ----------------------------------- ##
-# Function Dev ----
-## ----------------------------------- ##
-
 # Clear environment
 rm(list = ls())
 
