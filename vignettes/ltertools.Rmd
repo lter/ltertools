@@ -28,6 +28,36 @@ The conceptual theme of functions in `ltertools` is necessarily broad given the 
 library(ltertools)
 ```
 
+### Reproducibility
+
+At the LTER Network Office we fund--and work closely with--synthesis working groups. These groups write a lot of code, often in R, in pursuit of their scientific questions. Reproducibility is vital for these collaborative, multi-year groups. To that end, we've developed some functions to try to handle some common reproducibility hurdles these groups face.
+
+Among these issues is the fact that data are often stored in 'the cloud' (e.g., Dropbox, Box, etc.) and accessed via a pseudo-local folder that is "synced". This is not a reproducibility issue in and of itself but it does often push coders to use absolute file paths to reference data files stored in this way. We've discovered that researchers can place their information (including absolute paths) in a local JSON file that is unique to each user but contains the same names with user-specific values. If all users name this file identically then code can be written to access the values stored in the JSON file and make user-specific content be referrable to in a flexible and reproducible way.
+
+`make_json` is meant to make it easier to create this JSON file for each member of a collaboration.
+
+```{r make-json-1}
+# Create user-specific information
+my_info <- c("data_path" = "Users/me/dropbox/big-data-project/data")
+
+# Generate a local folder for exporting
+temp_folder <- tempdir()
+
+# Create a JSON with those contents
+make_json(x = my_info, file = file.path(temp_folder, "user.json"))
+
+# Read it back in
+(user_info <- RJSONIO::fromJSON(content = file.path(temp_folder, "user.json")))
+```
+
+Values in the JSON can be accessed at need but will be personal to each user.
+
+```{r make-json-2}
+#| eval: false
+
+df <- read.csv(file = file.path(user_info$data_path, "data_2024.csv"))
+```
+
 ### Harmonization
 
 The LTER Network is hypothesis-driven with a focus on long term data from sites in the network. This results in data that may reasonably be compared but are--potentially--quite differently formatted based on the logic of the investigators responsible for each dataset. Data harmonization (the process of resolving these formatting inconsistencies to facilitate combination/comparison across projects) is therefore a significant hurdle for many projects using LTER data. We suggest a "column key"-based approach that has the potential to _greatly_ simplify harmonization efforts.
