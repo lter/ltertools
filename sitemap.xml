@@ -1,63 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://lter.github.io/ltertools/404.html</loc>
-  </url>
-  <url>
-    <loc>https://lter.github.io/ltertools/CONTRIBUTING.html</loc>
-  </url>
-  <url>
-    <loc>https://lter.github.io/ltertools/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://lter.github.io/ltertools/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://lter.github.io/ltertools/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://lter.github.io/ltertools/articles/ltertools.html</loc>
-  </url>
-  <url>
-    <loc>https://lter.github.io/ltertools/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://lter.github.io/ltertools/index.html</loc>
-  </url>
-  <url>
-    <loc>https://lter.github.io/ltertools/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://lter.github.io/ltertools/reference/begin_key.html</loc>
-  </url>
-  <url>
-    <loc>https://lter.github.io/ltertools/reference/convert_temp.html</loc>
-  </url>
-  <url>
-    <loc>https://lter.github.io/ltertools/reference/cv.html</loc>
-  </url>
-  <url>
-    <loc>https://lter.github.io/ltertools/reference/harmonize.html</loc>
-  </url>
-  <url>
-    <loc>https://lter.github.io/ltertools/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://lter.github.io/ltertools/reference/lter_sites.html</loc>
-  </url>
-  <url>
-    <loc>https://lter.github.io/ltertools/reference/ltertools-package.html</loc>
-  </url>
-  <url>
-    <loc>https://lter.github.io/ltertools/reference/read.html</loc>
-  </url>
-  <url>
-    <loc>https://lter.github.io/ltertools/reference/site_subset.html</loc>
-  </url>
-  <url>
-    <loc>https://lter.github.io/ltertools/reference/site_timeline.html</loc>
-  </url>
-  <url>
-    <loc>https://lter.github.io/ltertools/reference/solar_day_info.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://lter.github.io/ltertools/404.html</loc></url>
+<url><loc>https://lter.github.io/ltertools/CONTRIBUTING.html</loc></url>
+<url><loc>https://lter.github.io/ltertools/LICENSE-text.html</loc></url>
+<url><loc>https://lter.github.io/ltertools/LICENSE.html</loc></url>
+<url><loc>https://lter.github.io/ltertools/articles/index.html</loc></url>
+<url><loc>https://lter.github.io/ltertools/articles/ltertools.html</loc></url>
+<url><loc>https://lter.github.io/ltertools/authors.html</loc></url>
+<url><loc>https://lter.github.io/ltertools/index.html</loc></url>
+<url><loc>https://lter.github.io/ltertools/news/index.html</loc></url>
+<url><loc>https://lter.github.io/ltertools/reference/begin_key.html</loc></url>
+<url><loc>https://lter.github.io/ltertools/reference/convert_temp.html</loc></url>
+<url><loc>https://lter.github.io/ltertools/reference/cv.html</loc></url>
+<url><loc>https://lter.github.io/ltertools/reference/harmonize.html</loc></url>
+<url><loc>https://lter.github.io/ltertools/reference/index.html</loc></url>
+<url><loc>https://lter.github.io/ltertools/reference/lter_sites.html</loc></url>
+<url><loc>https://lter.github.io/ltertools/reference/ltertools-package.html</loc></url>
+<url><loc>https://lter.github.io/ltertools/reference/read.html</loc></url>
+<url><loc>https://lter.github.io/ltertools/reference/site_subset.html</loc></url>
+<url><loc>https://lter.github.io/ltertools/reference/site_timeline.html</loc></url>
+<url><loc>https://lter.github.io/ltertools/reference/solar_day_info.html</loc></url>
 </urlset>
+
