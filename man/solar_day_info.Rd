@@ -30,9 +30,10 @@ solar_day_info(
 For all days between the specified start and end date, identify the time of sunrise, sunset, and solar noon (in UTC) as well as the day length. The idea for this function was contributed by \href{https://luquillo.lter.network/}{Miguel C. Leon} and a Python equivalent lives in the Luquillo site's \href{https://github.com/LUQ-LTER/LUQ-general-utils}{LUQ-general-utils GitHub repository}.
 }
 \examples{
+\dontrun{
 # Identify day information in Santa Barbara (California) for one week
 solar_day_info(lat = 34.416857, lon = -119.712777, 
                start_date = "2022-02-07", end_date = "2022-02-12", 
                quiet = TRUE)
-
+}
 }

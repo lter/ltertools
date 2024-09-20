@@ -15,11 +15,12 @@
 #' @export
 #' 
 #' @examples
+#' \dontrun{
 #' # Identify day information in Santa Barbara (California) for one week
 #' solar_day_info(lat = 34.416857, lon = -119.712777, 
 #'                start_date = "2022-02-07", end_date = "2022-02-12", 
 #'                quiet = TRUE)
-#' 
+#' }
 solar_day_info <- function(lat = NULL, lon = NULL, 
                            start_date = NULL, end_date = NULL, 
                            quiet = FALSE){
