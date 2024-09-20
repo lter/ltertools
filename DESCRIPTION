@@ -11,7 +11,7 @@ Authors@R: c(
     person(given = "Angel", family = "Chen",
           role = c("aut"),
           email = "anchen@nceas.ucsb.edu",
-          comment = "angelchen7.github.io"),
+          comment = "https://angelchen7.github.io"),
     person(given = "Miguel C.", family = "Leon",
            role = c("ctb"),
            comment = "https://luquillo.lter.network/"),

@@ -21,7 +21,7 @@ Useful links:
 
 Authors:
 \itemize{
-  \item Angel Chen \email{anchen@nceas.ucsb.edu} (angelchen7.github.io)
+  \item Angel Chen \email{anchen@nceas.ucsb.edu} (https://angelchen7.github.io)
 }
 
 Other contributors:
