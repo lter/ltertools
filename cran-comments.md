@@ -1,30 +1,11 @@
 ## R CMD Check Results
 
-0 errors | 0 warnings | 2 notes
-
-Note 1: `devtools::check_rhub()` returns this note:
-
-```
-* checking for detritus in the temp directory ... NOTE
-Found the following files/directories:
-  'lastMiKTeXException'
-```
-
-As noted in [R-hub issue #503](https://github.com/r-hub/rhub/issues/503), this could be due to a bug/crash in MiKTeX and can likely be ignored.
-
-Note 2: `devtools::check_rhub()` also returns this note:
-
-```
-checking for non-standard things in the check directory ... NOTE
-  Found the following files/directories:
-    ''NULL''
-```
-
-[R-hub issue #560](https://github.com/r-hub/rhub/issues/560) indicates that this note can also is not related to any issue with this package and can be ignored.
+0 errors | 0 warnings | 0 notes
 
 ### Changes per CRAN Reviewer Instructions
 
-- No requested changes for this version of the package
+- Wrapped `solar_day_info` example in `dontrun` because it runs for too long (>5 sec) on debian.
+- Changed how authors are listed in DESCRIPTION to fix mismatch between `Author` and `Authors@R`
 
 ## Downstream dependencies
 
