@@ -4,8 +4,7 @@
 
 ### Changes per CRAN Reviewer Instructions
 
-- Wrapped `solar_day_info` example in `dontrun` because it runs for too long (>5 sec) on debian.
-- Changed how authors are listed in DESCRIPTION to fix mismatch between `Author` and `Authors@R`
+- No requested changes
 
 ## Downstream dependencies
 
