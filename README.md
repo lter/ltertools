@@ -43,6 +43,12 @@ devtools::install_github("lter/ltertools")
 As functions are added to the package they will be briefly summarized
 below and attributed to their author(s)
 
+### Reproducibility
+
+- **`make_json`** – creates a JSON containing name/value pairs from a
+  named vector. If desired, can also add the created JSON’s filename to
+  the .gitignore (if one exists in the working directory)
+
 ### Harmonization
 
 - **`begin_key`** – creates the first two columns of a ‘column key’
