@@ -7,22 +7,18 @@ Authors@R: c(
     person(given = "Nicholas", family = "Lyon",
           role = c("aut", "cre"),
           email = "lyon@nceas.ucsb.edu",
-          comment = c(ORCID = "0000-0003-3905-1078",
-                     Website = "https://njlyon0.github.io/")),
+          comment = "https://njlyon0.github.io/"),
     person(given = "Angel", family = "Chen",
           role = c("aut"),
           email = "anchen@nceas.ucsb.edu",
-          comment = c(ORCID = "0000-0003-3515-6710",
-                      Website = "angelchen7.github.io")),
+          comment = "angelchen7.github.io"),
     person(given = "Miguel C.", family = "Leon",
            role = c("ctb"),
-           comment = c(ORCID = "0000-0003-1260-9449",
-                       Website = "https://luquillo.lter.network/")),
+           comment = "https://luquillo.lter.network/"),
     person(family = "National Science Foundation",
            role = "fnd",
            comment = "NSF 1929393, 09/01/2019 - 08/31/2024"),
-    person(family = "University of California, Santa Barbara",
-           role = "cph") )
+    person(family = "University of California, Santa Barbara", role = "cph") )
 Maintainer: Nicholas Lyon <lyon@nceas.ucsb.edu>
 Description: Set of the data science tools created by various members of the Long Term 
     Ecological Research (LTER) community. These functions were initially written largely 
