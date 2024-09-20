@@ -22,9 +22,20 @@ test_that("Only accepts correct inputs", {
 })
 
 # Warning testing
-# test_that("Warnings are returned",{
-#   # This function contains no warnings (currently)
-# })
+test_that("Warnings are returned",{
+  
+  # Create contents
+  my_info <- c("data_path" = "Users/me/documents/my_project/data")
+  
+  # Generate a local folder for exporting
+  temp_folder <- tempdir()
+  
+  # Create a JSON with those contents
+  expect_warning(make_json(x = my_info, file = file.path(temp_folder, "user.json"), git_ignore = "x"))
+  
+  # Delete files post-testing
+  unlink(temp_folder, recursive = TRUE)
+})
 
 # Output testing
 test_that("Outputs are correct", {
