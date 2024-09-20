@@ -4,8 +4,9 @@
 #' 
 #' @param x (character) named vector from which to generate JSON content. Vector elements become JSON values and the vector element names become JSON names. A named vector can be created like so: `c("greeting" = "hello", "farewell" = "goodbye")`. The characters on the left of the equal signs are names and the characters on the right are values.
 #' @param file (character) name of JSON file to create with contents provided to `x`. Must end with ".json"
+#' @param git_ignore (logical) whether to add the file name (defined in `file`) to the '.gitignore' if one exists. Defaults to FALSE
 #' 
-#' @return nothing. Called for side-effects (i.e., creating JSON file)
+#' @return Nothing. Called for side-effects (i.e., creating JSON file)
 #' 
 #' @export
 #' 
@@ -17,12 +18,12 @@
 #' temp_folder <- tempdir()
 #' 
 #' # Create a JSON with those contents
-#' make_json(x = my_info, file = file.path(temp_folder, "user.json"))
+#' make_json(x = my_info, file = file.path(temp_folder, "user.json"), git_ignore = FALSE)
 #' 
 #' # Read it back in
 #' (user_info <- RJSONIO::fromJSON(content = file.path(temp_folder, "user.json")))
 #' 
-make_json <- function(x = NULL, file = NULL){
+make_json <- function(x = NULL, file = NULL, git_ignore = FALSE){
   
   # Error for null and/or non-character 'x' argument
   if(is.null(x) == TRUE || is.character(x) != TRUE)
@@ -53,10 +54,37 @@ make_json <- function(x = NULL, file = NULL){
   
   # Error for non-JSON file name (in 'file')
   if(tools::file_ext(x = file) != "json")
-    stop("'file' must end in '.json'")
+    stop("`file` must end in '.json'")
+  
+  # Warning for malformed logical
+  if(is.logical(git_ignore) != TRUE){
+    warning("`git_ignore` must be a logical. Coercing to FALSE")
+    git_ignore <- FALSE }
   
   # Transform contents to JSON format
   json_content <- RJSONIO::toJSON(x = x)
   
   # Export
-  write(x = json_content, file = file) }
+  write(x = json_content, file = file)
+  
+  # If desired, add 'file' to .gitignore
+  if(git_ignore == TRUE){
+    
+    # Give warning & skip if no .gitignore is found
+    if(file.exists(".gitignore") != TRUE){
+      warning("No '.gitignore' file found in working directory.\nNothing added to file.")
+      
+      # If .gitignore' *is* found...
+    } else {
+      
+      # Read in .gitignore
+      ignore_v1 <- readLines(con = ".gitignore")
+      
+      # Add file
+      ignore_v2 <- c(ignore_v1, "", basename(file))
+      
+      # Save it out
+      write(x = ignore_v2, file = ".gitignore")
+    }
+  }
+}
