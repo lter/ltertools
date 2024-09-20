@@ -3,7 +3,7 @@ Type: Package
 Title: Tools Developed by the Long Term Ecological Research Community
 Version: 1.1.0
 Date: 2024-09-20
-Authors@R: c(
+Author: c(
     person(given = "Nicholas", family = "Lyon",
           role = c("aut", "cre"),
           email = "lyon@nceas.ucsb.edu",

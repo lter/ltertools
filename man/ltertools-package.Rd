@@ -16,20 +16,4 @@ Useful links:
 }
 
 }
-\author{
-\strong{Maintainer}: Nicholas Lyon \email{lyon@nceas.ucsb.edu} (\href{https://orcid.org/0000-0003-3905-1078}{ORCID}) (https://njlyon0.github.io/)
-
-Authors:
-\itemize{
-  \item Angel Chen \email{anchen@nceas.ucsb.edu} (\href{https://orcid.org/0000-0003-3515-6710}{ORCID}) (angelchen7.github.io)
-}
-
-Other contributors:
-\itemize{
-  \item Miguel C. Leon (\href{https://orcid.org/0000-0003-1260-9449}{ORCID}) (https://luquillo.lter.network/) [contributor]
-  \item  National Science Foundation (NSF 1929393, 09/01/2019 - 08/31/2024) [funder]
-  \item  University of California, Santa Barbara [copyright holder]
-}
-
-}
 \keyword{internal}
