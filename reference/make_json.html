@@ -40,7 +40,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_json</span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, file <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_json</span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, file <span class="op">=</span> <span class="cn">NULL</span>, git_ignore <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -54,10 +54,14 @@
 <dt id="arg-file">file<a class="anchor" aria-label="anchor" href="#arg-file"></a></dt>
 <dd><p>(character) name of JSON file to create with contents provided to <code>x</code>. Must end with ".json"</p></dd>
 
+
+<dt id="arg-git-ignore">git_ignore<a class="anchor" aria-label="anchor" href="#arg-git-ignore"></a></dt>
+<dd><p>(logical) whether to add the file name (defined in <code>file</code>) to the '.gitignore' if one exists. Defaults to FALSE</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>nothing. Called for side-effects (i.e., creating JSON file)</p>
+    <p>Nothing. Called for side-effects (i.e., creating JSON file)</p>
     </div>
 
     <div class="section level2">
@@ -69,7 +73,7 @@
 <span class="r-in"><span><span class="va">temp_folder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Create a JSON with those contents</span></span></span>
-<span class="r-in"><span><span class="fu">make_json</span><span class="op">(</span>x <span class="op">=</span> <span class="va">my_info</span>, file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">temp_folder</span>, <span class="st">"user.json"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">make_json</span><span class="op">(</span>x <span class="op">=</span> <span class="va">my_info</span>, file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">temp_folder</span>, <span class="st">"user.json"</span><span class="op">)</span>, git_ignore <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Read it back in</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">user_info</span> <span class="op">&lt;-</span> <span class="fu">RJSONIO</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/RJSONIO/man/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span>content <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">temp_folder</span>, <span class="st">"user.json"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>

@@ -36,7 +36,7 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.0.0.900" id="ltertools-version-100900">ltertools Version 1.0.0.900<a class="anchor" aria-label="anchor" href="#ltertools-version-100900"></a></h2>
 <p>Development version of <code>ltertools</code>. There are no ERRORs, WARNINGs, or NOTEs returned by <code>devtools::check()</code>. Changes from latest release will be listed here as they are made.</p>
-<ul><li>New function: <code>make_json</code> creates a JSON containing name/value pairs from a named vector</li>
+<ul><li>New function: <code>make_json</code> creates a JSON containing name/value pairs from a named vector. Optionally adds the JSON file name to the ‘gitignore’ (if one can be found in the working directory)</li>
 <li>New function: <code>solar_day_info</code> identifies sunrise, sunset, solar noon, and day length for all dates within a user-specified range at particular coordinates</li>
 <li>Function update: <code>harmonize</code> now includes new defensive warning/error checks with informative messages for likely sources of error</li>
 <li>Unit tests added for all functions currently in package. Likely limited impact on users except better adherence to best practice will make for a stronger package in the long run</li>
