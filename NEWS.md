@@ -2,7 +2,7 @@
 
 Development version of `ltertools`. There are no ERRORs, WARNINGs, or NOTEs returned by `devtools::check()`. Changes from latest release will be listed here as they are made.
 
-- New function: `make_json` creates a JSON containing name/value pairs from a named vector
+- New function: `make_json` creates a JSON containing name/value pairs from a named vector. Optionally adds the JSON file name to the 'gitignore' (if one can be found in the working directory)
 - New function: `solar_day_info` identifies sunrise, sunset, solar noon, and day length for all dates within a user-specified range at particular coordinates
 - Function update: `harmonize` now includes new defensive warning/error checks with informative messages for likely sources of error
 - Unit tests added for all functions currently in package. Likely limited impact on users except better adherence to best practice will make for a stronger package in the long run
