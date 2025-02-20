@@ -2,7 +2,7 @@
 
 This is the development version; changes will be listed as they are made.
 
-- No changes (yet) from preceding version
+- New function: `expand_key` generates rows for a column key for only raw data files that are not already in an existing key or in an existing harmonized data table
 
 ## ltertools Version 1.1.0
 
