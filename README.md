@@ -59,6 +59,10 @@ below and attributed to their author(s)
   recommend using the `begin_key` to start the creation of a column key
   to make sure the formatting requirements of this function are met
 
+- **`expand_key`** – makes a correctly-formatted section of a column key
+  for only those raw data files not already in the existing key object
+  and/or in the harmonized data table
+
 ### Data Wrangling
 
 - **`read`** – Reads in all files of specified types in a particular
