@@ -50,9 +50,6 @@ utils::write.csv(x = df2, file = file.path(temp_folder, "df2.csv"), row.names = 
 # Generate a column key with "guesses" at tidy column names
 key1 <- ltertools::begin_key(raw_folder = temp_folder, data_format = "csv", guess_tidy = TRUE)
 
-# Export this locally to the temp folder
-utils::write.csv(x = key1, file = file.path(temp_folder, "key1.csv"), row.names = FALSE)
-
 # Harmonize the data
 harmony <- ltertools::harmonize(key = key1, raw_folder = temp_folder)
 
