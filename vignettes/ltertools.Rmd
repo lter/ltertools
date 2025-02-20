@@ -62,7 +62,11 @@ df <- read.csv(file = file.path(user_info$data_path, "data_2024.csv"))
 
 The LTER Network is hypothesis-driven with a focus on long term data from sites in the network. This results in data that may reasonably be compared but are--potentially--quite differently formatted based on the logic of the investigators responsible for each dataset. Data harmonization (the process of resolving these formatting inconsistencies to facilitate combination/comparison across projects) is therefore a significant hurdle for many projects using LTER data. We suggest a "column key"-based approach that has the potential to _greatly_ simplify harmonization efforts.
 
-This method requires researchers to develop a 3-column key that contains (1) the name of each raw data file to be harmonized, (2) the name of all of the columns in each of those files, and (3) the "tidy name" that corresponds to each raw column name. Each dataset can then be read in and have its raw names replaced with the tidy ones specified in the key. Once this has been done to all files in the specified folder, they can be combined by their newly consistent column names.
+This method requires researchers to develop a 3-column key that contains (1) the name of each raw data file to be harmonized, (2) the name of all of the columns in each of those files, and (3) the "tidy name" that corresponds to each raw column name. Each dataset can then be read in and have its raw names replaced with the tidy ones specified in the key. Once this has been done to all files in the specified folder, they can be combined by their newly consistent column names. A visual version of this column key approach to harmonization is included for convenience here:
+
+<p align="center">
+<img src="harmonize-workflow.png" alt="Four color-coded tables are in a soft rectangle. One is pulled out and its column names are replaced based on their respective 'tidy names' in the column key table. This is done for each of the other tables then the four tables--with fixed column names--are combined into a single data table" width="100%">
+</p>
 
 To demonstrate this workflow, we will need to create some example data tables and export them to a temporary directory (so that they can be read back in as is required by the harmonization functions).
 
@@ -103,11 +107,11 @@ With some example files and a key object generated, we can now demonstrate the a
 
 ```{r harmonize}
 # Use the key to harmonize our example data
-harmony_df <- ltertools::harmonize(key = key_obj, raw_folder = temp_folder, 
-                                   data_format = "csv", quiet = TRUE)
+harmony <- ltertools::harmonize(key = key_obj, raw_folder = temp_folder, 
+                                data_format = "csv", quiet = TRUE)
 
 # Check the structure of that
-utils::str(harmony_df)
+utils::str(harmony)
 ```
 
 For users that want help generating the column key, we have created the `begin_key` function. This function accepts the raw folder and data format arguments included in `harmonize` with an additional (optional) `guess_tidy` argument. If `TRUE`, that argument attempts to "guess" the desired tidy name for each raw column name; it does this by standardizing casing and removing special characters. This may be ideal if you anticipate that many of your raw data files only differ in casing/special characters rather than being phrased incompatibly. For our example here we'll allow the key to "guess".
@@ -121,11 +125,20 @@ test_key <- ltertools::begin_key(raw_folder = temp_folder, data_format = "csv",
 test_key
 ```
 
-A visual version of this column key approach to harmonization is included for convenience here:
+Users that have already embraced `harmonize` may want to add a 'batch' of new raw data files to an existing key. In such cases, `begin_key` _can_ work but it is cumnbersome to need to manually sort through for only the new rows to add to your existing column key. The `expand_key` function exists to simplify this process. It creates an output much like that of `begin_key` but it only includes rows for data files that are not already in (A) the existing key object or (B) the harmonized data object.
 
-<p align="center">
-<img src="harmonize-workflow.png" alt="Four color-coded tables are in a soft rectangle. One is pulled out and its column names are replaced based on their respective 'tidy names' in the column key table. This is done for each of the other tables then the four tables--with fixed column names--are combined into a single data table" width="100%">
-</p>
+```{r expand-key}
+# Make another simple 'raw' file
+df3 <- data.frame("xx" = c(10:15),
+                  "letters" = letters[10:15])
+
+# Export this locally to the temp folder too
+utils::write.csv(x = df3, file = file.path(temp_folder, "df3.csv"), row.names = FALSE)
+
+# Identify what needs to be added to the existing column key
+ltertools::expand_key(key = key_obj, raw_folder = temp_folder, harmonized_df = harmony,
+                      data_format = "csv", guess_tidy = TRUE)
+```
 
 ### Wrangling
 
@@ -134,7 +147,7 @@ Sometimes it is convenient to read in all of the data files from a specified fol
 We can demonstrate this with the test CSVs we created to demonstrate the harmonization workflow earlier.
 
 ```{r read}
-# Read in all (both) of the CSVs that we created above
+# Read in all of the CSVs that we created above
 data_list <- ltertools::read(raw_folder = temp_folder, data_format = "csv")
 
 # Check the structure of that
