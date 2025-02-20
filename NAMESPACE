@@ -3,6 +3,7 @@
 export(begin_key)
 export(convert_temp)
 export(cv)
+export(expand_key)
 export(harmonize)
 export(make_json)
 export(read)
