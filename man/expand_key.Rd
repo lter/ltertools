@@ -29,3 +29,42 @@ expand_key(
 \description{
 Data discovery--and harmonization--is an iterative process. For those already depending upon a column key and the \code{harmonize} function, it can be cumbersome to add rows to an existing column key. This function formats rows for an existing column key for only datasets that are not already (A) in the column key or (B) in the harmonized data table.
 }
+\examples{
+# Generate two simple tables
+## Dataframe 1
+df1 <- data.frame("xx" = c(1:3),
+                  "unwanted" = c("not", "needed", "column"),
+                  "yy" = letters[1:3])
+## Dataframe 2
+df2 <- data.frame("LETTERS" = letters[4:7],
+                  "NUMBERS" = c(4:7),
+                  "BONUS" = c("plantae", "animalia", "fungi", "protista"))
+
+# Generate a local folder for exporting
+temp_folder <- tempdir()
+
+# Export both files to that folder
+utils::write.csv(x = df1, file = file.path(temp_folder, "df1.csv"), row.names = FALSE)
+utils::write.csv(x = df2, file = file.path(temp_folder, "df2.csv"), row.names = FALSE)
+
+# Generate a column key with "guesses" at tidy column names
+key1 <- ltertools::begin_key(raw_folder = temp_folder, data_format = "csv", guess_tidy = TRUE)
+
+# Export this locally to the temp folder
+utils::write.csv(x = key1, file = file.path(temp_folder, "key1.csv"), row.names = FALSE)
+
+# Harmonize the data
+harmony <- ltertools::harmonize(key = key1, raw_folder = temp_folder)
+
+# Make a new data file
+df3 <- data.frame("xx" = c(10:15),
+                  "letters" = letters[10:15])
+
+# Export this locally to the temp folder too
+utils::write.csv(x = df3, file = file.path(temp_folder, "df3.csv"), row.names = FALSE)
+
+# Identify what needs to be added to the existing column key
+ltertools::expand_key(key = key1, raw_folder = temp_folder, harmonized_df = harmony,
+                      data_format = "csv", guess_tidy = TRUE)
+
+}
