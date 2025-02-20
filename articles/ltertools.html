@@ -8,8 +8,8 @@
 <title>ltertools Vignette • ltertools</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="ltertools Vignette">
 </head>
 <body>
@@ -137,7 +137,11 @@ name of all of the columns in each of those files, and (3) the “tidy
 name” that corresponds to each raw column name. Each dataset can then be
 read in and have its raw names replaced with the tidy ones specified in
 the key. Once this has been done to all files in the specified folder,
-they can be combined by their newly consistent column names.</p>
+they can be combined by their newly consistent column names. A visual
+version of this column key approach to harmonization is included for
+convenience here:</p>
+<p align="center">
+<img src="harmonize-workflow.png" alt="Four color-coded tables are in a soft rectangle. One is pulled out and its column names are replaced based on their respective 'tidy names' in the column key table. This is done for each of the other tables then the four tables--with fixed column names--are combined into a single data table" width="100%"></p>
 <p>To demonstrate this workflow, we will need to create some example
 data tables and export them to a temporary directory (so that they can
 be read back in as is required by the harmonization functions).</p>
@@ -190,11 +194,11 @@ argument that will silence messages about key-to-data mismatches (either
 expected-but-missing column names or unexpected columns).</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Use the key to harmonize our example data</span></span>
-<span><span class="va">harmony_df</span> <span class="op">&lt;-</span> <span class="fu">ltertools</span><span class="fu">::</span><span class="fu"><a href="../reference/harmonize.html">harmonize</a></span><span class="op">(</span>key <span class="op">=</span> <span class="va">key_obj</span>, raw_folder <span class="op">=</span> <span class="va">temp_folder</span>, </span>
-<span>                                   data_format <span class="op">=</span> <span class="st">"csv"</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">harmony</span> <span class="op">&lt;-</span> <span class="fu">ltertools</span><span class="fu">::</span><span class="fu"><a href="../reference/harmonize.html">harmonize</a></span><span class="op">(</span>key <span class="op">=</span> <span class="va">key_obj</span>, raw_folder <span class="op">=</span> <span class="va">temp_folder</span>, </span>
+<span>                                data_format <span class="op">=</span> <span class="st">"csv"</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Check the structure of that</span></span>
-<span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">harmony_df</span><span class="op">)</span></span>
+<span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">harmony</span><span class="op">)</span></span>
 <span><span class="co">#&gt; tibble [7 × 4] (S3: tbl_df/tbl/data.frame)</span></span>
 <span><span class="co">#&gt;  $ source : chr [1:7] "df1.csv" "df1.csv" "df1.csv" "df2.csv" ...</span></span>
 <span><span class="co">#&gt;  $ numbers: chr [1:7] "1" "2" "3" "4" ...</span></span>
@@ -224,10 +228,28 @@ the key to “guess”.</p>
 <span><span class="co">#&gt; 4 df2.csv  LETTERS   letters</span></span>
 <span><span class="co">#&gt; 5 df2.csv  NUMBERS   numbers</span></span>
 <span><span class="co">#&gt; 6 df2.csv    BONUS     bonus</span></span></code></pre></div>
-<p>A visual version of this column key approach to harmonization is
-included for convenience here:</p>
-<p align="center">
-<img src="harmonize-workflow.png" alt="Four color-coded tables are in a soft rectangle. One is pulled out and its column names are replaced based on their respective 'tidy names' in the column key table. This is done for each of the other tables then the four tables--with fixed column names--are combined into a single data table" width="100%"></p>
+<p>Users that have already embraced <code>harmonize</code> may want to
+add a ‘batch’ of new raw data files to an existing key. In such cases,
+<code>begin_key</code> <em>can</em> work but it is cumnbersome to need
+to manually sort through for only the new rows to add to your existing
+column key. The <code>expand_key</code> function exists to simplify this
+process. It creates an output much like that of <code>begin_key</code>
+but it only includes rows for data files that are not already in (A) the
+existing key object or (B) the harmonized data object.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Make another simple 'raw' file</span></span>
+<span><span class="va">df3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">"xx"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span><span class="op">:</span><span class="fl">15</span><span class="op">)</span>,</span>
+<span>                  <span class="st">"letters"</span> <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">10</span><span class="op">:</span><span class="fl">15</span><span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Export this locally to the temp folder too</span></span>
+<span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.csv</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">df3</span>, file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">temp_folder</span>, <span class="st">"df3.csv"</span><span class="op">)</span>, row.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Identify what needs to be added to the existing column key</span></span>
+<span><span class="fu">ltertools</span><span class="fu">::</span><span class="fu"><a href="../reference/expand_key.html">expand_key</a></span><span class="op">(</span>key <span class="op">=</span> <span class="va">key_obj</span>, raw_folder <span class="op">=</span> <span class="va">temp_folder</span>, harmonized_df <span class="op">=</span> <span class="va">harmony</span>,</span>
+<span>                      data_format <span class="op">=</span> <span class="st">"csv"</span>, guess_tidy <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    source raw_name tidy_name</span></span>
+<span><span class="co">#&gt; 1 df3.csv       xx        xx</span></span>
+<span><span class="co">#&gt; 2 df3.csv  letters   letters</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="wrangling">Wrangling<a class="anchor" aria-label="anchor" href="#wrangling"></a>
@@ -240,13 +262,13 @@ Users may specify the data format or formats they wish to read in.
 Currently, <code>read</code> supports CSV, TXT, XLS, and XLSX files.</p>
 <p>We can demonstrate this with the test CSVs we created to demonstrate
 the harmonization workflow earlier.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Read in all (both) of the CSVs that we created above</span></span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Read in all of the CSVs that we created above</span></span>
 <span><span class="va">data_list</span> <span class="op">&lt;-</span> <span class="fu">ltertools</span><span class="fu">::</span><span class="fu"><a href="../reference/read.html">read</a></span><span class="op">(</span>raw_folder <span class="op">=</span> <span class="va">temp_folder</span>, data_format <span class="op">=</span> <span class="st">"csv"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Check the structure of that</span></span>
 <span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">data_list</span><span class="op">)</span></span>
-<span><span class="co">#&gt; List of 2</span></span>
+<span><span class="co">#&gt; List of 3</span></span>
 <span><span class="co">#&gt;  $ df1.csv:'data.frame': 3 obs. of  3 variables:</span></span>
 <span><span class="co">#&gt;   ..$ xx      : int [1:3] 1 2 3</span></span>
 <span><span class="co">#&gt;   ..$ unwanted: chr [1:3] "not" "needed" "column"</span></span>
@@ -254,13 +276,16 @@ the harmonization workflow earlier.</p>
 <span><span class="co">#&gt;  $ df2.csv:'data.frame': 4 obs. of  3 variables:</span></span>
 <span><span class="co">#&gt;   ..$ LETTERS: chr [1:4] "d" "e" "f" "g"</span></span>
 <span><span class="co">#&gt;   ..$ NUMBERS: int [1:4] 4 5 6 7</span></span>
-<span><span class="co">#&gt;   ..$ BONUS  : chr [1:4] "plantae" "animalia" "fungi" "protista"</span></span></code></pre></div>
+<span><span class="co">#&gt;   ..$ BONUS  : chr [1:4] "plantae" "animalia" "fungi" "protista"</span></span>
+<span><span class="co">#&gt;  $ df3.csv:'data.frame': 6 obs. of  2 variables:</span></span>
+<span><span class="co">#&gt;   ..$ xx     : int [1:6] 10 11 12 13 14 15</span></span>
+<span><span class="co">#&gt;   ..$ letters: chr [1:6] "j" "k" "l" "m" ...</span></span></code></pre></div>
 <p>On a different note, the <code>solar_day_info</code> function allows
 you to identify the time of sunrise, sunset, and solar noon (as well as
 the total length of the day) for each day between a specified start and
 end date at a set of latitude/longitude coordinates. All times are in
 UTC and the information retrieved is returned as a dataframe.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Identify day information in Santa Barbara (California) for one week</span></span>
 <span><span class="fu"><a href="../reference/solar_day_info.html">solar_day_info</a></span><span class="op">(</span>lat <span class="op">=</span> <span class="fl">34.41</span>, lon <span class="op">=</span> <span class="op">-</span><span class="fl">119.71</span>, </span>
 <span>               start_date <span class="op">=</span> <span class="st">"2022-02-07"</span>, end_date <span class="op">=</span> <span class="st">"2022-02-12"</span>, </span>
@@ -279,7 +304,7 @@ calculates the coefficient of variation (standard deviation divided by
 mean) for a vector of numbers. Because <code>sd</code> and
 <code>mean</code> both support an argument for defining how missing
 values are handled, our <code>cv</code> function does as well.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Calculate CV (excluding missing values)</span></span>
 <span><span class="fu">ltertools</span><span class="fu">::</span><span class="fu"><a href="../reference/cv.html">cv</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>, na_rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0.1557461</span></span></code></pre></div>
@@ -289,7 +314,7 @@ specify the values to convert, their current units, and the units to
 which you would like to convert and the function will perform the needed
 arithmetic. Units are case-insensitive and support either the one-letter
 abbreviation or the full name of the unit.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Convert some temperatures from F to Kelvin</span></span>
 <span><span class="fu"><a href="../reference/convert_temp.html">convert_temp</a></span><span class="op">(</span>value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">32</span>, <span class="fl">110</span><span class="op">)</span>, from <span class="op">=</span> <span class="st">"Fahrenheit"</span>, to <span class="op">=</span> <span class="st">"k"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 255.3722 273.1500 316.4833</span></span></code></pre></div>
@@ -311,13 +336,13 @@ is support for a user-defined set of hexadecimal colors though by
 default an internal palette is used.</p>
 <p>Sites can be specified by their three letter site code or all sites
 in a particular habitat can be included.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Check the timeline for all grassland or forest LTER sites</span></span>
 <span><span class="fu">ltertools</span><span class="fu">::</span><span class="fu"><a href="../reference/site_timeline.html">site_timeline</a></span><span class="op">(</span>habitats <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"grassland"</span>, <span class="st">"forest"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ltertools_files/figure-html/site-timeline-1-1.png" width="672" style="display: block; margin: auto;"></p>
 <p>Running the function without specifying site codes or habitat types
 will result in a timeline of all active LTER sites.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Check the timeline for all LTER sites</span></span>
 <span><span class="fu">ltertools</span><span class="fu">::</span><span class="fu"><a href="../reference/site_timeline.html">site_timeline</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ltertools_files/figure-html/site-timeline-2-1.png" width="672" style="display: block; margin: auto;"></p>

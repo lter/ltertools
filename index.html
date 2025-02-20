@@ -8,8 +8,8 @@
 <title>Tools Developed by the Long Term Ecological Research Community • ltertools</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Tools Developed by the Long Term Ecological Research Community">
 <meta name="description" content="Set of the data science tools created by various members of the Long Term Ecological Research (LTER) community. These functions were initially written largely as standalone operations and have later been aggregated into this package.">
 <meta property="og:description" content="Set of the data science tools created by various members of the Long Term Ecological Research (LTER) community. These functions were initially written largely as standalone operations and have later been aggregated into this package.">
@@ -81,6 +81,7 @@
 <ul>
 <li><p><strong><code>begin_key</code></strong> – creates the first two columns of a ‘column key’ and–if the optional <code>guess_tidy</code> argument is set to <code>TRUE</code>–“guesses” at what the tidy names ‘should be’</p></li>
 <li><p><strong><code>harmonize</code></strong> – performs column key-based harmonization. We strongly recommend using the <code>begin_key</code> to start the creation of a column key to make sure the formatting requirements of this function are met</p></li>
+<li><p><strong><code>expand_key</code></strong> – makes a correctly-formatted section of a column key for only those raw data files not already in the existing key object and/or in the harmonized data table</p></li>
 </ul>
 </div>
 <div class="section level3">
