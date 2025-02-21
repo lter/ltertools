@@ -1,3 +1,9 @@
+## ltertools Version 1.2.0.900
+
+This is the development version; changes will be listed as they are made.
+
+- No changes (yet) from prior version
+
 ## ltertools Version 1.2.0
 
 There are no ERRORs, WARNINGs, or NOTEs returned by `devtools::check()`.
