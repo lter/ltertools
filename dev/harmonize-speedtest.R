@@ -1,5 +1,5 @@
 # Load needed libraries
-librarian::shelf(tidyverse, supportR, microbenchmark)
+librarian::shelf(tidyverse, supportR, microbenchmark, parallel)
 
 # Clear enviro.
 rm(list = ls()); gc()
@@ -202,11 +202,17 @@ harm_v3 <- function(key = NULL, raw_folder = NULL, data_format = c("csv", "txt",
     message("Following files found in raw path but not in key:")
     print(paste0("'", unk_files, "'", collapse = " & ")) }
   
-  # Standardize each data file
-  list_std <- purrr::map(.x = names(list_orig), 
-                         .f = ~ standardize(focal_file = .x, 
-                                            key = key_actual, 
-                                            df_list = list_orig))
+  # Standardize each data file (parallelized processing)
+  list_std <- parallel::mclapply(X = names(list_orig),
+                                 FUN = standardize,
+                                 key = key_actual, 
+                                 df_list = list_orig,
+                                 mc.cores = parallel::detectCores())
+  # 
+  # list_std <- purrr::map(.x = names(list_orig), 
+  #                        .f = ~ standardize(focal_file = .x, 
+  #                                           key = key_actual, 
+  #                                           df_list = list_orig))
   
   # Flatten to dataframe
   harmonized_df <- purrr::list_rbind(x = list_std)
@@ -255,13 +261,17 @@ microbenchmark::microbenchmark(
 
 
 
-
-
-
 # March 25, 2025 -- Speed Test Results:
+
+
+
+
 ## ver.    min        lq         mean       median    uq        max       neval  cld
 ## old     19.092555  20.321357  21.38437   21.12428  22.02792  24.84271  10     a 
-## new     8.268508   8.832298   12.50106   12.60813  15.14380  19.88797  10     b
+## v2     8.268508   8.832298   12.50106   12.60813  15.14380  19.88797  10     b
+
+
+
 
 
 
