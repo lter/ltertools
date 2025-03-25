@@ -109,129 +109,6 @@ harm_v2 <- function(key = NULL, raw_folder = NULL, data_format = c("csv", "txt",
 # dplyr::glimpse(test_out[1:50])
 
 ## ----------------------------- ##
-# Develop V3 ----
-## ----------------------------- ##
-
-# # Read in data
-# raw_list <- ltertools::read(raw_folder = file.path("dev", "test-data"))
-# dplyr::glimpse(raw_list[[1]])
-
-# Define separate standardization function
-## Centralizes the 'per file' standardization prerequisite to harmonization
-standardize <- function(focal_file = NULL, key = NULL, df_list = NULL){
-  
-  # Grab single key/data component
-  focal_key <- dplyr::filter(key, source == focal_file)
-  focal.df_orig <- df_list[[focal_file]]
-  
-  # Identify any columns in the column key but apparently not in the data
-  missing_cols <- base::setdiff(x = unique(focal_key$raw_name),
-                                y = names(focal.df_orig))
-  
-  # Warn the user if any are found (this is a warning so no `quiet` argument used)
-  if(length(missing_cols) > 0){
-    warning(message = paste0("Following columns in key NOT found in '", focal_file, "': '", missing_cols, "'", collapse = " & ")) }
-  
-  # Standardize this dataset
-  focal.df_std <- focal.df_orig %>% 
-    # Keep only columns with tidy equivalents
-    dplyr::select(dplyr::all_of(unique(focal_key$raw_name))) %>% 
-    # Make all columns characters
-    dplyr::mutate(dplyr::across(.cols = dplyr::everything(),
-                                .fns = as.character)) %>% 
-    # Add a filename column
-    dplyr::mutate(source = focal_file, .before = dplyr::everything()) %>% 
-    # Standardize names with key
-    supportR::safe_rename(data = ., bad_names = focal_key$raw_name,
-                          good_names = focal_key$tidy_name)
-  
-  # Return the standard object
-  return(focal.df_std) }
-
-# # Check that function
-# dplyr::glimpse(standardize(focal_file = names(raw_list[10]),
-#                            key = key_obj %>% 
-#                              dplyr::select(source, raw_name, tidy_name) %>% 
-#                              dplyr::filter(is.na(tidy_name) != TRUE & nchar(tidy_name) > 0) %>% 
-#                              dplyr::distinct(),
-#                            df_list = raw_list))
-
-# Define new function
-harm_v3 <- function(key = NULL, raw_folder = NULL, data_format = c("csv", "txt", "xls", "xlsx"), quiet = TRUE){
-  # Squelch 'visible bindings' NOTE
-  ## TBD
-  
-  # Error out if column key does not contain all needed information
-  if(all(c("source", "raw_name", "tidy_name") %in% names(key)) != TRUE)
-    stop("Column key must include 'source', 'raw_name' and 'tidy_name' columns")
-  
-  # Streamline the data key
-  key_actual <- key %>% 
-    dplyr::select(source, raw_name, tidy_name) %>% 
-    dplyr::filter(is.na(tidy_name) != TRUE & nchar(tidy_name) > 0) %>% 
-    dplyr::distinct()
-  
-  # Check for non-unique tidy names
-  key_test <- key_actual %>% 
-    dplyr::group_by(source) %>% 
-    dplyr::summarize(raw_ct = dplyr::n(),
-                     tidy_ct = length(unique(tidy_name))) %>% 
-    dplyr::filter(raw_ct != tidy_ct)
-  
-  # Error if any are found
-  if(nrow(key_test) != 0){
-    stop("Non-unique 'tidy_name' entries found within following dataset(s): ",
-         paste(key_test$source, collapse = " & ")) }
-  
-  # Read in all files in folder of specified type(s)
-  list_orig <- ltertools::read(raw_folder = raw_folder, data_format = data_format)
-  
-  # Collapse data formats into a 1-element vector
-  formats <- paste0(data_format, collapse = "|")
-  
-  # Identify available raw files *that are also present in the column key*
-  raw_files <- base::intersect(x = dir(path = raw_folder, pattern = formats),
-                               y = unique(key_actual$source))
-  
-  # Identify any files present but not in column key
-  unk_files <- base::setdiff(x = dir(path = raw_folder, pattern = formats),
-                             y = unique(key_actual$source))
-  
-  # If any are found and `quiet` isn't `TRUE`, report on these files
-  if(length(unk_files) != 0 & quiet != TRUE){
-    message("Following files found in raw path but not in key:")
-    print(paste0("'", unk_files, "'", collapse = " & ")) }
-  
-  # Standardize each data file (parallelized processing)
-  list_std <- parallel::mclapply(X = names(list_orig),
-                                 FUN = standardize,
-                                 key = key_actual, 
-                                 df_list = list_orig,
-                                 mc.cores = parallel::detectCores())
-  # 
-  # list_std <- purrr::map(.x = names(list_orig), 
-  #                        .f = ~ standardize(focal_file = .x, 
-  #                                           key = key_actual, 
-  #                                           df_list = list_orig))
-  
-  # Flatten to dataframe
-  harmonized_df <- purrr::list_rbind(x = list_std)
-  
-  # Return that
-  return(harmonized_df) }
-
-# # Read in key
-# key_obj <- read.csv(file = file.path("dev", "key.csv"))
-# dplyr::glimpse(key_obj)
-# 
-# # Invoke Function
-# test_out3 <- harm_v3(key = key_obj, raw_folder = file.path("dev", "test-data"),
-#                     data_format = "csv", quiet = F)
-# 
-# # Check structure
-# dplyr::glimpse(test_out3[1:50])
-
-## ----------------------------- ##
 # Speed Tests ----
 ## ----------------------------- ##
 
@@ -252,33 +129,12 @@ microbenchmark::microbenchmark(
   v2_harmony <- harm_v2(key = key_obj, raw_folder = file.path("dev", "test-data"),
                          data_format = "csv", quiet = F),
   
-  # V3
-  v3_harmony <- harm_v3(key = key_obj, raw_folder = file.path("dev", "test-data"),
-                        data_format = "csv", quiet = F),
-  
   # Number of times to test
   times = 10) # Close `microbenchmark`
 
-
-
 # March 25, 2025 -- Speed Test Results:
-
-
-
-
 ## ver.    min        lq         mean       median    uq        max       neval  cld
 ## old     19.092555  20.321357  21.38437   21.12428  22.02792  24.84271  10     a 
 ## v2     8.268508   8.832298   12.50106   12.60813  15.14380  19.88797  10     b
-
-
-
-
-
-
-# Error for non-unique 'tidy name values'
-
-
-
-
 
 # End ----
