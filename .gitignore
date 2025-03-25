@@ -62,6 +62,7 @@ docs
 # Ignore test data files
 dev/edi/
 dev/*.csv
+dev/*/*.csv
 dev/*.xls
 dev/*.txt
 dev/*.json
