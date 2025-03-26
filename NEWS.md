@@ -2,7 +2,7 @@
 
 This is the development version; changes will be listed as they are made.
 
-- No changes (yet) from prior version
+- Removed function: `make_json`. The most critical dependency of this function is being archived and a suitable replacement cannot be found. Consider making a simple CSV of information rather than a JSON
 
 ## ltertools Version 1.2.0
 
