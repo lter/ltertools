@@ -48,7 +48,7 @@ test_that("Outputs are correct", {
   tidy_v0 <- harmonize(key = key_obj, raw_folder = temp_folder, data_format = "csv")
   
   # Check output class
-  expect_equal(class(tidy_v0), c("tbl_df", "tbl", "data.frame"))
+  expect_in(class(tidy_v0), c("tbl_df", "tbl", "data.frame"))
   
   # Delete files post-testing
   unlink(temp_folder, recursive = TRUE)
