@@ -158,11 +158,11 @@ expected-but-missing column names or unexpected columns).</p>
 <span></span>
 <span><span class="co"># Check the structure of that</span></span>
 <span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">harmony</span><span class="op">)</span></span>
-<span><span class="co">#&gt; tibble [7 × 4] (S3: tbl_df/tbl/data.frame)</span></span>
-<span><span class="co">#&gt;  $ source : chr [1:7] "df1.csv" "df1.csv" "df1.csv" "df2.csv" ...</span></span>
-<span><span class="co">#&gt;  $ numbers: chr [1:7] "1" "2" "3" "4" ...</span></span>
-<span><span class="co">#&gt;  $ letters: chr [1:7] "a" "b" "c" "d" ...</span></span>
-<span><span class="co">#&gt;  $ kingdom: chr [1:7] NA NA NA "plantae" ...</span></span></code></pre></div>
+<span><span class="co">#&gt; 'data.frame':    7 obs. of  4 variables:</span></span>
+<span><span class="co">#&gt;  $ source : chr  "df1.csv" "df1.csv" "df1.csv" "df2.csv" ...</span></span>
+<span><span class="co">#&gt;  $ numbers: chr  "1" "2" "3" "4" ...</span></span>
+<span><span class="co">#&gt;  $ letters: chr  "a" "b" "c" "d" ...</span></span>
+<span><span class="co">#&gt;  $ kingdom: chr  NA NA NA "plantae" ...</span></span></code></pre></div>
 <p>For users that want help generating the column key, we have created
 the <code>begin_key</code> function. This function accepts the raw
 folder and data format arguments included in <code>harmonize</code> with
