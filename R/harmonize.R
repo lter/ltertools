@@ -49,7 +49,7 @@ harmonize <- function(key = NULL, raw_folder = NULL, data_format = c("csv", "txt
   raw_name <- NULL
   
   # Check / prepare provided key
-  key_actual <- check_key(key = key)
+  key_actual <- ltertools::check_key(key = key)
   
   # Read in all files in folder of specified type(s)
   list_orig <- ltertools::read(raw_folder = raw_folder, data_format = data_format)
@@ -70,9 +70,9 @@ harmonize <- function(key = NULL, raw_folder = NULL, data_format = c("csv", "txt
   
   # Standardize each data file
   list_std <- purrr::map(.x = known_files,
-                         .f = ~ standardize(focal_file = .x,
-                                            key = key_actual,
-                                            df_list = list_orig))
+                         .f = ~ ltertools::standardize(focal_file = .x,
+                                                       key = key_actual,
+                                                       df_list = list_orig))
   
   # Unlist the list
   harmonized_df <- purrr::list_rbind(x = list_std)

@@ -48,6 +48,6 @@ key_obj <- data.frame("source" = c(rep("df1.csv", 3),
                     "tidy_name" = c("numbers", NA, "letters",
                                     "letters", "numbers", "kingdom"))
 # Standardize one dataset
-standardize(focal_file = "df1.csv", key = key_obj, df_list = data_list)      
+ltertools::standardize(focal_file = "df1.csv", key = key_obj, df_list = data_list)      
 
 }

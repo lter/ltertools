@@ -20,7 +20,7 @@
 #'                                     "letters", "numbers", "kingdom"))
 #' 
 #' # Check it
-#' check_key(key = key_obj)
+#' ltertools::check_key(key = key_obj)
 #' 
 check_key <- function(key = NULL){
   # Squelch 'visible bindings' NOTE

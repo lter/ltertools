@@ -25,6 +25,6 @@ key_obj <- data.frame("source" = c(rep("df1.csv", 3),
                                     "letters", "numbers", "kingdom"))
 
 # Check it
-check_key(key = key_obj)
+ltertools::check_key(key = key_obj)
 
 }

@@ -41,7 +41,7 @@
 #'                     "tidy_name" = c("numbers", NA, "letters",
 #'                                     "letters", "numbers", "kingdom"))
 #' # Standardize one dataset
-#' standardize(focal_file = "df1.csv", key = key_obj, df_list = data_list)      
+#' ltertools::standardize(focal_file = "df1.csv", key = key_obj, df_list = data_list)      
 #'
 standardize <- function(focal_file = NULL, key = NULL, df_list = NULL){
   # Squelch visible bindings note
