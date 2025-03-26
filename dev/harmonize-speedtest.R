@@ -256,6 +256,13 @@ microbenchmark::microbenchmark(
   # Number of times to test
   times = 15) # Close `microbenchmark`
 
+
+# March 26, 2025 -- Speed Test Results:
+## ver   min        lq        mean      median     uq        max       neval  cld
+## CRAN  19.454487  20.45221  22.15415  23.10916   23.56972  24.45299  15     a 
+## v2    7.222776   10.37443  11.26496  11.51429   11.99468  14.55221  15     b
+## v3   9.524724    10.33883  11.12759  11.13571   11.52320  13.79922  15     b
+
 # March 25, 2025 -- Speed Test Results:
 ## ver.    min         lq          mean         median       uq          max      neval  cld
 ## CRAN    14.995852   18.674327   19.76731     19.31185     20.57290    26.03305  50     a 
