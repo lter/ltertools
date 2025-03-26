@@ -1,8 +1,11 @@
-## ltertools Version 1.2.0.900
+## ltertools Version 2.0.0
 
-This is the development version; changes will be listed as they are made.
+There are no ERRORs, WARNINGs, or NOTEs returned by `devtools::check()`. Changes from the preceding version are as follows:
 
 - Removed function: `make_json`. The most critical dependency of this function is being archived and a suitable replacement cannot be found. Consider making a simple CSV of information rather than a JSON
+- New function: `check_key` makes sure a column key is properly formatted to work with `ltertools::harmonize` and removes rows where no "tidy_name" is specified
+- New function: `standardize` standarizes a single dataset (from a list) with the provided key object
+- Improvement: `harmonize` now runs in approximately half the time for large (i.e., >5 MB) raw data files. No change to function inputs or outputs, just increased efficiency
 
 ## ltertools Version 1.2.0
 
