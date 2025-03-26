@@ -130,11 +130,11 @@ microbenchmark::microbenchmark(
                          data_format = "csv", quiet = F),
   
   # Number of times to test
-  times = 10) # Close `microbenchmark`
+  times = 50) # Close `microbenchmark`
 
 # March 25, 2025 -- Speed Test Results:
-## ver.    min        lq         mean       median    uq        max       neval  cld
-## old     19.092555  20.321357  21.38437   21.12428  22.02792  24.84271  10     a 
-## v2     8.268508   8.832298   12.50106   12.60813  15.14380  19.88797  10     b
+## ver.    min         lq          mean         median       uq          max      neval  cld
+## CRAN    14.995852   18.674327   19.76731     19.31185     20.57290    26.03305  50     a 
+## v2     7.908361     8.399373    12.18750     12.25346     15.02888    18.68110  50     b
 
 # End ----
