@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ltertools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0.900</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,9 +34,12 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.2.0.900" id="ltertools-version-120900">ltertools Version 1.2.0.900<a class="anchor" aria-label="anchor" href="#ltertools-version-120900"></a></h2>
-<p>This is the development version; changes will be listed as they are made.</p>
+<h2 class="pkg-version" data-toc-text="2.0.0" id="ltertools-version-200">ltertools Version 2.0.0<a class="anchor" aria-label="anchor" href="#ltertools-version-200"></a></h2>
+<p>There are no ERRORs, WARNINGs, or NOTEs returned by <code>devtools::check()</code>. Changes from the preceding version are as follows:</p>
 <ul><li>Removed function: <code>make_json</code>. The most critical dependency of this function is being archived and a suitable replacement cannot be found. Consider making a simple CSV of information rather than a JSON</li>
+<li>New function: <code>check_key</code> makes sure a column key is properly formatted to work with <code><a href="../reference/harmonize.html">ltertools::harmonize</a></code> and removes rows where no “tidy_name” is specified</li>
+<li>New function: <code>standardize</code> standarizes a single dataset (from a list) with the provided key object</li>
+<li>Improvement: <code>harmonize</code> now runs in approximately half the time for large (i.e., &gt;5 MB) raw data files. No change to function inputs or outputs, just increased efficiency</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.2.0" id="ltertools-version-120">ltertools Version 1.2.0<a class="anchor" aria-label="anchor" href="#ltertools-version-120"></a></h2><p class="text-muted">CRAN release: 2025-02-21</p>
