@@ -2,7 +2,7 @@ Package: ltertools
 Type: Package
 Title: Tools Developed by the Long Term Ecological Research Community
 Version: 1.2.0.900
-Date: 2025-02-21
+Date: 2025-03-26
 Authors@R: c(
     person(given = "Nicholas", family = "Lyon",
           role = c("aut", "cre"),
@@ -38,7 +38,6 @@ Imports:
   magrittr,
   purrr,
   readxl,
-  RJSONIO,
   stats,
   stringr,
   tidyr,
