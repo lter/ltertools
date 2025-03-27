@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ltertools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.0.900</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,11 +30,16 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/lter/ltertools/blob/v2.0.0/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/lter/ltertools/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="2.0.0" id="ltertools-version-200">ltertools Version 2.0.0<a class="anchor" aria-label="anchor" href="#ltertools-version-200"></a></h2><p class="text-muted">CRAN release: 2025-03-26</p>
+<h2 class="pkg-version" data-toc-text="2.0.0.900" id="version-200900">Version 2.0.0.900<a class="anchor" aria-label="anchor" href="#version-200900"></a></h2>
+<p>This is the development version of <code>ltertools</code>. Changes from the preceding version are as follows:</p>
+<ul><li>No changes (yet!)</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="2.0.0" id="version-200">Version 2.0.0<a class="anchor" aria-label="anchor" href="#version-200"></a></h2><p class="text-muted">CRAN release: 2025-03-26</p>
 <p>There are no ERRORs, WARNINGs, or NOTEs returned by <code>devtools::check()</code>. Changes from the preceding version are as follows:</p>
 <ul><li>Removed function: <code>make_json</code>. The most critical dependency of this function is being archived and a suitable replacement cannot be found. Consider making a simple CSV of information rather than a JSON</li>
 <li>New function: <code>check_key</code> makes sure a column key is properly formatted to work with <code><a href="../reference/harmonize.html">ltertools::harmonize</a></code> and removes rows where no “tidy_name” is specified</li>
@@ -42,21 +47,21 @@
 <li>Improvement: <code>harmonize</code> now runs in approximately half the time for large (i.e., &gt;5 MB) raw data files. No change to function inputs or outputs, just increased efficiency</li>
 </ul></div>
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.2.0" id="ltertools-version-120">ltertools Version 1.2.0<a class="anchor" aria-label="anchor" href="#ltertools-version-120"></a></h2><p class="text-muted">CRAN release: 2025-02-21</p>
-<p>There are no ERRORs, WARNINGs, or NOTEs returned by <code>devtools::check()</code>.</p>
+<h2 class="pkg-version" data-toc-text="1.2.0" id="version-120">Version 1.2.0<a class="anchor" aria-label="anchor" href="#version-120"></a></h2><p class="text-muted">CRAN release: 2025-02-21</p>
+<p>There are no ERRORs, WARNINGs, or NOTEs returned by <code>devtools::check()</code>. Changes from the preceding version are as follows:</p>
 <ul><li>New function: <code>expand_key</code> generates rows for a column key for only raw data files that are not already in an existing key or in an existing harmonized data table</li>
 </ul></div>
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.1.0" id="ltertools-version-110">ltertools Version 1.1.0<a class="anchor" aria-label="anchor" href="#ltertools-version-110"></a></h2><p class="text-muted">CRAN release: 2024-09-20</p>
-<p>There are no ERRORs, WARNINGs, or NOTEs returned by <code>devtools::check()</code>.</p>
+<h2 class="pkg-version" data-toc-text="1.1.0" id="version-110">Version 1.1.0<a class="anchor" aria-label="anchor" href="#version-110"></a></h2><p class="text-muted">CRAN release: 2024-09-20</p>
+<p>There are no ERRORs, WARNINGs, or NOTEs returned by <code>devtools::check()</code>. Changes from the preceding version are as follows:</p>
 <ul><li>New function: <code>make_json</code> creates a JSON containing name/value pairs from a named vector. Optionally adds the JSON file name to the ‘gitignore’ (if one can be found in the working directory)</li>
 <li>New function: <code>solar_day_info</code> identifies sunrise, sunset, solar noon, and day length for all dates within a user-specified range at particular coordinates</li>
 <li>Function update: <code>harmonize</code> now includes new defensive warning/error checks with informative messages for likely sources of error</li>
 <li>Unit tests added for all functions currently in package. Likely limited impact on users except better adherence to best practice will make for a stronger package in the long run</li>
 </ul></div>
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.0.0" id="ltertools-version-100">ltertools Version 1.0.0<a class="anchor" aria-label="anchor" href="#ltertools-version-100"></a></h2><p class="text-muted">CRAN release: 2024-02-23</p>
-<p>There are no ERRORs, WARNINGs, or NOTEs returned by <code>devtools::check()</code>.</p>
+<h2 class="pkg-version" data-toc-text="1.0.0" id="version-100">Version 1.0.0<a class="anchor" aria-label="anchor" href="#version-100"></a></h2><p class="text-muted">CRAN release: 2024-02-23</p>
+<p>There are no ERRORs, WARNINGs, or NOTEs returned by <code>devtools::check()</code>. This is the first version of <code>ltertools</code>.</p>
 <ul><li>New function: <code>read</code> – reads in all data files in a particular folder and stores them in a list</li>
 <li>New function: <code>begin_key</code> – creates the start of a “column key” for data harmonization</li>
 <li>New function: <code>harmonize</code> – performs column key-based harmonization of raw data</li>
