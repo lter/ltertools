@@ -30,11 +30,11 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/lter/ltertools/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/lter/ltertools/blob/v2.0.0/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="2.0.0" id="ltertools-version-200">ltertools Version 2.0.0<a class="anchor" aria-label="anchor" href="#ltertools-version-200"></a></h2>
+<h2 class="pkg-version" data-toc-text="2.0.0" id="ltertools-version-200">ltertools Version 2.0.0<a class="anchor" aria-label="anchor" href="#ltertools-version-200"></a></h2><p class="text-muted">CRAN release: 2025-03-26</p>
 <p>There are no ERRORs, WARNINGs, or NOTEs returned by <code>devtools::check()</code>. Changes from the preceding version are as follows:</p>
 <ul><li>Removed function: <code>make_json</code>. The most critical dependency of this function is being archived and a suitable replacement cannot be found. Consider making a simple CSV of information rather than a JSON</li>
 <li>New function: <code>check_key</code> makes sure a column key is properly formatted to work with <code><a href="../reference/harmonize.html">ltertools::harmonize</a></code> and removes rows where no “tidy_name” is specified</li>
