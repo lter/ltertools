@@ -1,4 +1,10 @@
-## ltertools Version 2.0.0
+## Version 2.0.0.900
+
+This is the development version of `ltertools`. Changes from the preceding version are as follows:
+
+- No changes (yet!)
+
+## Version 2.0.0
 
 There are no ERRORs, WARNINGs, or NOTEs returned by `devtools::check()`. Changes from the preceding version are as follows:
 
@@ -7,24 +13,24 @@ There are no ERRORs, WARNINGs, or NOTEs returned by `devtools::check()`. Changes
 - New function: `standardize` standarizes a single dataset (from a list) with the provided key object
 - Improvement: `harmonize` now runs in approximately half the time for large (i.e., >5 MB) raw data files. No change to function inputs or outputs, just increased efficiency
 
-## ltertools Version 1.2.0
+## Version 1.2.0
 
-There are no ERRORs, WARNINGs, or NOTEs returned by `devtools::check()`.
+There are no ERRORs, WARNINGs, or NOTEs returned by `devtools::check()`. Changes from the preceding version are as follows:
 
 - New function: `expand_key` generates rows for a column key for only raw data files that are not already in an existing key or in an existing harmonized data table
 
-## ltertools Version 1.1.0
+## Version 1.1.0
 
-There are no ERRORs, WARNINGs, or NOTEs returned by `devtools::check()`.
+There are no ERRORs, WARNINGs, or NOTEs returned by `devtools::check()`. Changes from the preceding version are as follows:
 
 - New function: `make_json` creates a JSON containing name/value pairs from a named vector. Optionally adds the JSON file name to the 'gitignore' (if one can be found in the working directory)
 - New function: `solar_day_info` identifies sunrise, sunset, solar noon, and day length for all dates within a user-specified range at particular coordinates
 - Function update: `harmonize` now includes new defensive warning/error checks with informative messages for likely sources of error
 - Unit tests added for all functions currently in package. Likely limited impact on users except better adherence to best practice will make for a stronger package in the long run
 
-## ltertools Version 1.0.0
+## Version 1.0.0
 
-There are no ERRORs, WARNINGs, or NOTEs returned by `devtools::check()`.
+There are no ERRORs, WARNINGs, or NOTEs returned by `devtools::check()`. This is the first version of `ltertools`.
 
 - New function: `read` -- reads in all data files in a particular folder and stores them in a list
 - New function: `begin_key` -- creates the start of a "column key" for data harmonization
