@@ -57,7 +57,8 @@ standardize <- function(focal_file = NULL, key = NULL, df_list = NULL){
   
   # Warn the user if any are found (this is a warning so no `quiet` argument used)
   if(length(missing_cols) > 0){
-    warning(message = paste0("Following columns in key NOT found in '", focal_file, "': '", missing_cols, "'", collapse = " & ")) }
+    warning(message = paste0("Following columns in key NOT found in '", focal_file, "': '",
+                             paste0(missing_cols, "'", collapse = " & "))) }
   
   # Standardize this dataset
   focal.df_std <- focal.df_orig %>% 
