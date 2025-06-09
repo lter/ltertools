@@ -2,7 +2,7 @@
 
 This is the development version of `ltertools`. Changes from the preceding version are as follows:
 
-- No changes (yet!)
+- Function fix: `standardize` warning message for columns found in key but not data more succinctly
 
 ## Version 2.0.0
 
