@@ -12,5 +12,5 @@ test_that("Warnings are returned",{
 # Output testing
 test_that("Outputs are correct", {
   time_gg <- site_timeline(sites = c("NWT", "LUQ", "ARC"))
-  expect_equal(class(time_gg), c("gg", "ggplot"))
+  expect_true(ggplot2::is_ggplot(time_gg))
 })
