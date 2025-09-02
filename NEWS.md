@@ -1,8 +1,7 @@
-## Version 2.0.0.900
-
-This is the development version of `ltertools`. Changes from the preceding version are as follows:
+## Version 2.1.0
 
 - Function fix: `standardize` warning message for columns found in key but not data more succinctly
+- Test update: unit test update for `ggplot2` version `4.0.0`
 
 ## Version 2.0.0
 
