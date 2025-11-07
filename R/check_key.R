@@ -16,8 +16,8 @@
 #'                                    rep("df2.csv", 3)),
 #'                       "raw_name" = c("xx", "unwanted", "yy",
 #'                                      "LETTERS", "NUMBERS", "BONUS"),
-#'                     "tidy_name" = c("numbers", NA, "letters",
-#'                                     "letters", "numbers", "kingdom"))
+#'                       "tidy_name" = c("numbers", NA, "letters",
+#'                                       "letters", "numbers", "kingdom"))
 #' 
 #' # Check it
 #' ltertools::check_key(key = key_obj)
@@ -51,6 +51,10 @@ check_key <- function(key = NULL){
   if(nrow(key_test) != 0){
     stop("Non-unique 'tidy_name' entries found within following dataset(s): ",
          paste(key_test$source, collapse = " & ")) }
+  
+  # Error if "source" is provided as a tidy name
+  if("source" %in% unique(key_actual$tidy_name))
+    stop("'source' cannot be a 'tidy_name' value. It is reserved to create a column containing the file name")
   
   # Return refined key object
   return(key_actual) }
