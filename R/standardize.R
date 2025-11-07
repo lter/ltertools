@@ -70,11 +70,11 @@ standardize <- function(focal_file = NULL, key = NULL, df_list = NULL){
     # Make all columns characters
     dplyr::mutate(dplyr::across(.cols = dplyr::everything(),
                                 .fns = as.character)) %>% 
-    # Add a filename column
-    dplyr::mutate(source = focal_file, .before = dplyr::everything()) %>% 
     # Standardize names with key
     supportR::safe_rename(data = ., bad_names = focal_key$raw_name,
-                          good_names = focal_key$tidy_name)
+                          good_names = focal_key$tidy_name) %>% 
+    # Add a filename column
+    dplyr::mutate(source = focal_file, .before = dplyr::everything())
   
   # Return the standard object
   return(focal.df_std) }
