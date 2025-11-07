@@ -47,8 +47,11 @@ standardize <- function(focal_file = NULL, key = NULL, df_list = NULL){
   # Squelch visible bindings note
   . <- NULL
   
+  # Internally check the key (so users can't skip that step)
+  key_check <- ltertools::check_key(key = key)
+
   # Grab single key/data component
-  focal_key <- dplyr::filter(key, source == focal_file)
+  focal_key <- dplyr::filter(key_check, source == focal_file)
   focal.df_orig <- df_list[[focal_file]]
   
   # Identify any columns in the column key but apparently not in the data
