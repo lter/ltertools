@@ -36,11 +36,13 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.1.0.900" id="version-210900">Version 2.1.0.900<a class="anchor" aria-label="anchor" href="#version-210900"></a></h2>
 <p>This is the development version. Changes from the previous version are identified below.</p>
-<ul><li>No changes (yet)</li>
+<ul><li>Function improvement: <code>standardize</code> (and by extension, <code>harmonize</code>) runs <code>check_key</code> internally before attempting to standardize data with that key</li>
+<li>Function modification: <code>check_key</code> now rejects “source” as a user-specified “tidy_name” in the data key. Necessary to reserve “source” for storing the file name</li>
+<li>Test addition: adding unit tests for <code>check_key</code> inputs</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.1.0" id="version-210">Version 2.1.0<a class="anchor" aria-label="anchor" href="#version-210"></a></h2><p class="text-muted">CRAN release: 2025-09-02</p>
-<ul><li>Function fix: <code>standardize</code> warning message for columns found in key but not data more succinctly</li>
+<ul><li>Function fix: <code>standardize</code> warning message for columns found in key but not data is more succinct</li>
 <li>Test update: unit test update for <code>ggplot2</code> version <code>4.0.0</code>
 </li>
 </ul></div>
