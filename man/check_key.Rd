@@ -21,8 +21,8 @@ key_obj <- data.frame("source" = c(rep("df1.csv", 3),
                                    rep("df2.csv", 3)),
                       "raw_name" = c("xx", "unwanted", "yy",
                                      "LETTERS", "NUMBERS", "BONUS"),
-                    "tidy_name" = c("numbers", NA, "letters",
-                                    "letters", "numbers", "kingdom"))
+                      "tidy_name" = c("numbers", NA, "letters",
+                                      "letters", "numbers", "kingdom"))
 
 # Check it
 ltertools::check_key(key = key_obj)
