@@ -2,11 +2,13 @@
 
 This is the development version. Changes from the previous version are identified below.
 
-- No changes (yet)
+- Function improvement: `standardize` (and by extension, `harmonize`) runs `check_key` internally before attempting to standardize data with that key
+- Function modification: `check_key` now rejects "source" as a user-specified "tidy_name" in the data key. Necessary to reserve "source" for storing the file name
+- Test addition: adding unit tests for `check_key` inputs
 
 ## Version 2.1.0
 
-- Function fix: `standardize` warning message for columns found in key but not data more succinctly
+- Function fix: `standardize` warning message for columns found in key but not data is more succinct
 - Test update: unit test update for `ggplot2` version `4.0.0`
 
 ## Version 2.0.0
