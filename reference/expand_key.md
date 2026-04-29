@@ -1,0 +1,95 @@
+# Generate the Skeleton of a Column Key for Only New Data Files
+
+Data discovery–and harmonization–is an iterative process. For those
+already depending upon a column key and the `harmonize` function, it can
+be cumbersome to add rows to an existing column key. This function
+formats rows for an existing column key for only datasets that are not
+already (A) in the column key or (B) in the harmonized data table.
+
+## Usage
+
+``` r
+expand_key(
+  key = NULL,
+  raw_folder = NULL,
+  harmonized_df = NULL,
+  data_format = c("csv", "txt", "xls", "xlsx"),
+  guess_tidy = FALSE
+)
+```
+
+## Arguments
+
+- key:
+
+  (dataframe) key object including a "source", "raw_name" and
+  "tidy_name" column. Additional columns are allowed but ignored
+
+- raw_folder:
+
+  (character) folder / folder path containing data files to include in
+  key
+
+- harmonized_df:
+
+  (dataframe) harmonized data table produced with the current version of
+  the column key. Must include a "source" column but other columns are
+  ignored.
+
+- data_format:
+
+  (character) file extensions to identify within the `raw_folder`.
+  Default behavior is to search for all supported file types.
+
+- guess_tidy:
+
+  (logical) whether to attempt to "guess" what the tidy name equivalent
+  should be for each raw column name. This is accomplished via coercion
+  to lowercase and removal of special character/repeated characters. If
+  `FALSE` (the default) the "tidy_name" column is returned empty
+
+## Value
+
+(dataframe) skeleton of rows to add to column key for data sources not
+already in harmonized data table
+
+## Examples
+
+``` r
+# Generate two simple tables
+## Dataframe 1
+df1 <- data.frame("xx" = c(1:3),
+                  "unwanted" = c("not", "needed", "column"),
+                  "yy" = letters[1:3])
+## Dataframe 2
+df2 <- data.frame("LETTERS" = letters[4:7],
+                  "NUMBERS" = c(4:7),
+                  "BONUS" = c("plantae", "animalia", "fungi", "protista"))
+
+# Generate a local folder for exporting
+temp_folder <- tempdir()
+
+# Export both files to that folder
+utils::write.csv(x = df1, file = file.path(temp_folder, "df1.csv"), row.names = FALSE)
+utils::write.csv(x = df2, file = file.path(temp_folder, "df2.csv"), row.names = FALSE)
+
+# Generate a column key with "guesses" at tidy column names
+key1 <- ltertools::begin_key(raw_folder = temp_folder, data_format = "csv", guess_tidy = TRUE)
+
+# Harmonize the data
+harmony <- ltertools::harmonize(key = key1, raw_folder = temp_folder)
+
+# Make a new data file
+df3 <- data.frame("xx" = c(10:15),
+                  "letters" = letters[10:15])
+
+# Export this locally to the temp folder too
+utils::write.csv(x = df3, file = file.path(temp_folder, "df3.csv"), row.names = FALSE)
+
+# Identify what needs to be added to the existing column key
+ltertools::expand_key(key = key1, raw_folder = temp_folder, harmonized_df = harmony,
+                      data_format = "csv", guess_tidy = TRUE)
+#>    source raw_name tidy_name
+#> 1 df3.csv       xx        xx
+#> 2 df3.csv  letters   letters
+```
