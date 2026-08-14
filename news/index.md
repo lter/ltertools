@@ -2,7 +2,7 @@
 
 ## Version 2.1.1
 
-Changes from the previous version are identified below.
+Changes from the preceding version are as follows:
 
 - Function improvement: `standardize` (and by extension, `harmonize`)
   runs `check_key` internally before attempting to standardize data with
@@ -17,6 +17,8 @@ Changes from the previous version are identified below.
 
 CRAN release: 2025-09-02
 
+Changes from the preceding version are as follows:
+
 - Function fix: `standardize` warning message for columns found in key
   but not data is more succinct
 - Test update: unit test update for `ggplot2` version `4.0.0`
@@ -25,7 +27,6 @@ CRAN release: 2025-09-02
 
 CRAN release: 2025-03-26
 
-There are no ERRORs, WARNINGs, or NOTEs returned by `devtools::check()`.
 Changes from the preceding version are as follows:
 
 - Removed function: `make_json`. The most critical dependency of this
@@ -45,7 +46,6 @@ Changes from the preceding version are as follows:
 
 CRAN release: 2025-02-21
 
-There are no ERRORs, WARNINGs, or NOTEs returned by `devtools::check()`.
 Changes from the preceding version are as follows:
 
 - New function: `expand_key` generates rows for a column key for only
@@ -56,7 +56,6 @@ Changes from the preceding version are as follows:
 
 CRAN release: 2024-09-20
 
-There are no ERRORs, WARNINGs, or NOTEs returned by `devtools::check()`.
 Changes from the preceding version are as follows:
 
 - New function: `make_json` creates a JSON containing name/value pairs
