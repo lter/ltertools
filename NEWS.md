@@ -1,6 +1,6 @@
 ## Version 2.1.1
 
-Changes from the previous version are identified below.
+Changes from the preceding version are as follows:
 
 - Function improvement: `standardize` (and by extension, `harmonize`) runs `check_key` internally before attempting to standardize data with that key
 - Function modification: `check_key` now rejects "source" as a user-specified "tidy_name" in the data key. Necessary to reserve "source" for storing the file name
@@ -9,12 +9,14 @@ Changes from the previous version are identified below.
 
 ## Version 2.1.0
 
+Changes from the preceding version are as follows:
+
 - Function fix: `standardize` warning message for columns found in key but not data is more succinct
 - Test update: unit test update for `ggplot2` version `4.0.0`
 
 ## Version 2.0.0
 
-There are no ERRORs, WARNINGs, or NOTEs returned by `devtools::check()`. Changes from the preceding version are as follows:
+Changes from the preceding version are as follows:
 
 - Removed function: `make_json`. The most critical dependency of this function is being archived and a suitable replacement cannot be found. Consider making a simple CSV of information rather than a JSON
 - New function: `check_key` makes sure a column key is properly formatted to work with `ltertools::harmonize` and removes rows where no "tidy_name" is specified
@@ -23,13 +25,13 @@ There are no ERRORs, WARNINGs, or NOTEs returned by `devtools::check()`. Changes
 
 ## Version 1.2.0
 
-There are no ERRORs, WARNINGs, or NOTEs returned by `devtools::check()`. Changes from the preceding version are as follows:
+Changes from the preceding version are as follows:
 
 - New function: `expand_key` generates rows for a column key for only raw data files that are not already in an existing key or in an existing harmonized data table
 
 ## Version 1.1.0
 
-There are no ERRORs, WARNINGs, or NOTEs returned by `devtools::check()`. Changes from the preceding version are as follows:
+Changes from the preceding version are as follows:
 
 - New function: `make_json` creates a JSON containing name/value pairs from a named vector. Optionally adds the JSON file name to the 'gitignore' (if one can be found in the working directory)
 - New function: `solar_day_info` identifies sunrise, sunset, solar noon, and day length for all dates within a user-specified range at particular coordinates
