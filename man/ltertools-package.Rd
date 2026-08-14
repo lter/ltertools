@@ -21,6 +21,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Nicholas Lyon \email{lyon@nceas.ucsb.edu} (https://njlyon0.github.io/)
   \item Angel Chen \email{anchen@nceas.ucsb.edu} (https://angelchen7.github.io)
 }
 
