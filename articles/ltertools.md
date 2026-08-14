@@ -18,6 +18,7 @@ contributed functions. This vignette describes the main functions of
 `ltertools` as they currently exist.
 
 ``` r
+
 # devtools::install_github("lter/ltertools")
 library(ltertools)
 ```
@@ -55,6 +56,7 @@ tables and export them to a temporary directory (so that they can be
 read back in as is required by the harmonization functions).
 
 ``` r
+
 # Generate two simple tables
 ## Dataframe 1
 df1 <- data.frame("xx" = c(1:3),
@@ -80,6 +82,7 @@ Google Sheet). For this example, we can generate a data key manually
 here.
 
 ``` r
+
 # Generate a key that matches the data we created above
 key_obj <- data.frame("source" = c(rep("df1.csv", 3), 
                                    rep("df2.csv", 3)),
@@ -108,6 +111,7 @@ about key-to-data mismatches (either expected-but-missing column names
 or unexpected columns).
 
 ``` r
+
 # Use the key to harmonize our example data
 harmony <- ltertools::harmonize(key = key_obj, raw_folder = temp_folder, 
                                 data_format = "csv", quiet = TRUE)
@@ -132,6 +136,7 @@ casing/special characters rather than being phrased incompatibly. For
 our example here we’ll allow the key to “guess”.
 
 ``` r
+
 # Generate a column key with "guesses" at tidy column names
 test_key <- ltertools::begin_key(raw_folder = temp_folder, data_format = "csv", 
                                  guess_tidy = TRUE)
@@ -157,6 +162,7 @@ not already in (A) the existing key object or (B) the harmonized data
 object.
 
 ``` r
+
 # Make another simple 'raw' file
 df3 <- data.frame("xx" = c(10:15),
                   "letters" = letters[10:15])
@@ -185,6 +191,7 @@ We can demonstrate this with the test CSVs we created to demonstrate the
 harmonization workflow earlier.
 
 ``` r
+
 # Read in all of the CSVs that we created above
 data_list <- ltertools::read(raw_folder = temp_folder, data_format = "csv")
 
@@ -211,6 +218,7 @@ date at a set of latitude/longitude coordinates. All times are in UTC
 and the information retrieved is returned as a dataframe.
 
 ``` r
+
 # Identify day information in Santa Barbara (California) for one week
 solar_day_info(lat = 34.41, lon = -119.71, 
                start_date = "2022-02-07", end_date = "2022-02-12", 
@@ -232,6 +240,7 @@ vector of numbers. Because `sd` and `mean` both support an argument for
 defining how missing values are handled, our `cv` function does as well.
 
 ``` r
+
 # Calculate CV (excluding missing values)
 ltertools::cv(x = c(4, 5, 6, 4, 5, 5), na_rm = TRUE)
 #> [1] 0.1557461
@@ -245,6 +254,7 @@ Units are case-insensitive and support either the one-letter
 abbreviation or the full name of the unit.
 
 ``` r
+
 # Convert some temperatures from F to Kelvin
 convert_temp(value = c(0, 32, 110), from = "Fahrenheit", to = "k")
 #> [1] 255.3722 273.1500 316.4833
@@ -269,6 +279,7 @@ Sites can be specified by their three letter site code or all sites in a
 particular habitat can be included.
 
 ``` r
+
 # Check the timeline for all grassland or forest LTER sites
 ltertools::site_timeline(habitats = c("grassland", "forest"))
 ```
@@ -279,6 +290,7 @@ Running the function without specifying site codes or habitat types will
 result in a timeline of all active LTER sites.
 
 ``` r
+
 # Check the timeline for all LTER sites
 ltertools::site_timeline()
 ```

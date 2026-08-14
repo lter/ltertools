@@ -24,6 +24,7 @@ You can install the development version of `ltertools` from
 [GitHub](https://github.com/) with:
 
 ``` r
+
 # install.packages("pak")
 pak::pak("lter/ltertools")
 ```

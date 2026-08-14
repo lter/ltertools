@@ -15,10 +15,12 @@ Useful links:
 
 ## Author
 
-**Maintainer**: Nicholas Lyon <lyon@nceas.ucsb.edu>
+**Maintainer**: Nicholas Lyon <nickjlyon@gmail.com>
 (https://njlyon0.github.io/)
 
 Authors:
+
+- Nicholas Lyon <nickjlyon@gmail.com> (https://njlyon0.github.io/)
 
 - Angel Chen <anchen@nceas.ucsb.edu> (https://angelchen7.github.io)
 
