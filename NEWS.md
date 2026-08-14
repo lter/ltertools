@@ -1,10 +1,11 @@
-## Version 2.1.0.900
+## Version 2.1.1
 
-This is the development version. Changes from the previous version are identified below.
+Changes from the previous version are identified below.
 
 - Function improvement: `standardize` (and by extension, `harmonize`) runs `check_key` internally before attempting to standardize data with that key
 - Function modification: `check_key` now rejects "source" as a user-specified "tidy_name" in the data key. Necessary to reserve "source" for storing the file name
 - Test addition: adding unit tests for `check_key` inputs
+- Update maintainer email
 
 ## Version 2.1.0
 

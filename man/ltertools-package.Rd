@@ -17,11 +17,11 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Nicholas Lyon \email{lyon@nceas.ucsb.edu} (https://njlyon0.github.io/)
+\strong{Maintainer}: Nicholas Lyon \email{nickjlyon@gmail.com} (https://njlyon0.github.io/)
 
 Authors:
 \itemize{
-  \item Nicholas Lyon \email{lyon@nceas.ucsb.edu} (https://njlyon0.github.io/)
+  \item Nicholas Lyon \email{nickjlyon@gmail.com} (https://njlyon0.github.io/)
   \item Angel Chen \email{anchen@nceas.ucsb.edu} (https://angelchen7.github.io)
 }
 

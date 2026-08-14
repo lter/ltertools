@@ -1,12 +1,12 @@
 Package: ltertools
 Type: Package
 Title: Tools Developed by the Long Term Ecological Research Community
-Version: 2.1.0.900
-Date: 2025-09-02
+Version: 2.1.1
+Date: 2026-08-14
 Authors@R: c(
     person(given = "Nicholas", family = "Lyon",
           role = c("aut", "cre"),
-          email = "lyon@nceas.ucsb.edu",
+          email = "nickjlyon@gmail.com",
           comment = "https://njlyon0.github.io/"),
     person(given = "Angel", family = "Chen",
           role = c("aut"),
@@ -19,7 +19,7 @@ Authors@R: c(
            role = "fnd",
            comment = "NSF 1929393, 09/01/2019 - 08/31/2024"),
     person(family = "University of California, Santa Barbara", role = "cph") )
-Maintainer: Nicholas Lyon <lyon@nceas.ucsb.edu>
+Maintainer: Nicholas Lyon <nickjlyon@gmail.com>
 Description: Set of the data science tools created by various members of the Long Term 
     Ecological Research (LTER) community. These functions were initially written largely 
     as standalone operations and have later been aggregated into this package.
