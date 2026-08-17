@@ -1,11 +1,9 @@
 ## R CMD Check Results
 
-0 errors | 0 warnings | 0 notes
+There were no errors or warnings returned by `devtools::check()` or `devtools::check_win_devel()`.
 
-### Changes per CRAN Reviewer Instructions
-
-- No requested changes
+There is one note due to the updated maintainer email differing from that of the CRAN version.
 
 ## Downstream dependencies
 
-There are currently no downstream dependencies for this package.
+There are currently no downstream dependencies for this package. Checked with `tools::dependsOnPkgs("ltertools").
