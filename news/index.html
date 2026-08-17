@@ -35,50 +35,82 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.1.1" id="version-211">Version 2.1.1<a class="anchor" aria-label="anchor" href="#version-211"></a></h2>
-<p>Changes from the preceding version are as follows:</p>
-<ul><li>Function improvement: <code>standardize</code> (and by extension, <code>harmonize</code>) runs <code>check_key</code> internally before attempting to standardize data with that key</li>
-<li>Function modification: <code>check_key</code> now rejects “source” as a user-specified “tidy_name” in the data key. Necessary to reserve “source” for storing the file name</li>
-<li>Test addition: adding unit tests for <code>check_key</code> inputs</li>
-<li>Update maintainer email</li>
+<div class="section level3">
+<h3 id="new-features-2-1-1">New Features<a class="anchor" aria-label="anchor" href="#new-features-2-1-1"></a></h3>
+<ul><li>
+<code><a href="../reference/standardize.html">standardize()</a></code> runs <code><a href="../reference/check_key.html">check_key()</a></code> internally before attempting to standardize data with that key.</li>
+<li>
+<code><a href="../reference/check_key.html">check_key()</a></code> now rejects “source” as a user-specified “tidy_name” in the data key. Necessary to reserve “source” for storing the file name in the standardized output.</li>
 </ul></div>
+<div class="section level3">
+<h3 id="documentation--testing-2-1-1">Documentation &amp; Testing<a class="anchor" aria-label="anchor" href="#documentation--testing-2-1-1"></a></h3>
+<ul><li>Adds unit tests for <code><a href="../reference/check_key.html">check_key()</a></code>.</li>
+<li>Updates maintainer email.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.1.0" id="version-210">Version 2.1.0<a class="anchor" aria-label="anchor" href="#version-210"></a></h2><p class="text-muted">CRAN release: 2025-09-02</p>
-<p>Changes from the preceding version are as follows:</p>
-<ul><li>Function fix: <code>standardize</code> warning message for columns found in key but not data is more succinct</li>
-<li>Test update: unit test update for <code>ggplot2</code> version <code>4.0.0</code>
-</li>
+<div class="section level3">
+<h3 id="new-features-2-1-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-2-1-0"></a></h3>
+<ul><li>
+<code><a href="../reference/standardize.html">standardize()</a></code> warning message for columns found in key but not data is more succinct.</li>
 </ul></div>
+<div class="section level3">
+<h3 id="documentation--testing-2-1-0">Documentation &amp; Testing<a class="anchor" aria-label="anchor" href="#documentation--testing-2-1-0"></a></h3>
+<ul><li>Updates affected units tests for <code>ggplot2</code> version 4.0.0.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.0.0" id="version-200">Version 2.0.0<a class="anchor" aria-label="anchor" href="#version-200"></a></h2><p class="text-muted">CRAN release: 2025-03-26</p>
-<p>Changes from the preceding version are as follows:</p>
-<ul><li>Removed function: <code>make_json</code>. The most critical dependency of this function is being archived and a suitable replacement cannot be found. Consider making a simple CSV of information rather than a JSON</li>
-<li>New function: <code>check_key</code> makes sure a column key is properly formatted to work with <code><a href="../reference/harmonize.html">ltertools::harmonize</a></code> and removes rows where no “tidy_name” is specified</li>
-<li>New function: <code>standardize</code> standarizes a single dataset (from a list) with the provided key object</li>
-<li>Improvement: <code>harmonize</code> now runs in approximately half the time for large (i.e., &gt;5 MB) raw data files. No change to function inputs or outputs, just increased efficiency</li>
+<div class="section level3">
+<h3 id="breaking-changes-2-0-0">Breaking Changes<a class="anchor" aria-label="anchor" href="#breaking-changes-2-0-0"></a></h3>
+<ul><li>Deprecates <code>make_json()</code> due to loss of key dependency.</li>
 </ul></div>
+<div class="section level3">
+<h3 id="new-features-2-0-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-2-0-0"></a></h3>
+<ul><li>
+<code><a href="../reference/check_key.html">check_key()</a></code> ensures a column key is properly formatted to work with <code><a href="../reference/harmonize.html">harmonize()</a></code>.</li>
+<li>
+<code><a href="../reference/standardize.html">standardize()</a></code> uses the provided column key to standarize a single dataset (from a named list).</li>
+<li>
+<code><a href="../reference/harmonize.html">harmonize()</a></code> runs in approximately half the time for large (i.e., &gt;5 MB) raw data files.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.2.0" id="version-120">Version 1.2.0<a class="anchor" aria-label="anchor" href="#version-120"></a></h2><p class="text-muted">CRAN release: 2025-02-21</p>
-<p>Changes from the preceding version are as follows:</p>
-<ul><li>New function: <code>expand_key</code> generates rows for a column key for only raw data files that are not already in an existing key or in an existing harmonized data table</li>
+<ul><li>
+<code><a href="../reference/expand_key.html">expand_key()</a></code> generates rows for a column key for only those raw data files that are not already in an existing key or in an existing harmonized data table.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.1.0" id="version-110">Version 1.1.0<a class="anchor" aria-label="anchor" href="#version-110"></a></h2><p class="text-muted">CRAN release: 2024-09-20</p>
-<p>Changes from the preceding version are as follows:</p>
-<ul><li>New function: <code>make_json</code> creates a JSON containing name/value pairs from a named vector. Optionally adds the JSON file name to the ‘gitignore’ (if one can be found in the working directory)</li>
-<li>New function: <code>solar_day_info</code> identifies sunrise, sunset, solar noon, and day length for all dates within a user-specified range at particular coordinates</li>
-<li>Function update: <code>harmonize</code> now includes new defensive warning/error checks with informative messages for likely sources of error</li>
-<li>Unit tests added for all functions currently in package. Likely limited impact on users except better adherence to best practice will make for a stronger package in the long run</li>
+<div class="section level3">
+<h3 id="new-features-1-1-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-1-1-0"></a></h3>
+<ul><li>
+<code>make_json()</code> creates a JSON containing name/value pairs from a named vector. Optionally adds the JSON file name to the <code>.gitignore</code> if one is found in the working directory.</li>
+<li>
+<code><a href="../reference/solar_day_info.html">solar_day_info()</a></code> identifies sunrise, sunset, solar noon, and day length for all dates within a user-specified range at particular coordinates.</li>
+<li>
+<code><a href="../reference/harmonize.html">harmonize()</a></code> includes new defensive warning/error checks with informative messages for likely sources of error.</li>
 </ul></div>
+<div class="section level3">
+<h3 id="documentation--testing-1-1-0">Documentation &amp; Testing<a class="anchor" aria-label="anchor" href="#documentation--testing-1-1-0"></a></h3>
+<ul><li>Unit tests added for all functions currently in package.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.0.0" id="version-100">Version 1.0.0<a class="anchor" aria-label="anchor" href="#version-100"></a></h2><p class="text-muted">CRAN release: 2024-02-23</p>
-<p>There are no ERRORs, WARNINGs, or NOTEs returned by <code>devtools::check()</code>. This is the first version of <code>ltertools</code>.</p>
-<ul><li>New function: <code>read</code> – reads in all data files in a particular folder and stores them in a list</li>
-<li>New function: <code>begin_key</code> – creates the start of a “column key” for data harmonization</li>
-<li>New function: <code>harmonize</code> – performs column key-based harmonization of raw data</li>
-<li>New function: <code>cv</code> – calculates coefficient of variation for a vector of numbers</li>
-<li>New function: <code>convert_temp</code> – converts temperature values from one specified unit to another</li>
-<li>New dataset: <code>lter_sites</code> – includes primary habitat, latitude/longitude coordinates, and funding start/end years for every site currently in the network</li>
-<li>New function: <code>site_timeline</code> – creates a <code>ggplot2</code>-style timeline of all sites that meet the user-specified criteria (for site code and/or habitat)</li>
+<ul><li>
+<code>read</code>() reads in all data files in a particular folder and stores them in a list.</li>
+<li>
+<code><a href="../reference/begin_key.html">begin_key()</a></code> creates the start of a “column key” for data harmonization.</li>
+<li>
+<code><a href="../reference/harmonize.html">harmonize()</a></code> performs column key-based harmonization of raw data.</li>
+<li>
+<code><a href="../reference/cv.html">cv()</a></code> calculates coefficient of variation for a vector of numbers.</li>
+<li>
+<code><a href="../reference/convert_temp.html">convert_temp()</a></code> converts temperature values from one specified unit to another.</li>
+<li>
+<code><a href="../reference/site_timeline.html">site_timeline()</a></code> creates a <code>ggplot2</code>-style timeline of all sites that meet the user-specified criteria.</li>
 </ul></div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
