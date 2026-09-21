@@ -2,6 +2,8 @@
 
 ## Version 2.1.1
 
+CRAN release: 2026-09-18
+
 ### New Features
 
 - [`standardize()`](https://lter.github.io/ltertools/reference/standardize.md)

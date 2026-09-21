@@ -19,7 +19,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/lter/ltertools/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/lter/ltertools/blob/v2.1.1/DESCRIPTION)
 
 Lyon N, Chen A (2026). *ltertools: Tools Developed by the Long Term
 Ecological Research Community*. R package version 2.1.1,
