@@ -19,16 +19,16 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/lter/ltertools/blob/v2.1.1/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/lter/ltertools/blob/main/DESCRIPTION)
 
 Lyon N, Chen A (2026). *ltertools: Tools Developed by the Long Term
-Ecological Research Community*. R package version 2.1.1,
+Ecological Research Community*. R package version 2.1.1.900,
 <https://lter.github.io/ltertools/>.
 
     @Manual{,
       title = {ltertools: Tools Developed by the Long Term Ecological Research Community},
       author = {Nicholas Lyon and Angel Chen},
       year = {2026},
-      note = {R package version 2.1.1},
+      note = {R package version 2.1.1.900},
       url = {https://lter.github.io/ltertools/},
     }
